@@ -1,3 +1,4 @@
 Projekat: TO-DO listing and time-management sa agendom i kalendarom
 
-Clanovi tima: Hana Haseljiæ, Ines Kulenoviæ, Amna Maksumiæ, Mensur Mandžuka
+Tim: SilverDO
+Clanovi tima: Hana Haseljic, Ines Kulenovic, Amna Maksumic, Mensur Mandzuka
