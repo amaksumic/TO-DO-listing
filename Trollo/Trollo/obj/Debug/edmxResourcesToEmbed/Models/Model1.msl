@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities">
+    <EntitySetMapping Name="board">
+      <EntityTypeMapping TypeName="mydbModel.board">
+        <MappingFragment StoreEntitySet="board">
+          <ScalarProperty Name="idBoard" ColumnName="idBoard" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="boardOwner" ColumnName="boardOwner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="list">
+      <EntityTypeMapping TypeName="mydbModel.list">
+        <MappingFragment StoreEntitySet="list">
+          <ScalarProperty Name="idList" ColumnName="idList" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="ownerBoard" ColumnName="ownerBoard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="task">
+      <EntityTypeMapping TypeName="mydbModel.task">
+        <MappingFragment StoreEntitySet="task">
+          <ScalarProperty Name="idTask" ColumnName="idTask" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="endTime" ColumnName="endTime" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="label" ColumnName="label" />
+          <ScalarProperty Name="file" ColumnName="file" />
+          <ScalarProperty Name="ownerList" ColumnName="ownerList" />
+          <ScalarProperty Name="taskCreator" ColumnName="taskCreator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="mydbModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="boardmembers" TypeName="mydbModel.boardmembers" StoreEntitySet="boardmembers">
+      <EndProperty Name="board">
+        <ScalarProperty Name="idBoard" ColumnName="Board_idBoard" />
+      </EndProperty>
+      <EndProperty Name="user">
+        <ScalarProperty Name="idUser" ColumnName="User_idUser" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="taskmembers" TypeName="mydbModel.taskmembers" StoreEntitySet="taskmembers">
+      <EndProperty Name="task">
+        <ScalarProperty Name="idTask" ColumnName="Task_idTask" />
+      </EndProperty>
+      <EndProperty Name="user">
+        <ScalarProperty Name="idUser" ColumnName="User_idUser" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

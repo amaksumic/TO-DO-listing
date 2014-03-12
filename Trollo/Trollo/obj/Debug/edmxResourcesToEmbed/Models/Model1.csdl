@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="board">
+    <Key>
+      <PropertyRef Name="idBoard" />
+    </Key>
+    <Property Name="idBoard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" />
+    <Property Name="boardOwner" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.fk_Board_User1" FromRole="board" ToRole="user" />
+    <NavigationProperty Name="list" Relationship="Self.fk_List_Project1" FromRole="board" ToRole="list" />
+    <NavigationProperty Name="user1" Relationship="Self.boardmembers" FromRole="board" ToRole="user" />
+  </EntityType>
+  <EntityType Name="list">
+    <Key>
+      <PropertyRef Name="idList" />
+    </Key>
+    <Property Name="idList" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ownerBoard" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="board" Relationship="Self.fk_List_Project1" FromRole="list" ToRole="board" />
+    <NavigationProperty Name="task" Relationship="Self.fk_Task_List1" FromRole="list" ToRole="task" />
+  </EntityType>
+  <EntityType Name="task">
+    <Key>
+      <PropertyRef Name="idTask" />
+    </Key>
+    <Property Name="idTask" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="startTime" Type="DateTime" />
+    <Property Name="endTime" Type="DateTime" />
+    <Property Name="comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="label" Type="Int32" />
+    <Property Name="file" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ownerList" Type="Int32" Nullable="false" />
+    <Property Name="taskCreator" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="list" Relationship="Self.fk_Task_List1" FromRole="task" ToRole="list" />
+    <NavigationProperty Name="user" Relationship="Self.fk_Task_User1" FromRole="task" ToRole="user" />
+    <NavigationProperty Name="user1" Relationship="Self.taskmembers" FromRole="task" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="board" Relationship="Self.fk_Board_User1" FromRole="user" ToRole="board" />
+    <NavigationProperty Name="task" Relationship="Self.fk_Task_User1" FromRole="user" ToRole="task" />
+    <NavigationProperty Name="board1" Relationship="Self.boardmembers" FromRole="user" ToRole="board" />
+    <NavigationProperty Name="task1" Relationship="Self.taskmembers" FromRole="user" ToRole="task" />
+  </EntityType>
+  <Association Name="fk_Board_User1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="board" Type="Self.board" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="board">
+        <PropertyRef Name="boardOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_List_Project1">
+    <End Role="board" Type="Self.board" Multiplicity="1" />
+    <End Role="list" Type="Self.list" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="board">
+        <PropertyRef Name="idBoard" />
+      </Principal>
+      <Dependent Role="list">
+        <PropertyRef Name="ownerBoard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Task_List1">
+    <End Role="list" Type="Self.list" Multiplicity="1" />
+    <End Role="task" Type="Self.task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="list">
+        <PropertyRef Name="idList" />
+      </Principal>
+      <Dependent Role="task">
+        <PropertyRef Name="ownerList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Task_User1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="task" Type="Self.task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="task">
+        <PropertyRef Name="taskCreator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="boardmembers">
+    <End Role="board" Type="Self.board" Multiplicity="*" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+  </Association>
+  <Association Name="taskmembers">
+    <End Role="task" Type="Self.task" Multiplicity="*" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="board" EntityType="Self.board" />
+    <EntitySet Name="list" EntityType="Self.list" />
+    <EntitySet Name="task" EntityType="Self.task" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <AssociationSet Name="fk_Board_User1" Association="Self.fk_Board_User1">
+      <End Role="user" EntitySet="user" />
+      <End Role="board" EntitySet="board" />
+    </AssociationSet>
+    <AssociationSet Name="fk_List_Project1" Association="Self.fk_List_Project1">
+      <End Role="board" EntitySet="board" />
+      <End Role="list" EntitySet="list" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Task_List1" Association="Self.fk_Task_List1">
+      <End Role="list" EntitySet="list" />
+      <End Role="task" EntitySet="task" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Task_User1" Association="Self.fk_Task_User1">
+      <End Role="user" EntitySet="user" />
+      <End Role="task" EntitySet="task" />
+    </AssociationSet>
+    <AssociationSet Name="boardmembers" Association="Self.boardmembers">
+      <End Role="board" EntitySet="board" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="taskmembers" Association="Self.taskmembers">
+      <End Role="task" EntitySet="task" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
