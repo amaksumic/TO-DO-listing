@@ -1,0 +1,6 @@
+C:\Users\Amna\Documents\GitHub\TO-DO-listing\Trollo\TrolloServiceApp\bin\TrolloServiceApp.dll
+C:\Users\Amna\Documents\GitHub\TO-DO-listing\Trollo\TrolloServiceApp\bin\TrolloServiceApp.pdb
+C:\Users\Amna\Documents\GitHub\TO-DO-listing\Trollo\TrolloServiceApp\obj\Debug\TrolloServiceApp.dll
+C:\Users\Amna\Documents\GitHub\TO-DO-listing\Trollo\TrolloServiceApp\obj\Debug\TrolloServiceApp.pdb
+C:\Users\Amna\Documents\GitHub\TO-DO-listing\Trollo\TrolloServiceApp\bin\EntityFramework.dll
+C:\Users\Amna\Documents\GitHub\TO-DO-listing\Trollo\TrolloServiceApp\bin\EntityFramework.xml

@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mydbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="board">
+          <Key>
+            <PropertyRef Name="idBoard" />
+          </Key>
+          <Property Name="idBoard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="creationDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="boardOwner" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="boardmembers">
+          <Key>
+            <PropertyRef Name="User_idUser" />
+            <PropertyRef Name="Board_idBoard" />
+          </Key>
+          <Property Name="User_idUser" Type="int" Nullable="false" />
+          <Property Name="Board_idBoard" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="idList" />
+          </Key>
+          <Property Name="idList" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ownerBoard" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="idTask" />
+          </Key>
+          <Property Name="idTask" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="startTime" Type="datetime" Precision="0" />
+          <Property Name="endTime" Type="datetime" Precision="0" />
+          <Property Name="comment" Type="varchar" MaxLength="200" />
+          <Property Name="label" Type="int" />
+          <Property Name="file" Type="blob" />
+          <Property Name="ownerList" Type="int" Nullable="false" />
+          <Property Name="taskCreator" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="taskmembers">
+          <Key>
+            <PropertyRef Name="Task_idTask" />
+            <PropertyRef Name="User_idUser" />
+          </Key>
+          <Property Name="Task_idTask" Type="int" Nullable="false" />
+          <Property Name="User_idUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="creationDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Board_User1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="board" Type="Self.board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="board">
+              <PropertyRef Name="boardOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_List_Project1">
+          <End Role="board" Type="Self.board" Multiplicity="1" />
+          <End Role="list" Type="Self.list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="board">
+              <PropertyRef Name="idBoard" />
+            </Principal>
+            <Dependent Role="list">
+              <PropertyRef Name="ownerBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Task_has_User_Task1">
+          <End Role="task" Type="Self.task" Multiplicity="1" />
+          <End Role="taskmembers" Type="Self.taskmembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="idTask" />
+            </Principal>
+            <Dependent Role="taskmembers">
+              <PropertyRef Name="Task_idTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Task_has_User_User1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="taskmembers" Type="Self.taskmembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="taskmembers">
+              <PropertyRef Name="User_idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Task_List1">
+          <End Role="list" Type="Self.list" Multiplicity="1" />
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="list">
+              <PropertyRef Name="idList" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="ownerList" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Task_User1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="taskCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_has_Board_Board1">
+          <End Role="board" Type="Self.board" Multiplicity="1" />
+          <End Role="boardmembers" Type="Self.boardmembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="board">
+              <PropertyRef Name="idBoard" />
+            </Principal>
+            <Dependent Role="boardmembers">
+              <PropertyRef Name="Board_idBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_has_Board_User1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="boardmembers" Type="Self.boardmembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="boardmembers">
+              <PropertyRef Name="User_idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mydbModelStoreContainer">
+          <EntitySet Name="board" EntityType="Self.board" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="boardmembers" EntityType="Self.boardmembers" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="list" EntityType="Self.list" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="task" EntityType="Self.task" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="taskmembers" EntityType="Self.taskmembers" Schema="mydb" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="mydb" store:Type="Tables" />
+          <AssociationSet Name="fk_Board_User1" Association="Self.fk_Board_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="board" EntitySet="board" />
+          </AssociationSet>
+          <AssociationSet Name="fk_List_Project1" Association="Self.fk_List_Project1">
+            <End Role="board" EntitySet="board" />
+            <End Role="list" EntitySet="list" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Task_has_User_Task1" Association="Self.fk_Task_has_User_Task1">
+            <End Role="task" EntitySet="task" />
+            <End Role="taskmembers" EntitySet="taskmembers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Task_has_User_User1" Association="Self.fk_Task_has_User_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="taskmembers" EntitySet="taskmembers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Task_List1" Association="Self.fk_Task_List1">
+            <End Role="list" EntitySet="list" />
+            <End Role="task" EntitySet="task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Task_User1" Association="Self.fk_Task_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="task" EntitySet="task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_has_Board_Board1" Association="Self.fk_User_has_Board_Board1">
+            <End Role="board" EntitySet="board" />
+            <End Role="boardmembers" EntitySet="boardmembers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_has_Board_User1" Association="Self.fk_User_has_Board_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="boardmembers" EntitySet="boardmembers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="board">
+          <Key>
+            <PropertyRef Name="idBoard" />
+          </Key>
+          <Property Name="idBoard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" />
+          <Property Name="boardOwner" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_Board_User1" FromRole="board" ToRole="user" />
+          <NavigationProperty Name="list" Relationship="Self.fk_List_Project1" FromRole="board" ToRole="list" />
+          <NavigationProperty Name="user1" Relationship="Self.boardmembers" FromRole="board" ToRole="user" />
+        </EntityType>
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="idList" />
+          </Key>
+          <Property Name="idList" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ownerBoard" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="board" Relationship="Self.fk_List_Project1" FromRole="list" ToRole="board" />
+          <NavigationProperty Name="task" Relationship="Self.fk_Task_List1" FromRole="list" ToRole="task" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="idTask" />
+          </Key>
+          <Property Name="idTask" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="startTime" Type="DateTime" />
+          <Property Name="endTime" Type="DateTime" />
+          <Property Name="comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="label" Type="Int32" />
+          <Property Name="file" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ownerList" Type="Int32" Nullable="false" />
+          <Property Name="taskCreator" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="list" Relationship="Self.fk_Task_List1" FromRole="task" ToRole="list" />
+          <NavigationProperty Name="user" Relationship="Self.fk_Task_User1" FromRole="task" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.taskmembers" FromRole="task" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="board" Relationship="Self.fk_Board_User1" FromRole="user" ToRole="board" />
+          <NavigationProperty Name="task" Relationship="Self.fk_Task_User1" FromRole="user" ToRole="task" />
+          <NavigationProperty Name="board1" Relationship="Self.boardmembers" FromRole="user" ToRole="board" />
+          <NavigationProperty Name="task1" Relationship="Self.taskmembers" FromRole="user" ToRole="task" />
+        </EntityType>
+        <Association Name="fk_Board_User1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="board" Type="Self.board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="board">
+              <PropertyRef Name="boardOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_List_Project1">
+          <End Role="board" Type="Self.board" Multiplicity="1" />
+          <End Role="list" Type="Self.list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="board">
+              <PropertyRef Name="idBoard" />
+            </Principal>
+            <Dependent Role="list">
+              <PropertyRef Name="ownerBoard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Task_List1">
+          <End Role="list" Type="Self.list" Multiplicity="1" />
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="list">
+              <PropertyRef Name="idList" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="ownerList" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Task_User1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="taskCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="boardmembers">
+          <End Role="board" Type="Self.board" Multiplicity="*" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <Association Name="taskmembers">
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="board" EntityType="Self.board" />
+          <EntitySet Name="list" EntityType="Self.list" />
+          <EntitySet Name="task" EntityType="Self.task" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="fk_Board_User1" Association="Self.fk_Board_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="board" EntitySet="board" />
+          </AssociationSet>
+          <AssociationSet Name="fk_List_Project1" Association="Self.fk_List_Project1">
+            <End Role="board" EntitySet="board" />
+            <End Role="list" EntitySet="list" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Task_List1" Association="Self.fk_Task_List1">
+            <End Role="list" EntitySet="list" />
+            <End Role="task" EntitySet="task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Task_User1" Association="Self.fk_Task_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="task" EntitySet="task" />
+          </AssociationSet>
+          <AssociationSet Name="boardmembers" Association="Self.boardmembers">
+            <End Role="board" EntitySet="board" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="taskmembers" Association="Self.taskmembers">
+            <End Role="task" EntitySet="task" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities">
+          <EntitySetMapping Name="board">
+            <EntityTypeMapping TypeName="mydbModel.board">
+              <MappingFragment StoreEntitySet="board">
+                <ScalarProperty Name="idBoard" ColumnName="idBoard" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="boardOwner" ColumnName="boardOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="list">
+            <EntityTypeMapping TypeName="mydbModel.list">
+              <MappingFragment StoreEntitySet="list">
+                <ScalarProperty Name="idList" ColumnName="idList" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="ownerBoard" ColumnName="ownerBoard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task">
+            <EntityTypeMapping TypeName="mydbModel.task">
+              <MappingFragment StoreEntitySet="task">
+                <ScalarProperty Name="idTask" ColumnName="idTask" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="file" ColumnName="file" />
+                <ScalarProperty Name="ownerList" ColumnName="ownerList" />
+                <ScalarProperty Name="taskCreator" ColumnName="taskCreator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="mydbModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="boardmembers" TypeName="mydbModel.boardmembers" StoreEntitySet="boardmembers">
+            <EndProperty Name="board">
+              <ScalarProperty Name="idBoard" ColumnName="Board_idBoard" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="idUser" ColumnName="User_idUser" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="taskmembers" TypeName="mydbModel.taskmembers" StoreEntitySet="taskmembers">
+            <EndProperty Name="task">
+              <ScalarProperty Name="idTask" ColumnName="Task_idTask" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="idUser" ColumnName="User_idUser" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
