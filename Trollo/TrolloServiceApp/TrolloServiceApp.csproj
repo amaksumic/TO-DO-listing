@@ -68,8 +68,11 @@
     <Content Include="Service1.svc" />
     <Content Include="ServiceBoard.svc" />
     <Content Include="ServiceListe.svc" />
+    <Content Include="ServiceTask.svc" />
     <Content Include="ServiceUser.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="board.cs">
@@ -78,6 +81,7 @@
     <Compile Include="IService2.cs" />
     <Compile Include="IServiceBoard.cs" />
     <Compile Include="IServiceListe.cs" />
+    <Compile Include="IServiceTask.cs" />
     <Compile Include="list.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -106,6 +110,9 @@
     </Compile>
     <Compile Include="ServiceListe.svc.cs">
       <DependentUpon>ServiceListe.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTask.svc.cs">
+      <DependentUpon>ServiceTask.svc</DependentUpon>
     </Compile>
     <Compile Include="ServiceUser.svc.cs">
       <DependentUpon>ServiceUser.svc</DependentUpon>
