@@ -16,7 +16,7 @@ namespace TrolloServiceApp
         bool CreateUser(User korisnik);
 
         [OperationContract]
-        bool UpdateUser(int idUsera, string password);
+        bool DeleteUser(int idUsera);
 
 
 

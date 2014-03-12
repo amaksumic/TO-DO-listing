@@ -41,7 +41,7 @@ namespace TrolloServiceApp
         }
 
 
-       public bool UpdateUser(int idUsera, string password)
+       public bool DeleteUser(int idUsera)
        {
 
            try
