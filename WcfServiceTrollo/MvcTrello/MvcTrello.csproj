@@ -168,6 +168,7 @@
     </Compile>
     <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -338,6 +339,11 @@
     <Content Include="Views\Board\Create.cshtml" />
     <Content Include="Views\Board\Edit.cshtml" />
     <Content Include="Views\Board\Delete.cshtml" />
+    <Content Include="Views\Lista\Index.cshtml" />
+    <Content Include="Views\Lista\Details.cshtml" />
+    <Content Include="Views\Lista\Create.cshtml" />
+    <Content Include="Views\Lista\Edit.cshtml" />
+    <Content Include="Views\Lista\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

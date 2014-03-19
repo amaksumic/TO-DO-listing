@@ -12,3 +12,10 @@ C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.csprojResolveAssemblyReference.cache
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.pdb
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.csprojResolveAssemblyReference.cache
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb
