@@ -6,7 +6,7 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace MvcTrello
 {
     using System;
@@ -21,10 +21,17 @@ namespace MvcTrello
             this.board1 = new HashSet<board>();
             this.task1 = new HashSet<task>();
         }
-    
+        [Key]
         public int idUser { get; set; }
+        [Required(ErrorMessage = "Potrebno je unijeti username")]
         public string username { get; set; }
+        [Required(ErrorMessage = "Potrebno je unijeti sifru")]
+        [StringLength(8, MinimumLength = 2, ErrorMessage = "Sifra treba imati izmedju 2 i 8 znakova")]
         public string password { get; set; }
+
+        [Required(ErrorMessage = "Unesite datum u formatu dd/MM/yyyy")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime creationDate { get; set; }
         public string email { get; set; }
     

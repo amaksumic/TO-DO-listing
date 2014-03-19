@@ -6,7 +6,7 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace MvcTrello
 {
     using System;
@@ -21,8 +21,10 @@ namespace MvcTrello
         }
     
         public int idBoard { get; set; }
+        [Required(ErrorMessage = "Potrebno je unijeti naziv board-a")]
         public string title { get; set; }
         public System.DateTime creationDate { get; set; }
+        [Required(ErrorMessage = "Potrebno je odabrati vlasnika board-a")]
         public int boardOwner { get; set; }
     
         public virtual user user { get; set; }

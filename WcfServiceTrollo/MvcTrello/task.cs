@@ -6,7 +6,7 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace MvcTrello
 {
     using System;
@@ -28,13 +28,16 @@ namespace MvcTrello
         }
     
         public int idTask { get; set; }
+        [Required(ErrorMessage = "Potrebno je unijeti naziv task-a")]
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }
         public Nullable<System.DateTime> endTime { get; set; }
         public string comment { get; set; }
         public Nullable<int> label { get; set; }
         public byte[] file { get; set; }
+        [Required(ErrorMessage = "Potrebno odabrati listu kojoj task pripada")]
         public int ownerList { get; set; }
+        [Required(ErrorMessage = "Potrebno je odabrati kreatora taska")]
         public int taskCreator { get; set; }
     
         public virtual list list { get; set; }
