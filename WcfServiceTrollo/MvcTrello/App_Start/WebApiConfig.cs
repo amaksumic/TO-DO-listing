@@ -10,9 +10,15 @@ namespace MvcTrello
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "UserApi",
-                routeTemplate: "api/{user}/{id}",
+                name: "Ruta1Api",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "Ruta2Api",
+                routeTemplate: "api/{controller}/{id}/{s}",
+                defaults: new { id = RouteParameter.Optional, s = RouteParameter.Optional }
             );
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.

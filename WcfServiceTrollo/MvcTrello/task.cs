@@ -11,8 +11,10 @@ namespace MvcTrello
 {
     using System;
     using System.Collections.Generic;
+    using System.Xml.Serialization;
     
-    public partial class task
+[Serializable]
+    public class task
     {
         public task()
         {
