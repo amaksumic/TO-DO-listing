@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -344,6 +345,11 @@
     <Content Include="Views\Lista\Create.cshtml" />
     <Content Include="Views\Lista\Edit.cshtml" />
     <Content Include="Views\Lista\Delete.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Task\Details.cshtml" />
+    <Content Include="Views\Task\Create.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Task\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
