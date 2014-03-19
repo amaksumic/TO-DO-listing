@@ -15,7 +15,11 @@ namespace MvcTrello
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
+            config.Routes.MapHttpRoute(
+                 name: "Ruta4Api",
+                 routeTemplate: "api/{controller}/{action}/{task}",
+                 defaults: new { task = RouteParameter.Optional }
+             );
             config.Routes.MapHttpRoute(
                 name: "Ruta2Api",
                 routeTemplate: "api/{controller}/{action}/{id}/{s}",

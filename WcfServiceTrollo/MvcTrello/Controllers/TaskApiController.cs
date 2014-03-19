@@ -86,6 +86,7 @@ namespace MvcTrello.Controllers
 
 
         // POST api/TaskApi
+        [HttpPost]
         public HttpResponseMessage Posttask(task task)
         {
             if (ModelState.IsValid)
@@ -94,7 +95,7 @@ namespace MvcTrello.Controllers
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, task);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = task.idTask }));
+                response.Headers.Location = new Uri(Url.Link("Ruta4Api", new { id = task.idTask }));
                 return response;
             }
             else
