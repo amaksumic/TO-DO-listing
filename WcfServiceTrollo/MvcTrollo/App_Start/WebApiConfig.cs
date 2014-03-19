@@ -10,7 +10,7 @@ namespace MvcTrollo
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "UserApi",
+                name: "UserApiController",
                 routeTemplate: "api/{user}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
