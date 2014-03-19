@@ -11,14 +11,20 @@ namespace MvcTrello
 {
     using System;
     using System.Collections.Generic;
-    using System.Xml.Serialization;
-    
-[Serializable]
+
     public class task
     {
         public task()
         {
-            this.user1 = new HashSet<user>();
+
+        }
+        public task(string title, string comment, int l, int owner, int creator)
+        {
+            this.title = title;
+            this.comment = comment;
+            this.label = l;
+            this.ownerList = owner;
+            this.taskCreator = creator;
         }
     
         public int idTask { get; set; }

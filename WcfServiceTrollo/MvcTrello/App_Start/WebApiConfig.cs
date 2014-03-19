@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Net.Http;
 
 namespace MvcTrello
 {
@@ -11,14 +12,21 @@ namespace MvcTrello
         {
             config.Routes.MapHttpRoute(
                 name: "Ruta1Api",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "Ruta2Api",
-                routeTemplate: "api/{controller}/{id}/{s}",
+                routeTemplate: "api/{controller}/{action}/{id}/{s}",
                 defaults: new { id = RouteParameter.Optional, s = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "Ruta3Api",
+                routeTemplate: "api/{controller}/{action}/{l}/{owner}/{creator}/{title}/{comment}",
+                defaults: new { title = RouteParameter.Optional, comment = RouteParameter.Optional, 
+                    l = RouteParameter.Optional, owner = RouteParameter.Optional, creator = RouteParameter.Optional}
             );
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.

@@ -11,6 +11,14 @@ using System.Web.Http;
 
 namespace MvcTrello.Controllers
 {
+    public class PostTask
+    {
+        public string title {get; set;}
+        public string comment{get; set;}
+        public int l{get; set;}
+        public int owner{get; set;}
+        public int creator{get; set;}
+    }
     public class TaskApiController : ApiController
     {
         private mydbEntities db = new mydbEntities();
@@ -76,6 +84,7 @@ namespace MvcTrello.Controllers
             }
         }
 
+
         // POST api/TaskApi
         public HttpResponseMessage Posttask(task task)
         {
@@ -92,6 +101,23 @@ namespace MvcTrello.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+        }
+
+        //idTask, title, comment, label, ownerList, taskCreator
+
+        // GET api/TaskApi/CreateTasks/5/5
+        [HttpGet]
+        public string CreateTasks(int l, int owner, int creator, string title, string comment) //Vraca task-ove jedne liste.
+        {
+            task task = new task(title, comment, l, owner, creator); 
+            //List<task> tasks = new List<task>();
+            //var task = db.task.Where(t => t.ownerList == l); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            db.task.Add(task);
+            db.SaveChanges();
+
+            return "Dodan sam!";
         }
 
         // DELETE api/TaskApi/5
