@@ -51,6 +51,7 @@
     <NavigationProperty Name="task" Relationship="Self.fk_Task_User1" FromRole="user" ToRole="task" />
     <NavigationProperty Name="board1" Relationship="Self.boardmembers" FromRole="user" ToRole="board" />
     <NavigationProperty Name="task1" Relationship="Self.taskmembers" FromRole="user" ToRole="task" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="fk_Board_User1">
     <End Role="user" Type="Self.user" Multiplicity="1" />

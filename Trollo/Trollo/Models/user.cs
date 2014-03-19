@@ -26,6 +26,7 @@ namespace Trollo.Models
         public string username { get; set; }
         public string password { get; set; }
         public System.DateTime creationDate { get; set; }
+        public string email { get; set; }
     
         public virtual ICollection<board> board { get; set; }
         public virtual ICollection<task> task { get; set; }

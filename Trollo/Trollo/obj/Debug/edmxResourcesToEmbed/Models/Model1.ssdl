@@ -55,6 +55,7 @@
     <Property Name="username" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="creationDate" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
   </EntityType>
   <Association Name="fk_Board_User1">
     <End Role="user" Type="Self.user" Multiplicity="1" />

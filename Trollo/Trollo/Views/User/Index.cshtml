@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.creationDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

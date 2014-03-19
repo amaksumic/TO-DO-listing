@@ -38,6 +38,7 @@
     <EntitySetMapping Name="user">
       <EntityTypeMapping TypeName="mydbModel.user">
         <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
