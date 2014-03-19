@@ -5,3 +5,10 @@ c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceT
 c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
 c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb
 c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.csprojResolveAssemblyReference.cache
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.pdb
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.xml
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.csprojResolveAssemblyReference.cache
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb
