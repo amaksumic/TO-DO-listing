@@ -1,0 +1,7 @@
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.dll
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.pdb
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.dll
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.xml
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb
+c:\users\amna\documents\visual studio 2012\Projects\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.csprojResolveAssemblyReference.cache
