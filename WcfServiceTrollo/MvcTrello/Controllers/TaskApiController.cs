@@ -60,6 +60,25 @@ namespace MvcTrello.Controllers
             return tasks;
         }
 
+
+        // GET api/TaskApi/5/5
+        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
+            }
+
+            return tasks;
+        }
+
         // PUT api/TaskApi/5
         public HttpResponseMessage Puttask(int id, task task)
         {
