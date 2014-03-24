@@ -69,31 +69,8 @@ namespace MvcTrello.Controllers
             }
         }
 
-        [HttpGet]
-        public HttpResponseMessage CreateBoard(string title)
-        {
-            board noviBoard = new board(3, title, DateTime.Now, 4);
-            if (ModelState.IsValid)
-            {
-                db.Entry(noviBoard).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-            
-        }
+        // GET api/BoardApi/5
+        
 
         // POST api/BoardApi
         public HttpResponseMessage Postboard(board board)
@@ -104,7 +81,9 @@ namespace MvcTrello.Controllers
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, board);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = board.idBoard }));
+                response.Headers.Location = new Uri(Url.Link("RutaBoard", new { id = board.idBoard }));
+
+
                 return response;
             }
             else

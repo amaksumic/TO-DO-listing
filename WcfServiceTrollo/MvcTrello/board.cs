@@ -17,19 +17,19 @@ namespace MvcTrello
         public board()
         { }
 
-        public board(int IDBoard, string Title, System.DateTime CreationDate, int BoardOwner)
+        public board(int IdBoard, string title, System.DateTime creationDate, int boardOwner)
         {
-            idBoard = IDBoard;
-            title = Title;
-            creationDate = CreationDate;
-            boardOwner = BoardOwner;
+            this.idBoard = IdBoard;
+            this.title = title;
+            this.creationDate = creationDate;
+            this.boardOwner = boardOwner;
         }
     
         public int idBoard { get; set; }
-        [Required(ErrorMessage = "Potrebno je unijeti naziv board-a")]
+        //[Required(ErrorMessage = "Potrebno je unijeti naziv board-a")]
         public string title { get; set; }
         public System.DateTime creationDate { get; set; }
-        [Required(ErrorMessage = "Potrebno je odabrati vlasnika board-a")]
+        //[Required(ErrorMessage = "Potrebno je odabrati vlasnika board-a")]
         public int boardOwner { get; set; }
     
         public virtual user user { get; set; }
