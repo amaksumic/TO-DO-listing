@@ -15,9 +15,14 @@ namespace MvcTrello
     public partial class board
     {
         public board()
+        { }
+
+        public board(int IDBoard, string Title, System.DateTime CreationDate, int BoardOwner)
         {
-            this.list = new HashSet<list>();
-            this.user1 = new HashSet<user>();
+            idBoard = IDBoard;
+            title = Title;
+            creationDate = CreationDate;
+            boardOwner = BoardOwner;
         }
     
         public int idBoard { get; set; }
