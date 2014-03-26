@@ -18,3 +18,10 @@ C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTroll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.xml
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.dll
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\WcfServiceTrollo.pdb
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.dll
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\bin\EntityFramework.xml
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.csprojResolveAssemblyReference.cache
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.dll
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\WcfServiceTrollo\obj\Debug\WcfServiceTrollo.pdb

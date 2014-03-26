@@ -202,6 +202,8 @@
     <Compile Include="task.cs">
       <DependentUpon>Model_Trello.tt</DependentUpon>
     </Compile>
+    <Compile Include="TrolloHandler.cs" />
+    <Compile Include="TrolloRouteHandler.cs" />
     <Compile Include="user.cs">
       <DependentUpon>Model_Trello.tt</DependentUpon>
     </Compile>

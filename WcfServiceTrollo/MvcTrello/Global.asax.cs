@@ -36,6 +36,11 @@ namespace MvcTrello
             route.RouteHandler = new MyHttpControllerRouteHandler();
         }
 
+        protected void Session_Start()
+        {
+            HttpContext.Current.Session.Add("Admin", "AdminUser");
+        }
+
        
     }
 }

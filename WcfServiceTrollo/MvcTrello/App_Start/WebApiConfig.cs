@@ -13,11 +13,12 @@ namespace MvcTrello
 
         public static void Register(HttpConfiguration config)
         {
-            config.Routes.MapHttpRoute(
+            RouteTable.Routes.MapHttpRoute(
                 name: "Ruta1Api",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+            ).RouteHandler = new TrolloRouteHandler();
+            
             config.Routes.MapHttpRoute(
                  name: "Ruta4Api",
                  routeTemplate: "api/{controller}/{action}/{task}",
