@@ -7,9 +7,9 @@ using System.Web.Routing;
 
 namespace MvcTrello
 {
-    public class TrolloRouteHandler : HttpControllerRouteHandler
+    public class TrolloRouteHandler : IRouteHandler //Da bi isao preko našeg TrolloHandler-a.
     {
-        protected override IHttpHandler GetHttpHandler(RequestContext requestContext)
+        IHttpHandler IRouteHandler.GetHttpHandler(RequestContext requestContext)
         {
             return new TrolloHandler(requestContext.RouteData);
         }

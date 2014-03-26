@@ -8,6 +8,8 @@ using System.Web.SessionState;
 
 namespace MvcTrello
 {
+    // Proslijeduje posao HttpControllerHandler-u koji dalje nastavlja sa WebAPI izvršenjem.
+    
     public class TrolloHandler : HttpControllerHandler, IRequiresSessionState
     {
         public TrolloHandler(RouteData routeData)
@@ -16,3 +18,8 @@ namespace MvcTrello
         }
     }
 }
+
+// Za sesije trebaju dvije komponente:
+// IRouteHandler da kaže da sealed ide našem Handler-unchecked,
+// TrelloHandler koji daje oznaku ruti kao da je sesija enable
+// i onda nastavlja sa WebApi.

@@ -83,6 +83,11 @@ namespace MvcTrello.Controllers
         // GET api/TaskApi/5/5
         public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             //task task = new task; 
             List<task> tasks = new List<task>();
             var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
