@@ -13,27 +13,40 @@ namespace MvcTrello.Controllers
 {
     public class PostTask
     {
-        public string title {get; set;}
-        public string comment{get; set;}
-        public int l{get; set;}
-        public int owner{get; set;}
-        public int creator{get; set;}
+        public string title { get; set; }
+        public string comment { get; set; }
+        public int l { get; set; }
+        public int owner { get; set; }
+        public int creator { get; set; }
     }
     public class TaskApiController : ApiController
     {
         private mydbEntities db = new mydbEntities();
 
         // GET api/TaskApi
-        public IEnumerable<task> Gettasks()
+        public List<task> Gettasks()
         {
+            List<task> tasks = new List<task>();
+
             var task = db.task.Include(t => t.list).Include(t => t.user);
-            return task.AsEnumerable();
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title });
+            }
+
+            return tasks;
         }
 
         // GET api/TaskApi/5
         public task Gettask(int id)
         {
-            task task = db.task.Find(id);
+            task task = new task();
+
+            var t = db.task.Find(id);
+
+            task = new task { idTask = t.idTask, title = t.title };
+
             if (task == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -42,13 +55,76 @@ namespace MvcTrello.Controllers
             return task;
         }
 
+        //** L I S T A  I  NJENI TASKOVI
+
         // GET api/TaskApi/5/5
-        public List<task> GetTasks(int id, string s) //Vraca task-ove jedne liste.
+        [HttpGet]
+        public List<task> GetListsTasks(int id)
         {
             //task task = new task; 
             List<task> tasks = new List<task>();
-            var task = db.task.Where(t => t.ownerList == id); //to se ovdje odredi, ima svakakvih mimo Where, 
-                                                                //čak i select, na fazon upita je
+
+            //-> Ovdje se trazim!
+            var task = db.task.Where(t => t.ownerList == id);
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title });
+            }
+
+            return tasks;
+        }
+
+
+        //** K O R I S N I K  I  TASKOVI KOJE JE KREIRAO
+
+
+
+        // GET api/TaskApi/5/5
+        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
+            }
+
+            return tasks;
+        }
+
+
+        // GET api/TaskApi/5/5
+        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
+            }
+
+            return tasks;
+        }
+
+
+        // GET api/TaskApi/5/5
+        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
 
             foreach (var t in task)
             {
@@ -82,8 +158,34 @@ namespace MvcTrello.Controllers
         // PUT api/TaskApi/5
         public HttpResponseMessage Puttask(int id, task task)
         {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //To se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je.
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //Ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisat će ih samo djelimično, odnosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela.
+            }
+
+            return tasks;
+        }
+
+        //** B I L O  Č E G A  -  IZMJENA
+
+        // /api/TaskApi/UpdateTask/task?id=9
+        // {"idTask" : 9, "title" : "21BOO", "comment" : "23HALLO!", "label" : 1, "ownerList" : 1, "taskCreator" : 1}
+
+        // POST api/TaskApi/5
+        [HttpPost]
+        public HttpResponseMessage UpdateTask(task task, int id)
+        {
+            //int id = 9;
             if (ModelState.IsValid && id == task.idTask)
             {
+                //Ovdje se mijenjam->
                 db.Entry(task).State = EntityState.Modified;
 
                 try
@@ -104,9 +206,14 @@ namespace MvcTrello.Controllers
         }
 
 
+        //** D O D A V A NJ E
+
+        ///api/TaskApi/CreateTask/task
+        //{"title" : "21BOO", "comment" : "23HALLO!", "label" : 1, "ownerList" : 1, "taskCreator" : 1}
+
         // POST api/TaskApi
         [HttpPost]
-        public HttpResponseMessage Posttask(task task)
+        public HttpResponseMessage CreateTask(task task)
         {
             if (ModelState.IsValid)
             {
@@ -125,22 +232,10 @@ namespace MvcTrello.Controllers
 
         //idTask, title, comment, label, ownerList, taskCreator
 
-        // GET api/TaskApi/CreateTasks/5/5
-        [HttpGet]
-        public string CreateTasks(int l, int owner, int creator, string title, string comment) //Vraca task-ove jedne liste.
-        {
-            task task = new task(title, comment, l, owner, creator); 
-            //List<task> tasks = new List<task>();
-            //var task = db.task.Where(t => t.ownerList == l); //to se ovdje odredi, ima svakakvih mimo Where, 
-            //čak i select, na fazon upita je
-
-            db.task.Add(task);
-            db.SaveChanges();
-
-            return "Dodan sam!";
-        }
+        //** B R I S A NJ E
 
         // DELETE api/TaskApi/5
+        [HttpGet]
         public HttpResponseMessage Deletetask(int id)
         {
             task task = db.task.Find(id);

@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System.ComponentModel.DataAnnotations;
+
 namespace MvcTrello
 {
     using System;
@@ -26,20 +27,32 @@ namespace MvcTrello
             this.ownerList = owner;
             this.taskCreator = creator;
         }
-    
+
+        public task(int id, string title, string comment, int l, int owner, int creator)
+        {
+            this.idTask = id;
+            this.title = title;
+            this.comment = comment;
+            this.label = l;
+            this.ownerList = owner;
+            this.taskCreator = creator;
+        }
+
         public int idTask { get; set; }
-        [Required(ErrorMessage = "Potrebno je unijeti naziv task-a")]
+
+        //        [Required(ErrorMessage = "Potrebno je unijeti naziv task-a")]
+
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }
         public Nullable<System.DateTime> endTime { get; set; }
         public string comment { get; set; }
         public Nullable<int> label { get; set; }
         public byte[] file { get; set; }
-        [Required(ErrorMessage = "Potrebno odabrati listu kojoj task pripada")]
+
+        //[Required(ErrorMessage = "Potrebno odabrati listu kojoj task pripada")]
         public int ownerList { get; set; }
-        [Required(ErrorMessage = "Potrebno je odabrati kreatora taska")]
+        //[Required(ErrorMessage = "Potrebno je odabrati kreatora taska")]
         public int taskCreator { get; set; }
-    
         public virtual list list { get; set; }
         public virtual user user { get; set; }
         public virtual ICollection<user> user1 { get; set; }
