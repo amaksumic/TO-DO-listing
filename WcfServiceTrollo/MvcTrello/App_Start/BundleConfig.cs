@@ -8,6 +8,7 @@ namespace MvcTrello
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
+            /*
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -38,6 +39,18 @@ namespace MvcTrello
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+            */
+            bundles.IgnoreList.Clear();
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrapjs").Include(
+                        "~/Scripts/bootstrap.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include(
+                        "~/Content/bootstrap.min.css",
+                        "~/Content/bootstrap-responsive.min.css"));
         }
     }
 }

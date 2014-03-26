@@ -4,29 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrapcss")
 </head>
 <body>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    <a href="~/">ASP.NET Web API</a></p>
-            </div>
-            <div class="float-right">
-                <nav>
-                    <ul id="menu">
+
+    <div class = "container-fluid">
+        <div class = "row-fluid">
+            <div class = "span3">
+
+                <div class = "well sidebar-nav">
+                    <ul class = "nav nav-list">
+                        <li class = "nav-header"> Trollo header </li>
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                         <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                     </ul>
-                </nav>
+                </div>
+
+            </div>
+            <div class = "span9">
+                @RenderSection("featured", required : false)
+                <div class  = "row-fluid">
+                    @RenderBody()
+                </div>
             </div>
         </div>
-    </header>
-    @RenderBody()
+       
+        @Styles.Render("~/bundles/jquery")
+        @Styles.Render("~/bundles/bootstrapjs")
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
