@@ -1,10 +1,14 @@
-﻿@model MvcTrello.user
+﻿@using Recaptcha.Web.Mvc;
+
+@model MvcTrello.user
 @{
     ViewBag.Title = "Registracija";
     
 }
 
 <h2>Registracija</h2>
+
+@Html.Recaptcha();
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -67,7 +71,6 @@
             @Html.EditorFor(model => model.email)
             @Html.ValidationMessageFor(model => model.email)
         </div>
-
         <p>
             <input type="submit" value="Create" />
         </p>

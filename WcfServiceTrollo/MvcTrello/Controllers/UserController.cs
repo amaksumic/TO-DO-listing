@@ -6,6 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WcfServiceTrollo;
+using Recaptcha.Web;
+using Recaptcha.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace MvcTrello.Controllers
 {
@@ -31,9 +34,28 @@ namespace MvcTrello.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Registracija(user u)
-        {
-            if (ModelState.IsValid)
+        {              
+            if (ModelState.IsValid /*&& recaptchaResult == RecaptchaVerificationResult.Success*/)
             {
+                RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
+                
+                if (String.IsNullOrEmpty(recaptchaHelper.Response))
+                {
+                    ModelState.AddModelError("", "Captcha answer cannot be empty.");
+
+                    return View();
+                }
+
+                RecaptchaVerificationResult recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+
+                if (recaptchaResult != RecaptchaVerificationResult.Success)
+                {
+                    ModelState.AddModelError("", "Incorrect captcha answer.");
+
+                    return View();
+                }
+
+                
                 using (mydbEntities dc = new mydbEntities())
                 {
                     dc.user.Add(u);
@@ -42,9 +64,11 @@ namespace MvcTrello.Controllers
                     u = null;
                     ViewBag.Message = "Registracija je uspjesna";
                 }
+                return View(u);
             }
-            return View(u);
+            return View();
         }
+
         //
         // GET: /User/Details/5
 
