@@ -26,6 +26,11 @@ namespace MvcTrello.Controllers
         // GET api/TaskApi
         public List<task> Gettasks()
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             List<task> tasks = new List<task>();
 
             var task = db.task.Include(t => t.list).Include(t => t.user);
@@ -41,6 +46,11 @@ namespace MvcTrello.Controllers
         // GET api/TaskApi/5
         public task Gettask(int id)
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             task task = new task();
 
             var t = db.task.Find(id);
@@ -61,6 +71,11 @@ namespace MvcTrello.Controllers
         [HttpGet]
         public List<task> GetListsTasks(int id)
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             //task task = new task; 
             List<task> tasks = new List<task>();
 
@@ -142,6 +157,11 @@ namespace MvcTrello.Controllers
         [HttpPost]
         public HttpResponseMessage UpdateTask(task task, int id)
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             //int id = 9;
             if (ModelState.IsValid && id == task.idTask)
             {
@@ -175,6 +195,11 @@ namespace MvcTrello.Controllers
         [HttpPost]
         public HttpResponseMessage CreateTask(task task)
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             if (ModelState.IsValid)
             {
                 db.task.Add(task);
@@ -198,6 +223,11 @@ namespace MvcTrello.Controllers
         [HttpGet]
         public HttpResponseMessage Deletetask(int id)
         {
+            var session = HttpContext.Current.Session;
+            if (session != null)
+            {
+                string Admin = session["Admin"].ToString();
+            }
             task task = db.task.Find(id);
             if (task == null)
             {
