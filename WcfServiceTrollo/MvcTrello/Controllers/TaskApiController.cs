@@ -99,8 +99,70 @@ namespace MvcTrello.Controllers
         }
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        // GET api/TaskApi/5/5
+       /* public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
+            }
+
+            return tasks;
+        }*/
+
+
+    /*    // GET api/TaskApi/5/5
+        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
+            }
+
+            return tasks;
+        }
+        */
+
+      /*  // GET api/TaskApi/5/5
+        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        {
+            //task task = new task; 
+            List<task> tasks = new List<task>();
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
+            {
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
+            }
+
+            return tasks;
+        }*/
+
+=======
+>>>>>>> 802e3774f067c87c7a1446f666ed86221877ac64
+=======
+>>>>>>> 802e3774f067c87c7a1446f666ed86221877ac64
         // PUT api/TaskApi/5
-        public HttpResponseMessage Puttask(int id, task task)
+       /* public HttpResponseMessage Puttask(int id, task task)
         {
             //task task = new task; 
             List<task> tasks = new List<task>();
@@ -115,7 +177,7 @@ namespace MvcTrello.Controllers
             }
 
             return tasks;
-        }
+        }*/
 
         //** B I L O  Č E G A  -  IZMJENA
 

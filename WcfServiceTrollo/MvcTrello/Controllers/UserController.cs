@@ -21,18 +21,42 @@ namespace MvcTrello.Controllers
             return View(db.user.ToList());
         }
 
+        public ActionResult Registracija()
+        {
+            return View();
+
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registracija(user u)
+        {
+            if (ModelState.IsValid)
+            {
+                using (mydbEntities dc = new mydbEntities())
+                {
+                    dc.user.Add(u);
+                    dc.SaveChanges();
+                    ModelState.Clear();
+                    u = null;
+                    ViewBag.Message = "Registracija je uspjesna";
+                }
+            }
+            return View(u);
+        }
         //
         // GET: /User/Details/5
 
         public ActionResult GetID(int id = 0)
         {
-          
-           user user = db.user.Find(id);
+
+            user user = db.user.Find(id);
             if (user == null)
-           {
-               return HttpNotFound();
+            {
+                return HttpNotFound();
             }
-           return View(user);
+            return View(user);
         }
 
         //

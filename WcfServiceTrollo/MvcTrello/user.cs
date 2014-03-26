@@ -11,7 +11,7 @@ namespace MvcTrello
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class user
     {
         public user()
@@ -23,18 +23,24 @@ namespace MvcTrello
         }
         [Key]
         public int idUser { get; set; }
-        [Required(ErrorMessage = "Potrebno je unijeti username")]
+        [Required(ErrorMessage = "Potrebno je unijeti username", AllowEmptyStrings = false)]
         public string username { get; set; }
-        [Required(ErrorMessage = "Potrebno je unijeti sifru")]
-        [StringLength(8, MinimumLength = 2, ErrorMessage = "Sifra treba imati izmedju 2 i 8 znakova")]
+        [Required(ErrorMessage = "Potrebno je unijeti sifru", AllowEmptyStrings = false)]
+        [StringLength(16, MinimumLength = 5, ErrorMessage = "Sifra treba imati najmanje 5 znakova")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public string password { get; set; }
-
+        [Compare("password", ErrorMessage = "Sifre se ne poklapaju")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
+        public string ConfirmPassword { get; set; }
         [Required(ErrorMessage = "Unesite datum u formatu dd/MM/yyyy")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        // [DataType(DataType.Date)]
+        // [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime creationDate { get; set; }
+
+        [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
+                    ErrorMessage = "Potrebno je unijeti validnu E-mail adresu")]
         public string email { get; set; }
-    
+
         public virtual ICollection<board> board { get; set; }
         public virtual ICollection<task> task { get; set; }
         public virtual ICollection<board> board1 { get; set; }

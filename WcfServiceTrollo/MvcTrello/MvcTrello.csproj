@@ -166,6 +166,7 @@
     <Compile Include="board.cs">
       <DependentUpon>Model_Trello.tt</DependentUpon>
     </Compile>
+    <Compile Include="MyHttpControllerHandler.cs" />
     <Compile Include="Controllers\BoardApiController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -354,6 +355,9 @@
     <Content Include="Views\Task\Create.cshtml" />
     <Content Include="Views\Task\Edit.cshtml" />
     <Content Include="Views\Task\Delete.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\AfterLogin.cshtml" />
+    <Content Include="Views\User\Registracija.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

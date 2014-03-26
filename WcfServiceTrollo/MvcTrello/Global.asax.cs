@@ -26,5 +26,16 @@ namespace MvcTrello
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             
         }
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            var route = routes.MapHttpRoute(
+             name: "DefaultApi",
+             routeTemplate: "api/{controller}/{id}",
+             defaults: new { id = RouteParameter.Optional }
+            );
+            route.RouteHandler = new MyHttpControllerRouteHandler();
+        }
+
+       
     }
 }
