@@ -17,6 +17,8 @@
                         <li class = "nav-header"> Trollo header </li>
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                         <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                        @RenderSection("scripts", required: false)
+                        <li>@Html.ActionLink("Register >>","../User/Registracija", null,new { @class="btn btn-primary btn-large" })</li>
                     </ul>
                 </div>
 
