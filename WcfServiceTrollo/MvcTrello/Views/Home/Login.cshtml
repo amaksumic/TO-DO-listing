@@ -9,7 +9,7 @@
             {
                 //this  is for create form tag
                 @Html.AntiForgeryToken()          // this is for prevent CSRF attack
-                @Html.ValidationSummary(true)
+               @Html.ValidationSummary(true)
                 if (@ViewBag.Message != null)
                 {
                     <div style="border:1px solid red">
@@ -30,6 +30,7 @@
                             @Html.PasswordFor(a=>a.password)
                         </td>
                         <td>
+                          
                             @Html.ValidationMessageFor(a=>a.password)
                         </td>
                     </tr>

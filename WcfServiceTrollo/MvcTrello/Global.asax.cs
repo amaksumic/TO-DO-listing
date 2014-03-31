@@ -38,7 +38,7 @@ namespace MvcTrello
 
         protected void Session_Start()
         {
-            HttpContext.Current.Session.Add("Admin", "AdminUser");
+           HttpContext.Current.Session.Add("Admin", "AdminUser");
         }
 
        

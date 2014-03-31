@@ -37,7 +37,7 @@ namespace MvcTrello.Controllers
         {              
             if (ModelState.IsValid /*&& recaptchaResult == RecaptchaVerificationResult.Success*/)
             {
-                RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
+               /* RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
                 
                 if (String.IsNullOrEmpty(recaptchaHelper.Response))
                 {
@@ -45,7 +45,7 @@ namespace MvcTrello.Controllers
 
                     return View();
                 }
-
+                
                 RecaptchaVerificationResult recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
 
                 if (recaptchaResult != RecaptchaVerificationResult.Success)
@@ -55,7 +55,7 @@ namespace MvcTrello.Controllers
                     return View();
                 }
 
-                
+                */
                 using (mydbEntities dc = new mydbEntities())
                 {
                     dc.user.Add(u);

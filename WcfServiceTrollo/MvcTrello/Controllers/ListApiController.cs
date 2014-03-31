@@ -32,7 +32,9 @@ namespace MvcTrello.Controllers
             }
 
             return list;
+        
         }
+        [HttpPost]
         // GET api/ListApi/5/5
         public List<list> GetLists(int id, string s) //Vraca liste jednog board-a
         {

@@ -22,15 +22,36 @@ namespace MvcTrello.Controllers
     public class TaskApiController : ApiController
     {
         private mydbEntities db = new mydbEntities();
+        string Admin = null;
+        public string link{ get; set; }
 
+
+        TaskApiController() {
+
+            link = "http://localhost:57328/Home";
+            try
+            {
+                var session = HttpContext.Current.Session;     
+                if (session != null)
+                {
+                    Admin = session["LogedUserID"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                HttpContext.Current.Response.Redirect(link, true);
+            }
+        }
+        
         // GET api/TaskApi
         public List<task> Gettasks()
         {
             var session = HttpContext.Current.Session;
-            if (session != null)
+           
+           /* if (Admin==null)
             {
-                string Admin = session["Admin"].ToString();
-            }
+                return "nije logiran";
+            }*/
             List<task> tasks = new List<task>();
 
             var task = db.task.Include(t => t.list).Include(t => t.user);

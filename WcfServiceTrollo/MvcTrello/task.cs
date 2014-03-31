@@ -40,7 +40,7 @@ namespace MvcTrello
 
         public int idTask { get; set; }
 
-        //        [Required(ErrorMessage = "Potrebno je unijeti naziv task-a")]
+        //       [Required(ErrorMessage = "Potrebno je unijeti naziv task-a")]
 
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }

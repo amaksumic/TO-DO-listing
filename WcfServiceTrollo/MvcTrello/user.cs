@@ -30,7 +30,7 @@ namespace MvcTrello
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public string password { get; set; }
         [Compare("password", ErrorMessage = "Sifre se ne poklapaju")]
-        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
+  //     [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public string ConfirmPassword { get; set; }
         [Required(ErrorMessage = "Unesite datum u formatu dd/MM/yyyy")]
         // [DataType(DataType.Date)]
