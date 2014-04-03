@@ -1,5 +1,7 @@
 ﻿@using Recaptcha.Web.Mvc;
 
+@Page Async="true"
+
 @model MvcTrello.user
 @{
     ViewBag.Title = "Registracija";
@@ -8,7 +10,7 @@
 
 <h2>Registracija</h2>
 
-@Html.Recaptcha();
+
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -16,7 +18,7 @@
 
     <fieldset>
         <legend>user</legend>
-
+        @Html.Recaptcha(theme:Recaptcha.Web.RecaptchaTheme.Clean);
         @if (ViewBag.Message != null)
                     {
                         <div style="border:solid 1px green">
