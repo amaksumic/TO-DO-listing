@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MvcTrello.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private mydbEntities db = new mydbEntities();
 

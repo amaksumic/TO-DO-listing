@@ -358,3 +358,8 @@ C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\bin\z
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\MvcTrello.csprojResolveAssemblyReference.cache
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\MvcTrello.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\MvcTrello.pdb
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\bin\bs\MvcTrello.resources.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\MvcTrello.Resources.resources
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\MvcTrello.Resources.bs.resources
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\MvcTrello.csproj.GenerateResource.Cache
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\WcfServiceTrollo\MvcTrello\obj\Debug\bs\MvcTrello.resources.dll
