@@ -76,6 +76,7 @@
             @Html.EditorFor(model => model.email)
             @Html.ValidationMessageFor(model => model.email)
         </div>
+        @Html.EditorFor(model => model.picture, new { picture="~/uploads/anonim.jpg" })
         <p>
             <input type="submit" value="Create" />
         </p>

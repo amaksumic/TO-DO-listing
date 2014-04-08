@@ -236,6 +236,7 @@ namespace Trollo.Controllers
                 using (mydbEntities dc = new mydbEntities())
                 {
                     u.registered = 0;
+                    u.picture="~/uploads/anonim.jpg";
                     dc.user.Add(u);
                     dc.SaveChanges();
                     ModelState.Clear();
