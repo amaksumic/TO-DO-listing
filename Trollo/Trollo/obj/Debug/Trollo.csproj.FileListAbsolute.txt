@@ -31,3 +31,36 @@ c:\users\haana\documents\visual studio 2012\Projects\Trollo\Trollo\obj\Debug\Tro
 c:\users\haana\documents\visual studio 2012\Projects\Trollo\Trollo\obj\Debug\Trollo.dll
 c:\users\haana\documents\visual studio 2012\Projects\Trollo\Trollo\obj\Debug\Trollo.pdb
 C:\Users\Haana\Documents\Visual Studio 2012\Projects\Trollo\Trollo\bin\Recaptcha.Web.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Trollo.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Trollo.pdb
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Antlr3.Runtime.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\EntityFramework.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Newtonsoft.Json.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Recaptcha.Web.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Net.Http.Formatting.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Helpers.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Http.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Http.WebHost.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Mvc.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Optimization.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Providers.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Razor.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Deployment.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Razor.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\WebGrease.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\EntityFramework.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Newtonsoft.Json.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Net.Http.Formatting.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Helpers.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Http.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Http.WebHost.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Mvc.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Razor.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Deployment.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Razor.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb

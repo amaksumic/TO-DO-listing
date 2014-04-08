@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 using System.Net.Mail;
 using System.Net;
+using System.IO;
 
 
 namespace Trollo.Controllers
@@ -143,9 +144,38 @@ namespace Trollo.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return View("../Home/AfterLogin", user);
             }
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult GetDocument(HttpPostedFileBase file, int id)
+        {
+            // Verify that the user selected a file
+            if (file != null && file.ContentLength > 0)
+            {
+                // extract only the fielname
+                // var fileName = Path.GetFileName(file.FileName);
+                // store the file inside ~/App_Data/uploads folder
+                // var path = Path.Combine(Server.MapPath("../uploads"), fileName);
+                string relativePath = "~/uploads/" + Path.GetFileName(file.FileName);
+                string physicalPath = Server.MapPath(relativePath);
+                file.SaveAs(physicalPath);
+
+                user user = db.user.Find(id);
+                user.picture = relativePath;
+                db.Entry(user).State = EntityState.Modified;
+
+
+                db.SaveChanges();
+
+                return View("../Home/AfterLogin", user);
+
+            }
+            //  // redirect back to the index action to show the form once again
+            //  return "id " + user.idUser + " " + user.slika;
+            return View("../Home/Index");
         }
 
         //

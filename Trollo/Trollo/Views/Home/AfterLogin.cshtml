@@ -1,10 +1,75 @@
-﻿@{
+﻿@model Trollo.user
+
+@{
     ViewBag.Title = "AfterLogin";
 }
 
 <h2>AfterLogin</h2>
 
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
- <text> 
-     Uspjesno logiranje!
- </text>
+    <fieldset>
+        <legend>user</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idUser)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idUser)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.username)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.creationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.creationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+  
+          <div class=" ">
+         <img src=" @Url.Content(Model.picture) " alt="" width="500" height="500" />
+   
+
+    </div>
+    </fieldset>
+}
+
+
+@using (Html.BeginForm("GetDocument", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = Model.idUser }))
+{
+    <input type="file" name="file" />
+    <input type="hidden" name="id" value="@Model.idUser" />
+    <input type="submit" value="OK" />
+  
+}
+<p>
+    @Html.ActionLink("Edit", "../User/Edit", new { id=Model.idUser }) |
+  
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

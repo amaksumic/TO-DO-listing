@@ -15,9 +15,10 @@ namespace Trollo.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            return View("../Home/Login");
         }
 
+        user kor = null;
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(user u)
@@ -27,29 +28,34 @@ namespace Trollo.Controllers
             {
                 using (mydbEntities dc = new mydbEntities())
                 {
-                    var v = dc.user.Where(a => a.username.Equals(u.username) && a.password.Equals(u.password)).FirstOrDefault();
+                    kor = dc.user.Where(a => a.username.Equals(u.username) && a.password.Equals(u.password)).FirstOrDefault();
 
-                    if (v != null)
+                    if (kor != null)
                     {
-                        Session["LogedUserID"] = v.idUser.ToString();
+                        Session["LogedUserID"] = kor.idUser.ToString();
+                        TempData["korisnik"] = kor;
                         //Session["LogedUserFullname"] = v.FullName.ToString();
                         return RedirectToAction("AfterLogin");
                     }
                 }
             }
             return View(u);
-        }
 
+        }
 
         public ActionResult AfterLogin()
         {
             if (Session["LogedUserID"] != null)
             {
-                return View();
+
+                kor = TempData["korisnik"] as user;
+                return View(kor);
+                //return "id " +kor.idUser;
             }
             else
             {
                 return RedirectToAction("Index");
+                //return "nema sesije";
             }
         }
     }

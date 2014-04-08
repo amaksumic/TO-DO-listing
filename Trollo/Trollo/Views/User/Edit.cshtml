@@ -52,20 +52,19 @@
             @Html.ValidationMessageFor(model => model.email)
         </div>
 
-        <div class="editor-label">
+        <div hidden>
             @Html.LabelFor(model => model.registered)
         </div>
-        <div class="editor-field">
+        <div hidden>
             @Html.EditorFor(model => model.registered)
-            @Html.ValidationMessageFor(model => model.registered)
+         
         </div>
 
-        <div class="editor-label">
+        <div hidden>
             @Html.LabelFor(model => model.picture)
         </div>
-        <div class="editor-field">
+        <div hidden>
             @Html.EditorFor(model => model.picture)
-            @Html.ValidationMessageFor(model => model.picture)
         </div>
 
         <p>
@@ -74,9 +73,7 @@
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
