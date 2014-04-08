@@ -1,0 +1,36 @@
+﻿@model Trollo.list
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>list</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idList)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idList)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.board.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.board.title)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

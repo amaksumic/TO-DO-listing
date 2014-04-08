@@ -1,0 +1,99 @@
+﻿@model Trollo.task
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>task</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idTask)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idTask)
+            @Html.ValidationMessageFor(model => model.idTask)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.startTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.startTime)
+            @Html.ValidationMessageFor(model => model.startTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.endTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.endTime)
+            @Html.ValidationMessageFor(model => model.endTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.comment)
+            @Html.ValidationMessageFor(model => model.comment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.label)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.label)
+            @Html.ValidationMessageFor(model => model.label)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ownerList, "list")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ownerList", String.Empty)
+            @Html.ValidationMessageFor(model => model.ownerList)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.taskCreator)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.taskCreator)
+            @Html.ValidationMessageFor(model => model.taskCreator)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.taskOwner)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.taskOwner)
+            @Html.ValidationMessageFor(model => model.taskOwner)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mydbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="mydbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="board" EntityType="mydbModel.board" />
+    <EntitySet Name="list" EntityType="mydbModel.list" />
+    <EntitySet Name="task" EntityType="mydbModel.task" />
+    <EntitySet Name="taskmembers" EntityType="mydbModel.taskmembers" />
+    <EntitySet Name="user" EntityType="mydbModel.user" />
+    <AssociationSet Name="fk_Board_User1" Association="mydbModel.fk_Board_User1">
+      <End Role="user" EntitySet="user" />
+      <End Role="board" EntitySet="board" />
+    </AssociationSet>
+    <AssociationSet Name="fk_List_Project1" Association="mydbModel.fk_List_Project1">
+      <End Role="board" EntitySet="board" />
+      <End Role="list" EntitySet="list" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Task_List1" Association="mydbModel.fk_Task_List1">
+      <End Role="list" EntitySet="list" />
+      <End Role="task" EntitySet="task" />
+    </AssociationSet>
+    <AssociationSet Name="boardmembers" Association="mydbModel.boardmembers">
+      <End Role="board" EntitySet="board" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="board">
+    <Key>
+      <PropertyRef Name="idBoard" />
+    </Key>
+    <Property Name="idBoard" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="boardOwner" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="mydbModel.fk_Board_User1" FromRole="board" ToRole="user" />
+    <NavigationProperty Name="list" Relationship="mydbModel.fk_List_Project1" FromRole="board" ToRole="list" />
+    <NavigationProperty Name="user1" Relationship="mydbModel.boardmembers" FromRole="board" ToRole="user" />
+  </EntityType>
+  <EntityType Name="list">
+    <Key>
+      <PropertyRef Name="idList" />
+    </Key>
+    <Property Name="idList" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ownerBoard" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="board" Relationship="mydbModel.fk_List_Project1" FromRole="list" ToRole="board" />
+    <NavigationProperty Name="task" Relationship="mydbModel.fk_Task_List1" FromRole="list" ToRole="task" />
+  </EntityType>
+  <EntityType Name="task">
+    <Key>
+      <PropertyRef Name="idTask" />
+    </Key>
+    <Property Name="idTask" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="startTime" Type="DateTime" Precision="0" />
+    <Property Name="endTime" Type="DateTime" Precision="0" />
+    <Property Name="comment" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="label" Type="Int32" />
+    <Property Name="file" Type="Binary" MaxLength="65535" FixedLength="false" />
+    <Property Name="ownerList" Type="Int32" Nullable="false" />
+    <Property Name="taskCreator" Type="Int32" Nullable="false" />
+    <Property Name="taskOwner" Type="Int32" />
+    <NavigationProperty Name="list" Relationship="mydbModel.fk_Task_List1" FromRole="task" ToRole="list" />
+  </EntityType>
+  <EntityType Name="taskmembers">
+    <Key>
+      <PropertyRef Name="User_idUser" />
+    </Key>
+    <Property Name="Task_idTask" Type="Int32" Nullable="false" />
+    <Property Name="User_idUser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="registered" Type="Int32" />
+    <Property Name="picture" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="board" Relationship="mydbModel.fk_Board_User1" FromRole="user" ToRole="board" />
+    <NavigationProperty Name="board1" Relationship="mydbModel.boardmembers" FromRole="user" ToRole="board" />
+  </EntityType>
+  <Association Name="fk_Board_User1">
+    <End Role="user" Type="mydbModel.user" Multiplicity="1" />
+    <End Role="board" Type="mydbModel.board" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="board">
+        <PropertyRef Name="boardOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_List_Project1">
+    <End Role="board" Type="mydbModel.board" Multiplicity="1" />
+    <End Role="list" Type="mydbModel.list" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="board">
+        <PropertyRef Name="idBoard" />
+      </Principal>
+      <Dependent Role="list">
+        <PropertyRef Name="ownerBoard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Task_List1">
+    <End Role="list" Type="mydbModel.list" Multiplicity="1" />
+    <End Role="task" Type="mydbModel.task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="list">
+        <PropertyRef Name="idList" />
+      </Principal>
+      <Dependent Role="task">
+        <PropertyRef Name="ownerList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="boardmembers">
+    <End Role="board" Type="mydbModel.board" Multiplicity="*" />
+    <End Role="user" Type="mydbModel.user" Multiplicity="*" />
+  </Association>
+</Schema>

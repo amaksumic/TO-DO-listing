@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51a5dca1de9c40c1834523e3fc5ac45f" Name="Diagram1">
+        <EntityTypeShape EntityType="mydbModel.board" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.list" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.task" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.taskmembers" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.user" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="mydbModel.fk_Board_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_List_Project1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_Task_List1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.boardmembers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

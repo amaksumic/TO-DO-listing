@@ -1,0 +1,249 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+using Recaptcha.Web;
+using Recaptcha.Web.Mvc;
+using System.Threading.Tasks;
+
+using System.Net.Mail;
+using System.Net;
+
+
+namespace Trollo.Controllers
+{
+
+    public class EmailManager
+    {
+        private const string EmailFrom = "noreplay@gmail.com";
+        public static void SendConfirmationEmail(user user)
+        {
+            //var user = Membership.GetUser(userName.ToString());
+            var confirmationGuid = user.idUser.ToString();
+            var verifyUrl = HttpContext.Current.Request.Url.GetLeftPart
+               (UriPartial.Authority) + "/User/Verification/" + confirmationGuid;
+
+            string subject = "Potvrdite svoju prijavu";
+            string body = "Dragi/a " + user.username + "\nKlikom na link u nastavku potvrdujete svoju prijavu: "
+               + verifyUrl + "\nLijep pozdrav, \n\nMolimo da ovaj mail ne proslijedujete. Link za potvrdu je privatan.";
+
+
+            MailAddress posiljalac = new MailAddress("nwt.application@gmail.com", "Trollo");
+            MailAddress primalac = new MailAddress(user.email);
+            MailMessage message= new MailMessage(posiljalac, primalac);
+
+            message.Subject = subject;
+            message.Body = body;
+
+            var client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("nwt.application@gmail.com", "Hana1409"),
+                EnableSsl = true
+            };
+
+            client.Send(message);
+
+            
+           // client.Send("noreply@trollo.net", user.email, subject, body);
+           
+        }
+    } 
+
+
+    public class UserController : Controller
+    {
+        private mydbEntities db = new mydbEntities();
+
+        //
+        // GET: /User/
+
+        public ActionResult Index()
+        {
+            return View(db.user.ToList());
+        }
+
+        public ActionResult Registration()
+        {
+            return View();
+        }
+
+        public ActionResult Affirmation()
+        {
+            return View();
+        }
+
+        /*
+        public ActionResult Verification()
+        {
+            return View();
+        }
+        */
+
+        //
+        // GET: /User/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            user user = db.user.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        //
+        // GET: /User/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /User/Create
+
+        [HttpPost]
+        public ActionResult Create(user user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.user.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
+        }
+
+        //
+        // GET: /User/Edit/5
+
+        public ActionResult Edit(int id = 0)
+        {
+            user user = db.user.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        //
+        // POST: /User/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(user user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+        //
+        // GET: /User/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            user user = db.user.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        //
+        // POST: /User/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            user user = db.user.Find(id);
+            db.user.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+
+        //
+        // --> R E G I S T R A C I J A
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Registration(user u)
+        {
+            RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
+
+            if (String.IsNullOrEmpty(recaptchaHelper.Response))
+            {
+                ModelState.AddModelError("", "Captcha answer cannot be empty.");
+                return View();
+            }
+
+            RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync();
+
+            if (recaptchaResult != RecaptchaVerificationResult.Success)
+            {
+                ModelState.AddModelError("", "Incorrect captcha answer.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (mydbEntities dc = new mydbEntities())
+                {
+                    u.registered = 0;
+                    dc.user.Add(u);
+                    dc.SaveChanges();
+                    ModelState.Clear();
+
+                    EmailManager.SendConfirmationEmail(u);
+
+                    u = null;
+                    //ViewBag.Message = "Registracija je uspjesna";
+
+                    return RedirectToAction("Affirmation");
+                }
+            } return View(u);
+        }
+
+        //
+        // --> P O T V R D A   Z A   R E G I S T R A C I J U
+
+        public ActionResult Verification(int id)
+        {
+
+                var user = db.user.Find(id);
+
+                if (user.registered == 0)
+                {
+                    user.registered = 1;
+
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    Session["LogedUserID"] = user.idUser.ToString();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            
+        } 
+
+    }
+}
