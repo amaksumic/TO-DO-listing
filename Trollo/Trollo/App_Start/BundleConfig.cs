@@ -46,6 +46,9 @@ namespace Trollo
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery1.15").Include(
+                        "~/Scripts/jquery-1.5.1.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrapjs").Include(
                         "~/Scripts/bootstrap.min.js"));
 

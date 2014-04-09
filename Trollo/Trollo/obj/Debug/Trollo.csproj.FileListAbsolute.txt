@@ -67,6 +67,7 @@ C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.p
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Trollo.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Trollo.pdb
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Antlr3.Runtime.dll
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\DotNet.Highcharts.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\EntityFramework.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Newtonsoft.Json.dll
@@ -94,6 +95,5 @@ C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Razor
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.xml
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Razor.xml
-C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
