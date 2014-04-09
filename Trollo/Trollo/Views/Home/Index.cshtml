@@ -16,21 +16,36 @@
         <div class="navbar-inner">
             <div class="container">
 
+                <div class="btn-group">
+                <div class="dropdown">
+                        <button class="btn btn-lg dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                              @Trollo.Resources.Lang
+                          <span class="caret"></span>
+                        </button>
+                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                     <li role="presentation"><a role="menuitem" tabindex="-1">@Html.ActionLink("ENG", "SetCulture", new { controller = "Home", culture = "en" })  </a></li>
+                     <li role="presentation"><a role="menuitem" tabindex="-1">@Html.ActionLink("BS", "SetCulture", new { controller = "Home", culture = "bs" })</a></li>
+   
+                     </ul>
+                    </div>
 
 
+        </div>
                 <!--Register button-->
-                 <div class="btn-group">
+                 
+
+                 
                      @Html.ActionLink("Register", "../User/Registration", null, new { @class = "btn btn-success btn-lg navbar-btn"  })
                      <!-- <button type="button" class="btn btn-success navbar-btn">Register</button> -->
                     
-                </div>
+                
 
                 <!--Log in button-->
                  <button class="btn btn-primary btn-lg navbar-btn" data-toggle="modal" data-target="#myModal">
                      Log in
                 </button>
 
-
+                </div>
             </div>
         </div>
     </div>
@@ -117,13 +132,14 @@
 
     <!-- jubmotron -->
       <div class="jumbotron">
-  <h1>Hello, world!</h1>
-  <p>...</p>
+  <h1>@Trollo.Resources.Title</h1>
+          <h3>@Trollo.Resources.Subtitle</h3>
+  
+          
   <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
 </div>
 
-
-        </div>
+    
 
     @Scripts.Render("~/bundles/jquery")
     

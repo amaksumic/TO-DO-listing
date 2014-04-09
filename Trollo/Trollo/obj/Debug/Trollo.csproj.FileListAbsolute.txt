@@ -132,3 +132,8 @@ C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebP
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\bs\Trollo.resources.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.resources
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.bs.resources
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.Cache
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll

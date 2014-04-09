@@ -11,6 +11,8 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    
     
     public partial class user
     {
@@ -19,12 +21,43 @@ namespace Trollo
             this.board = new HashSet<board>();
             this.board1 = new HashSet<board>();
         }
-    
+
+        [Key]
+        [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "IdUserRequired")]
+        [Display(Name = "ModelUserID", ResourceType = typeof(Resources))]
         public int idUser { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "UserNameRequired", AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = "Potrebno je unijeti username", AllowEmptyStrings = false)]
+        [Display(Name = "ModelUsername", ResourceType = typeof(Resources))]
         public string username { get; set; }
+
+        //[Required(ErrorMessage = "Potrebno je unijeti sifru", AllowEmptyStrings = false)]
+        [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "PasswordRequired", AllowEmptyStrings = false)]
+        //[StringLength(16, MinimumLength = 5, ErrorMessage = "Sifra treba imati najmanje 5 znakova")]
+        [Display(Name = "ModelPassword", ResourceType = typeof(Resources))]
+        [StringLength(16, MinimumLength = 5, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "PasswordInvalid")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public string password { get; set; }
+
+        //[Compare("password", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "PasswordMismatch")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
+        [Display(Name = "ModelConfirmPassword", ResourceType = typeof(Resources))]
+        public string ConfirmPassword { get; set; }
+        //[Required(ErrorMessage = "Unesite datum u formatu dd/MM/yyyy")]
+        [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "DateInvalid")]
+        // [DataType(DataType.Date)]
+        // [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "ModelCreationDate", ResourceType = typeof(Resources))]
         public System.DateTime creationDate { get; set; }
+
+        //[RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
+        // ErrorMessage = "Potrebno je unijeti validnu E-mail adresu")]
+        [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
+                    ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "EmailInvalid")]
+
         public string email { get; set; }
+
         public Nullable<int> registered { get; set; }
         public string picture { get; set; }
     

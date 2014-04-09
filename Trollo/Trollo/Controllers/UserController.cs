@@ -59,7 +59,7 @@ namespace Trollo.Controllers
     } 
 
 
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private mydbEntities db = new mydbEntities();
 
@@ -344,6 +344,8 @@ namespace Trollo.Controllers
                 }
             
         } 
+
+       
 
     }
 }
