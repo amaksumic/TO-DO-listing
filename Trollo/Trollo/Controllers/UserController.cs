@@ -271,7 +271,7 @@ namespace Trollo.Controllers
             user user = db.user.Find(id);
             db.user.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("../Home/Index");
         }
 
         protected override void Dispose(bool disposing)

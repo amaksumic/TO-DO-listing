@@ -65,6 +65,11 @@ namespace Trollo.Controllers
             }
         }
 
+        public ActionResult Logout() {
+            Session["LogedUserID"] = null;
+            return RedirectToAction("Index");
+        }
+
         public ActionResult SetCulture(string culture)
         {
             // Validate input

@@ -18,16 +18,21 @@
 
 
         <ul class="nav pull-right">
-   <img src="@Url.Content(Model.picture)"  width="75 px" height="75 px" alt="">
+            <li>
+
+                 <img src="@Url.Content(Model.picture)"  width="75 px" height="75 px" alt=""> 
+                </li>
+  
              <div class="btn-group dropup">
  
 
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
-    <span class="sr-only">Logut</span>
+    Logout
+      <span class="caret"></span>
+    <span class="sr-only"></span>
   </button>
   <ul class="dropdown-menu">
-   <li><a href="../Board/Index">Boards</a></li>
+   <li><a href="../Home/Logout">Logout</a></li>
   </ul>
 </div>
 
@@ -56,44 +61,37 @@
             </div>
                 </td>
             
+                <td style="width: 100px" >
 
+                </td>
             
                 <td style="width: 400px">
-                     <div class="display-label">
-         @Html.DisplayNameFor(model => model.idUser)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.idUser)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.username)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.username)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.password)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.password)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.creationDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.creationDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.email)
-    </div>
-
+                    <div class="container-fluid well span6">
+	<div class="row-fluid">
+        <div class="span2" >
+		    <img src="@Url.Content(Model.picture)"  width="75 px" height="75 px" class="img-circle">
+        </div>
+        
+        <div class="span8">
+            <h3>@Model.username</h3>
+            <h6>Email: @Model.email</h6>
+            <h6>Creation date: @Model.creationDate</h6>
+           
+        </div>
+        
+        <div class="span2">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                    Action 
+                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="../User/Edit/ @Model.idUser"><span class="icon-wrench"></span> Modify</a></li>
+                    <li><a href="../User/Delete/ @Model.idUser"><span class="icon-trash"></span> Delete</a></li>
+                </ul>
+            </div>
+        </div>
+</div>
                 </td>
         </tr>
 
@@ -104,17 +102,7 @@
 }
 
 
-@using (Html.BeginForm("GetDocument", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = Model.idUser }))
-{
-    <input type="file" name="file" />
-    <input type="hidden" name="id" value="@Model.idUser" />
-    <input type="submit" value="OK" />
-  
-}
-<p>
-    @Html.ActionLink("Edit", "../User/Edit", new { id=Model.idUser }) |
-  
-</p>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
