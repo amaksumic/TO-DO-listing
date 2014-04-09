@@ -137,3 +137,8 @@ C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Re
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.bs.resources
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.Cache
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\bs\Trollo.resources.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.resources
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.bs.resources
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.Cache
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
