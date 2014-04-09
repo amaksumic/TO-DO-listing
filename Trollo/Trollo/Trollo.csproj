@@ -299,6 +299,8 @@
     <Content Include="Views\User\Chart2.cshtml" />
     <Content Include="Views\Task\Chart1.cshtml" />
     <Content Include="Views\Task\Chart2.cshtml" />
+    <Content Include="Views\List\Chart1.cshtml" />
+    <Content Include="Views\List\Chart2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
