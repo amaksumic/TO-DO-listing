@@ -47,8 +47,12 @@ namespace Trollo.Controllers
         {
             if (Session["LogedUserID"] != null)
             {
+                mydbEntities dc = new mydbEntities();
+
 
                 kor = TempData["korisnik"] as user;
+                var br = dc.board.Count(b => b.boardOwner == kor.idUser);
+                TempData["borad"] = br;
                 return View(kor);
                 //return "id " +kor.idUser;
             }

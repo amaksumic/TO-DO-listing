@@ -97,3 +97,4 @@ C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPa
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Razor.xml
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\DotNet.Highcharts.dll

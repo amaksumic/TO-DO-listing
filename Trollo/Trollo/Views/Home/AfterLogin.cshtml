@@ -2,18 +2,64 @@
 
 @{
     ViewBag.Title = "AfterLogin";
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")
+    var br= TempData["borad"];
 }
 
-<h2>AfterLogin</h2>
+<h2>Dobro došli, @Model.username</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>user</legend>
+    <navbar>
 
-    <div class="display-label">
+
+        <ul class="nav pull-right">
+   <img src="@Url.Content(Model.picture)"  width="75 px" height="75 px" alt="">
+             <div class="btn-group dropup">
+ 
+
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+    <span class="sr-only">Logut</span>
+  </button>
+  <ul class="dropdown-menu">
+   <li><a href="../Board/Index">Boards</a></li>
+  </ul>
+</div>
+
+       </ul>
+
+   
+
+</navbar>
+
+        <table>
+            <tr>
+
+                <td >
+                    <div class="container" style="width: 200px">  
+        <div class="row">  
+        <div class="span2">  
+        <ul class="nav nav-pills nav-stacked">  
+
+             <li class="active"><a href="#">Home</a></li>
+            <li><a href="../Board/Index">Boards <span class="badge">@br</span></a></li>
+            <li><a href="../List/Index">Lists</a></li>
+            <li><a href="../Task/Index">Tasks</a></li>
+        </ul>
+            </div>
+            </div>
+            </div>
+                </td>
+            
+
+            
+                <td style="width: 400px">
+                     <div class="display-label">
          @Html.DisplayNameFor(model => model.idUser)
     </div>
     <div class="display-field">
@@ -48,12 +94,12 @@
         @Html.DisplayFor(model => model.email)
     </div>
 
-  
-          <div class=" ">
-         <img src=" @Url.Content(Model.picture) " alt="" width="500" height="500" />
-   
+                </td>
+        </tr>
 
-    </div>
+
+        </table>
+    
     </fieldset>
 }
 
@@ -72,4 +118,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+   @Scripts.Render("~/bundles/jquery")
+    
+        @Scripts.Render("~/bundles/bootstrapjs")
 }
