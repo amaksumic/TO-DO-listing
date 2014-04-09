@@ -6,14 +6,83 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using DotNet.Highcharts;
+using DotNet.Highcharts.Enums;
+using DotNet.Highcharts.Helpers;
+using DotNet.Highcharts.Options;
+
 namespace Trollo.Controllers
 {
     public class TaskController : Controller
     {
         private mydbEntities db = new mydbEntities();
 
-       
 
+        public ActionResult Chart1()
+        {
+            var task1 = db.task.Where(u => u.taskCreator == 1).Count();
+            var task2 = db.task.Where(u => u.taskCreator == 2).Count();
+
+            //Create chart Model
+            var chart1 = new Highcharts("Chart1");
+            chart1
+                .InitChart(new Chart() { DefaultSeriesType = ChartTypes.Bar })
+                .SetTitle(new Title() { Text = "Task creators 1/2" })
+
+                .SetYAxis(new YAxis() { Title = new YAxisTitle { Text = "Number of tasks" } })
+                .SetSeries(new[]{
+                new Series{                   
+                    Name = "Task creator 1",
+                    Data = new Data(new object[] { task1 })},
+                    new Series{
+                    Name = "Task creator 2",
+                    Data = new Data(new object[] { task2 })
+                }});
+
+
+            //pass Chart1Model using ViewBag
+            ViewBag.Chart1Model = chart1;
+
+            return View();
+        }
+
+        public ActionResult Chart2()
+        {
+            var task1 = db.task.Where(u => u.label == 1).Count();
+            var task2 = db.task.Where(u => u.label == 5).Count();
+
+            //Create chart Model
+            var chart1 = new Highcharts("Chart1");
+            chart1
+                .InitChart(new Chart() { DefaultSeriesType = ChartTypes.Pie })
+                .SetTitle(new Title() { Text = "Important/Not Important" })
+                .SetPlotOptions(new PlotOptions
+                {
+                    Pie = new PlotOptionsPie
+                    {
+                        AllowPointSelect = true,
+                        //Cursor = Cursors.Pointer,
+                        DataLabels = new PlotOptionsPieDataLabels
+                        {
+
+                            Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }"
+                        }
+                    }
+                })
+
+                .SetSeries(new Series
+                {
+                    Type = ChartTypes.Pie,
+
+                    Data = new Data(new object[] { task1, task2 })
+                });
+
+
+            //pass Chart1Model using ViewBag
+            ViewBag.Chart1Model = chart1;
+
+            return View();
+        }
 
         //
         // GET: /Task/
