@@ -59,6 +59,9 @@ namespace Trollo.Controllers
     {
         private mydbEntities db = new mydbEntities();
 
+       
+
+
         //
         // GET: /User/
 
@@ -218,25 +221,16 @@ namespace Trollo.Controllers
         {
             RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
 
-            if (String.IsNullOrEmpty(recaptchaHelper.Response))
-            {
-                ModelState.AddModelError("", "Captcha answer cannot be empty.");
-                return View();
-            }
 
             RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync();
 
-            if (recaptchaResult != RecaptchaVerificationResult.Success)
-            {
-                ModelState.AddModelError("", "Incorrect captcha answer.");
-            }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !String.IsNullOrEmpty(recaptchaHelper.Response) && recaptchaResult == RecaptchaVerificationResult.Success)
             {
                 using (mydbEntities dc = new mydbEntities())
                 {
                     u.registered = 0;
-                    u.picture="~/uploads/anonim.jpg";
+                    u.picture = "~/uploads/anonim.jpg";
                     dc.user.Add(u);
                     dc.SaveChanges();
                     ModelState.Clear();
@@ -248,7 +242,14 @@ namespace Trollo.Controllers
 
                     return RedirectToAction("Affirmation");
                 }
-            } return View(u);
+            }
+
+            else
+            {
+                ViewBag.Message = "Unos u recaptch polje nije ispravan!";
+            }
+
+            return View(u);
         }
 
         //

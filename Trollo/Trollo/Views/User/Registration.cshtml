@@ -8,6 +8,9 @@
     ViewBag.Title = "Registration";
 }
 
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")
+
 <h2>Registration</h2>
 
 
@@ -20,7 +23,7 @@
 
         @if (ViewBag.Message != null)
                     {
-                        <div style="border:solid 1px green">
+                        <div class="alert alert-danger">
                             @ViewBag.Message
                         </div>
                     }
@@ -76,7 +79,9 @@
             @Html.EditorFor(model => model.email)
             @Html.ValidationMessageFor(model => model.email)
         </div>
+        <div class="hidden">
         @Html.EditorFor(model => model.picture, new { picture="~/uploads/anonim.jpg" })
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>
@@ -87,7 +92,5 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-        @Styles.Render("~/bundles/jquery")
-        @Styles.Render("~/bundles/bootstrapjs")
-}
+    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/bootstrapjs")

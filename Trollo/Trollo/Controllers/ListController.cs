@@ -11,6 +11,9 @@ namespace Trollo.Controllers
     public class ListController : Controller
     {
         private mydbEntities db = new mydbEntities();
+       
+       
+
 
         //
         // GET: /List/

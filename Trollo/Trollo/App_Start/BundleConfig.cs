@@ -51,7 +51,7 @@ namespace Trollo
 
             bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include(
                         "~/Content/bootstrap.min.css",
-                        "~/Content/bootstrap-responsive.min.css"));
+                        "~/Content/bootstrap-theme.min.css"));
         }
     }
 }

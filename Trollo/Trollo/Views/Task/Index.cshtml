@@ -1,14 +1,52 @@
 ﻿@model IEnumerable<Trollo.task>
 
-@{
-    ViewBag.Title = "Index";
-}
+<!DOCTYPE html>
+<html>
 
-<h2>Index</h2>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")   
+</head>
+<body>
+     <table><tr>
+        <td style= "vertical-align: top">
+            <div class="container-fluid">
+                <div class = "row-fluid">
+                    <div class = "span3">
+                        <div class = "well sidebar-nav">
+                            <ul class="list-group"> 
+                              <li class="list-group-item">@Html.ActionLink("User", "../User/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Board", "../Board/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("List", "../List/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Task", "../Task/Create", null, new { })</li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>
+            </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+          </td>
+         <td></td>
+        
+         <td style= "vertical-align: top">
+            <ul class="nav nav-tabs">                
+                <li>@Html.ActionLink("Create", "../Task/Create", null, new { })</li>
+                <li>@Html.ActionLink("Manipulation", "../Task/Index", null, new { })</li>
+            </ul>
+
+         <table><tr>
+             <td><BR>
+
+
+
+
+
+
+
 <table>
     <tr>
         <th>
@@ -78,4 +116,14 @@
     </tr>
 }
 
+
 </table>
+</td></tr></table>
+    
+    </td>
+    
+    </tr>
+    </table>
+
+</body>
+</html>

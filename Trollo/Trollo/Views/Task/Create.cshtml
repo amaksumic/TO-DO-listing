@@ -1,16 +1,52 @@
 ﻿@model Trollo.task
 
-@{
-    ViewBag.Title = "Create";
-}
+<!DOCTYPE html>
+<html>
 
-<h2>Create</h2>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")   
+</head>
+<body>
+     <table><tr>
+        <td style= "vertical-align: top">
+            <div class="container-fluid">
+                <div class = "row-fluid">
+                    <div class = "span3">
+                        <div class = "well sidebar-nav">
+                            <ul class="list-group"> 
+                              <li class="list-group-item">@Html.ActionLink("User", "../User/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Board", "../Board/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("List", "../List/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Task", "../Task/Create", null, new { })</li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+          </td>
+         <td></td>
+        
+         <td style= "vertical-align: top">
+            <ul class="nav nav-tabs">                
+                <li>@Html.ActionLink("Create", "../Task/Create", null, new { })</li>
+                <li>@Html.ActionLink("Manipulation", "../Task/Index", null, new { })</li>
+            </ul>
+
+         <table><tr>
+             <td><BR>
+
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>task</legend>
+        
 
         <div class="editor-label">
             @Html.LabelFor(model => model.idTask)
@@ -90,9 +126,18 @@
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                 </td></tr></table>
+    
+    </td>
+    
+    </tr>
+    </table>
+    
+    
+    
+    </body>
+    </html>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
