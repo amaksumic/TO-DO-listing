@@ -295,6 +295,8 @@
     <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Views\Board\Chart1.cshtml" />
     <Content Include="Views\Board\Chart2.cshtml" />
+    <Content Include="Views\User\Chart1.cshtml" />
+    <Content Include="Views\User\Chart2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,6 +14,10 @@ using System.Net.Mail;
 using System.Net;
 using System.IO;
 
+using DotNet.Highcharts;
+using DotNet.Highcharts.Enums;
+using DotNet.Highcharts.Helpers;
+using DotNet.Highcharts.Options;
 
 namespace Trollo.Controllers
 {
@@ -59,8 +63,72 @@ namespace Trollo.Controllers
     {
         private mydbEntities db = new mydbEntities();
 
-       
 
+        public ActionResult Chart1()
+        {
+            var user1 = db.user.Where(u => u.email.Contains("a")).Count();
+            var user2 = db.user.Where(u => u.email.Contains("e")).Count();
+
+            //Create chart Model
+            var chart1 = new Highcharts("Chart1");
+            chart1
+                .InitChart(new Chart() { DefaultSeriesType = ChartTypes.Column })
+                .SetTitle(new Title() { Text = "Username A/B" })
+
+                .SetYAxis(new YAxis() { Title = new YAxisTitle { Text = "Number of boards" } })
+                .SetSeries(new[]{
+                new Series{                   
+                    Name = "Board owner 1",
+                    Data = new Data(new object[] { user1 })},
+                    new Series{
+                    Name = "Board owner 2",
+                    Data = new Data(new object[] { user2 })
+                }});
+
+
+            //pass Chart1Model using ViewBag
+            ViewBag.Chart1Model = chart1;
+
+            return View();
+        }
+
+        public ActionResult Chart2()
+        {
+            var user1 = db.user.Where(u => u.email.Contains("etf.unsa.ba")).Count();
+            var user2 = db.user.Where(u => u.email.Contains("hotmail.com")).Count();
+
+            //Create chart Model
+            var chart1 = new Highcharts("Chart1");
+            chart1
+                .InitChart(new Chart() { DefaultSeriesType = ChartTypes.Pie })
+                .SetTitle(new Title() { Text = "Email etf.unsa.ba/hotmail.com" })
+                .SetPlotOptions(new PlotOptions
+                {
+                    Pie = new PlotOptionsPie
+                    {
+                        AllowPointSelect = true,
+                        //Cursor = Cursors.Pointer,
+                        DataLabels = new PlotOptionsPieDataLabels
+                        {
+
+                            Formatter = "function() { return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %'; }"
+                        }
+                    }
+                })
+
+                .SetSeries(new Series
+                {
+                    Type = ChartTypes.Pie,
+
+                    Data = new Data(new object[] { user1, user2 })
+                });
+
+
+            //pass Chart1Model using ViewBag
+            ViewBag.Chart1Model = chart1;
+
+            return View();
+        }
 
         //
         // GET: /User/
