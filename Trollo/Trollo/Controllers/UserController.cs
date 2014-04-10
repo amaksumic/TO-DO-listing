@@ -287,36 +287,43 @@ namespace Trollo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Registration(user u)
         {
-            RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
-
-
-            RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync();
-
-
-            if (ModelState.IsValid && !String.IsNullOrEmpty(recaptchaHelper.Response) && recaptchaResult == RecaptchaVerificationResult.Success)
+            if (ModelState.IsValid /*!String.IsNullOrEmpty(recaptchaHelper.Response) && recaptchaResult == RecaptchaVerificationResult.Success*/)
             {
-                using (mydbEntities dc = new mydbEntities())
+                if (u.username != "" && u.password != "" && u.email != "")
                 {
-                    u.registered = 0;
-                    u.picture = "~/uploads/anonim.jpg";
-                    dc.user.Add(u);
-                    dc.SaveChanges();
-                    ModelState.Clear();
 
-                    EmailManager.SendConfirmationEmail(u);
+                    RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
+                    RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync();
 
-                    u = null;
-                    //ViewBag.Message = "Registracija je uspjesna";
+                    if (String.IsNullOrEmpty(recaptchaHelper.Response))
+                    {
+                        ViewBag.Message = "Recaptch polje ne smije biti prazno!";
+                    }
+                    else if (recaptchaResult != RecaptchaVerificationResult.Success)
+                    {
+                        ViewBag.Message = "Unos u Recaptch polje nije ispravan!";
+                    }
 
-                    return RedirectToAction("Affirmation");
+                    else
+                    {
+                        using (mydbEntities dc = new mydbEntities())
+                        {
+                            u.registered = 0;
+                            u.picture = "~/uploads/anonim.jpg";
+                            dc.user.Add(u);
+                            dc.SaveChanges();
+                            ModelState.Clear();
+
+                            EmailManager.SendConfirmationEmail(u);
+
+                            u = null;
+                            //ViewBag.Message = "Registracija je uspjesna";
+
+                            return RedirectToAction("Affirmation");
+                        }
+                    }
                 }
             }
-
-            else
-            {
-                ViewBag.Message = "Unos u recaptch polje nije ispravan!";
-            }
-
             return View(u);
         }
 

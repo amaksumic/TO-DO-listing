@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mydbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mydbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="mydbModelStoreContainer">
           <EntitySet Name="board" EntityType="mydbModel.Store.board" store:Type="Tables" Schema="mydb" />
           <EntitySet Name="boardmembers" EntityType="mydbModel.Store.boardmembers" store:Type="Tables" Schema="mydb" />
@@ -12,10 +12,6 @@
           <EntitySet Name="task" EntityType="mydbModel.Store.task" store:Type="Tables" Schema="mydb" />
           <EntitySet Name="taskmembers" EntityType="mydbModel.Store.taskmembers" store:Type="Tables" Schema="mydb" />
           <EntitySet Name="user" EntityType="mydbModel.Store.user" store:Type="Tables" Schema="mydb" />
-          <AssociationSet Name="fk_Board_User1" Association="mydbModel.Store.fk_Board_User1">
-            <End Role="user" EntitySet="user" />
-            <End Role="board" EntitySet="board" />
-          </AssociationSet>
           <AssociationSet Name="fk_List_Project1" Association="mydbModel.Store.fk_List_Project1">
             <End Role="board" EntitySet="board" />
             <End Role="list" EntitySet="list" />
@@ -26,10 +22,6 @@
           </AssociationSet>
           <AssociationSet Name="fk_User_has_Board_Board1" Association="mydbModel.Store.fk_User_has_Board_Board1">
             <End Role="board" EntitySet="board" />
-            <End Role="boardmembers" EntitySet="boardmembers" />
-          </AssociationSet>
-          <AssociationSet Name="fk_User_has_Board_User1" Association="mydbModel.Store.fk_User_has_Board_User1">
-            <End Role="user" EntitySet="user" />
             <End Role="boardmembers" EntitySet="boardmembers" />
           </AssociationSet>
         </EntityContainer>
@@ -84,7 +76,7 @@
           <Key>
             <PropertyRef Name="idUser" />
           </Key>
-          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="password" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="creationDate" Type="datetime" Nullable="false" />
@@ -92,18 +84,6 @@
           <Property Name="registered" Type="int" />
           <Property Name="picture" Type="varchar" MaxLength="45" />
         </EntityType>
-        <Association Name="fk_Board_User1">
-          <End Role="user" Type="mydbModel.Store.user" Multiplicity="1" />
-          <End Role="board" Type="mydbModel.Store.board" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="idUser" />
-            </Principal>
-            <Dependent Role="board">
-              <PropertyRef Name="boardOwner" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_List_Project1">
           <End Role="board" Type="mydbModel.Store.board" Multiplicity="1" />
           <End Role="list" Type="mydbModel.Store.list" Multiplicity="*" />
@@ -140,20 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_User_has_Board_User1">
-          <End Role="user" Type="mydbModel.Store.user" Multiplicity="1" />
-          <End Role="boardmembers" Type="mydbModel.Store.boardmembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="idUser" />
-            </Principal>
-            <Dependent Role="boardmembers">
-              <PropertyRef Name="User_idUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mydbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

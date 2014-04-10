@@ -1,5 +1,4 @@
 ﻿
-
 @using Recaptcha.Web.Mvc;
 
 
@@ -8,89 +7,117 @@
     ViewBag.Title = "Registration";
 }
 
-    @Styles.Render("~/Content/bootstrapcss")
-    @Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/bootstrapcss")
+@Scripts.Render("~/bundles/modernizr")
 
-<h2>Registration</h2>
+<div style ="width : 35%; margin : 0 auto; margin-top : 5%">
+    <div class="panel panel-default" style =" width : 480px" >
+        <div class="panel-heading">
+            <h3 class="panel-title">R E G I S T R A C I J A</h3>
+        </div>
+        
+        <div class="panel-body">
 
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+            <fieldset>
+                <table> 
+                    <tr> 
+                        <td>
+                            @if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            <BR><BR>
+                            <table>
+                                <tr>
+                                    <td style ="text-align : right">
+                                        <BR>
+                                        Username:
+                                    </td>                            
+                                    <td style =" width : 150px">
+                                        <BR>
+                                        @Html.TextBoxFor(model => model.username)                                
+                                        @Html.ValidationMessageFor(model => model.username)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style ="text-align : right">
+                                        <BR>
+                                        Password:
+                                    </td>
+                                    <td style =" width : 150px">
+                                        <BR>
+                                        @Html.EditorFor(model => model.password)
+                                        @Html.ValidationMessageFor(model => model.password)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style ="text-align : right">
+                                        <BR>
+                                        Email:
+                                    </td>
+                                    <td style =" width : 150px">
+                                        <BR>
+                                        @Html.EditorFor(model => model.email)                  
+                                        @Html.ValidationMessageFor(model => model.email)
+                                    </td>
+                                </tr>
+                            </table>
 
-    <fieldset>
-        <legend>user</legend>
+                            <BR><BR>
 
-        @if (ViewBag.Message != null)
-                    {
-                        <div class="alert alert-danger">
-                            @ViewBag.Message
-                        </div>
-                    }
+                            <div class="editor-label">
+                                @Html.Recaptcha(theme:Recaptcha.Web.RecaptchaTheme.Clean)
+                            </div>
+                            <div class="hidden">
+                                @Html.EditorFor(model => model.picture, new { picture="~/uploads/anonim.jpg" })
+                            </div>
+                
+                            <BR>
+                        </td> 
+                    </tr> 
+                    <tr> 
+                        <td style ="text-align : right">
+      
+                            <div class="panel-group" id="accordion">
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                      Uvjeti registracije
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                  <div class="panel-body">
+                                    "Most thoughts are memories. And memories deceive. 
+                                      The walk. The way he smoked a cigarette. Laughed. 
+                                      The dead are dead. He’s gone. 
+                                      What’s left to ever say he was here at all? Not much."
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                    
+                            
+                            <input type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Pristajem na uvjete!" value ="Register"/>
+                
+                        </td>
+                    </tr> 
+                </table>
 
-        <div class="editor-label">
-            @Html.Recaptcha(theme:Recaptcha.Web.RecaptchaTheme.Clean)
+            </fieldset>
+        }
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.idUser )
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.idUser)
-            @Html.ValidationMessageFor(model => model.idUser)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.username)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.username)
-            @Html.ValidationMessageFor(model => model.username)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.password)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.password)
-            @Html.ValidationMessageFor(model => model.password)
-            <asp:TextBox ID="txtPassword" runat="server" />
-        </div>
-
-       <div>
-      <input type=password runat=server id=txtRePWord>
-      <asp: CompareValidator runat=server
-            controltovalidate=txtRePWord
-            controltocompare=txtPassword 
-            errormessage="Passwords do not match." />
-       </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.creationDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.creationDate)
-            @Html.ValidationMessageFor(model => model.creationDate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.email)
-            @Html.ValidationMessageFor(model => model.email)
-        </div>
-        <div class="hidden">
-        @Html.EditorFor(model => model.picture, new { picture="~/uploads/anonim.jpg" })
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
-    @Scripts.Render("~/bundles/jquery")    
-    @Scripts.Render("~/bundles/bootstrapjs")
+
+@Scripts.Render("~/bundles/jquery")    
+@Scripts.Render("~/bundles/bootstrapjs")
+        

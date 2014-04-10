@@ -181,3 +181,9 @@ C:\Users\samsung\Desktop\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.
 C:\Users\samsung\Desktop\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
 C:\Users\samsung\Desktop\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\samsung\Desktop\Trollo\Trollo\obj\Debug\Trollo.pdb
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\bs\Trollo.resources.dll
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.resources
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.bs.resources
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.Cache
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
