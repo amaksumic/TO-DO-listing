@@ -343,7 +343,7 @@ namespace Trollo.Controllers
                     db.SaveChanges();
 
                     Session["LogedUserID"] = user.idUser.ToString();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create", "Board");
                 }
                 else
                 {

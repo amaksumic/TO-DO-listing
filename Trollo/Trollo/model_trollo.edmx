@@ -12,6 +12,14 @@
           <EntitySet Name="task" EntityType="mydbModel.Store.task" store:Type="Tables" Schema="mydb" />
           <EntitySet Name="taskmembers" EntityType="mydbModel.Store.taskmembers" store:Type="Tables" Schema="mydb" />
           <EntitySet Name="user" EntityType="mydbModel.Store.user" store:Type="Tables" Schema="mydb" />
+          <AssociationSet Name="boardOwner" Association="mydbModel.Store.boardOwner">
+            <End Role="user" EntitySet="user" />
+            <End Role="board" EntitySet="board" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Board_has_User_User1" Association="mydbModel.Store.fk_Board_has_User_User1">
+            <End Role="user" EntitySet="user" />
+            <End Role="boardmembers" EntitySet="boardmembers" />
+          </AssociationSet>
           <AssociationSet Name="fk_List_Project1" Association="mydbModel.Store.fk_List_Project1">
             <End Role="board" EntitySet="board" />
             <End Role="list" EntitySet="list" />
@@ -84,6 +92,30 @@
           <Property Name="registered" Type="int" />
           <Property Name="picture" Type="varchar" MaxLength="45" />
         </EntityType>
+        <Association Name="boardOwner">
+          <End Role="user" Type="mydbModel.Store.user" Multiplicity="1" />
+          <End Role="board" Type="mydbModel.Store.board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="board">
+              <PropertyRef Name="boardOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Board_has_User_User1">
+          <End Role="user" Type="mydbModel.Store.user" Multiplicity="1" />
+          <End Role="boardmembers" Type="mydbModel.Store.boardmembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="boardmembers">
+              <PropertyRef Name="User_idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_List_Project1">
           <End Role="board" Type="mydbModel.Store.board" Multiplicity="1" />
           <End Role="list" Type="mydbModel.Store.list" Multiplicity="*" />
