@@ -6,4 +6,12 @@ function Hello($scope, $http) {
         });
 }
 
+function login($scope, $http)
+{
+    $scope.formInfo = {};
+    $http.get('/api/UserAPI/LoginApi?pass="12345"&name="novi"')
+        .success(function (data) {
+            $scope.user = data;
+        });
+}
 

@@ -42,6 +42,15 @@ namespace Trollo.Controllers
 
             return user;
         }
+        [HttpGet]
+        public string LoginApi(string pass, string name)
+        {
+            //user user =  db.user.Where(a => a.username.Equals(name) && a.password.Equals(pass)).FirstOrDefault();
+
+
+
+            return name+" "+pass;
+        }
 
         // PUT api/UserAPI/5
         public HttpResponseMessage Putuser(int id, user user)
