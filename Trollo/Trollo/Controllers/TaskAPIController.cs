@@ -18,11 +18,6 @@ namespace Trollo.Controllers
         // GET api/TaskApi
         public List<task> Gettasks()
         {
-            var session = HttpContext.Current.Session;
-            if (session != null)
-            {
-                string Admin = session["Admin"].ToString();
-            }
             List<task> tasks = new List<task>();
 
             var task = db.task.Include(t => t.list);
@@ -38,11 +33,7 @@ namespace Trollo.Controllers
         // GET api/TaskApi/5
         public task Gettask(int id)
         {
-            var session = HttpContext.Current.Session;
-            if (session != null)
-            {
-                string Admin = session["Admin"].ToString();
-            }
+
             task task = new task();
 
             var t = db.task.Find(id);
@@ -58,10 +49,10 @@ namespace Trollo.Controllers
         }
 
         //** L I S T A  I  NJENI TASKOVI
-
+        /*
         // GET api/TaskApi/5/5
         [HttpGet]
-        public List<task> GetListsTasks(int id)
+        public List<task> GetListsTasks(int id, int i = 0)
         {
             var session = HttpContext.Current.Session;
             if (session != null)
@@ -81,41 +72,42 @@ namespace Trollo.Controllers
 
             return tasks;
         }
-
+        */
 
         //** K O R I S N I K  I  TASKOVI KOJE JE KREIRAO
 
 
 
+        [HttpGet]
         // GET api/TaskApi/5/5
-        public List<task> GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        public task GetTasksByCreator(int id) //Vraca task-ove za task creatora
         {
 
             List<task> tasks = new List<task>();
 
-            var session = HttpContext.Current.Session;
-            if (session != null)
+            //var session = HttpContext.Current.Session;
+            //if (session != null)
+            //{
+            //string Admin = session["Admin"].ToString();
+            //task task = new task; 
+
+            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
+            //čak i select, na fazon upita je
+
+            foreach (var t in task)
             {
-                string Admin = session["Admin"].ToString();
-                //task task = new task; 
-
-                var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
-                //čak i select, na fazon upita je
-
-                foreach (var t in task)
-                {
-                    tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
-                    //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
-                    //sem za polja koja sam navela
-                }
-                return tasks;
+                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
+                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
+                //sem za polja koja sam navela
             }
+            return tasks[0];
+            //}
 
-            else
-            {
-                tasks.Add(new task { idTask = 888, title = "Niste prijavljeni kao administrator!" });
-                return tasks;
-            }
+            //else
+            //{
+            //  tasks.Add(new task { idTask = 888, title = "Niste prijavljeni kao administrator!" });
+            //return tasks;
+            //}
         }
 
 

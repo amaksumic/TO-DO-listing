@@ -9,10 +9,16 @@ namespace Trollo
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
-        {
+        {/*
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );*/
+
+            RouteTable.Routes.MapHttpRoute( //Web API vs. MVC rute
+                name: "Ruta231Api",
+                routeTemplate: "api/{controller}/{action}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
@@ -21,6 +27,12 @@ namespace Trollo
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             ).RouteHandler = new TrolloRouteHandler(); //Dodajemo route handler.
+
+            RouteTable.Routes.MapHttpRoute( //Web API vs. MVC rute
+                name: "Ruta31Api",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                  name: "Ruta4Api",
@@ -31,6 +43,12 @@ namespace Trollo
                 name: "Ruta2Api",
                 routeTemplate: "api/{controller}/{action}/{id}/{s}",
                 defaults: new { id = RouteParameter.Optional, s = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "Ruta25Api",
+                routeTemplate: "api/{controller}/{action}/{pass}/{name}",
+                defaults: new { pass = RouteParameter.Optional, name = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
