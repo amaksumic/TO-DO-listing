@@ -35,7 +35,7 @@
       <div class="jumbotron">
 
             <h1>Trollo - ucimo AngularJS</h1>
-            <h3>Give me a T, give me an E, give an O, T-E-O!</h3> 
+            <h3></h3> 
           
              <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
       </div>
@@ -65,6 +65,18 @@
                         <p>Bord sa id=1 ima listu {{list}}</p>
                     </div>
 
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div ng-controller="Boards">
+                        Korisnik sa ID=4 ima sljedece Boardove
+                        <div ng-repeat="b in boardsList">
+                            <p>{{b.title}}</p>
+                        </div>
+                        
+                    </div>
                 </td>
             </tr>   
         </table>

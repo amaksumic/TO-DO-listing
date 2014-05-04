@@ -30,19 +30,36 @@ namespace Trollo.Controllers
             }
         }
 
+        [HttpGet]
         // GET api/BoardApi/5
         public List<board> Getboard(int id)
         {
-            //board board = db.board.Find(id);
-            var boardByID = from b in db.board
-                            where b.boardOwner == id
-                            select b;
-            if (boardByID == null)
+            ////board board = db.board.Find(id);
+            //var boardByID = from b in db.board
+            //                where b.boardOwner == id
+            //                select b;
+            //if (boardByID == null)
+            //{
+            //    throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+            //}
+            //List<board> list = boardByID.ToList();
+            //return list;
+
+            List<board> Boards = new List<board>();
+
+            //var session = HttpContext.Current.Session;
+            //if (session != null)
+            //{
+            //string Admin = session["Admin"].ToString();
+            //task task = new task; 
+
+            var board = db.board.Where(b => b.boardOwner  == id); 
+
+            foreach (var b in board)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                Boards.Add(new board { idBoard = b.idBoard, title = b.title }); 
             }
-            List<board> list = boardByID.ToList();
-            return list;
+            return Boards;
         }
 
         // PUT api/BoardApi/5

@@ -16,6 +16,12 @@ namespace Trollo
                 defaults: new { id = RouteParameter.Optional }
             );*/
 
+
+            //naredna tri reda rjesavaju gresku koja se desava kod serijaliziranja odgovora u WebApi metodama
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             RouteTable.Routes.MapHttpRoute( //Web API vs. MVC rute
                 name: "Ruta231Api",
                 routeTemplate: "api/{controller}/{action}",

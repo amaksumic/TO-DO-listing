@@ -15,3 +15,15 @@ function login($scope, $http)
         });
 }
 
+
+
+function Boards($scope, $http) {
+    $http.get('api/BoardApi/Getboard?id=4').
+    success(function (data) {
+        $scope.boardsList= data;
+    });
+
+}
+
+
+
