@@ -196,7 +196,7 @@ namespace Trollo {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get organized as fast as you can think. The easy-to-use interface takes no time to learn, and every action is instantaneous, so there’s nothing standing between you and your sweet productive flow..
+        ///   Looks up a localized string similar to Register today.
         /// </summary>
         public static string Subtitle {
             get {
@@ -205,7 +205,7 @@ namespace Trollo {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application for project and time management .
+        ///   Looks up a localized string similar to Trollo - application for project and time management.
         /// </summary>
         public static string Title {
             get {

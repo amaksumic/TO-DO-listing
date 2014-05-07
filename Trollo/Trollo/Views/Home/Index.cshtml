@@ -2,143 +2,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/bootstrap.css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <title>Flat UI Free</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
     
+    
+
+        <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Trollo.Resources.Lang <b class="caret"></b></a>
+                        <span class="dropdown-arrow"></span>
+                        <ul class="dropdown-menu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1">@Html.ActionLink("ENG", "SetCulture", new { controller = "Home", culture = "en" })  </a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1">@Html.ActionLink("BS", "SetCulture", new { controller = "Home", culture = "bs" })</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#fakelink">O nama</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->
+
     <div class="container">
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-
-                <div class="btn-group">
-                <div class="dropdown">
-                        <button class="btn btn-lg dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                              @Trollo.Resources.Lang
-                          <span class="caret"></span>
-                        </button>
-                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                     <li role="presentation"><a role="menuitem" tabindex="-1">@Html.ActionLink("ENG", "SetCulture", new { controller = "Home", culture = "en" })  </a></li>
-                     <li role="presentation"><a role="menuitem" tabindex="-1">@Html.ActionLink("BS", "SetCulture", new { controller = "Home", culture = "bs" })</a></li>
-   
-                     </ul>
-                    </div>
-
-
+        <div class="row demo-tiles">
+        <div class="col-xs-9">
+          <div class="tile">
+            <img src="images/icons/svg/clipboard.svg" alt="Compas" class="tile-image big-illustration">
+            <h3 class="tile-title">@Trollo.Resources.Title</h3>
+            <p>@Trollo.Resources.Subtitle</p>
+            <a class="btn btn-primary btn-large btn-block" href="http://designmodo.com/flat">Sign in</a>
+          </div>
         </div>
-                <!--Register button-->
-                 
+      
 
-                 
-                     @Html.ActionLink("Register", "../User/Registration", null, new { @class = "btn btn-success btn-lg navbar-btn"  })
-                     <!-- <button type="button" class="btn btn-success navbar-btn">Register</button> -->
-                    
-                
-
-                <!--Log in button-->
-                 <button class="btn btn-primary btn-lg navbar-btn" data-toggle="modal" data-target="#myModal">
-                     Log in
-                </button>
-
-                </div>
-            </div>
-        </div>
-    </div>
+       
 
 
-
-    <table>
-        <tr>
-            <th>
-                <hr>
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-            <th>
-                <hr>
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                
-    
-                
+         <div class="row demo-tiles">
+        <div class="col-xs-3">
+            <!-- Login dio --------------------------------->
+            <div class="login-form">
+                <br />
+                    <br />
 
 
-               
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">Log in</h4>
-                            </div>
-
-                             @using (Html.BeginForm("Login","Home", FormMethod.Post))
+              @using (Html.BeginForm("Login","Home", FormMethod.Post))
             {
                 //this  is for create form tag
                 @Html.AntiForgeryToken()          // this is for prevent CSRF attack
-               @Html.ValidationSummary(true)
-                
-                                 <div class="modal-body">
+                @Html.ValidationSummary(true)
 
-                                     <div class="input-group">
+                <div class="form-group">
 
-                                         @Html.TextBoxFor(model => model.username, new { @class = "form-control", placeholder = "username" })
-                                         @Html.ValidationMessageFor(model => model.username)
-
-
-                                     </div>
-
-                                     <div class="input-group">
-
-                                         @Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "password" })
-                                         @Html.ValidationMessageFor(model => model.password)
-                                     </div>
-                                 </div>
-                       
-                         
-                            <div class="modal-footer">
-                                
-                                <!-- Login forma -->
-
-                                           <input type="submit" value="Log in" class="btn btn-primary" />
-
-                                </div>
-                        
-            }
-                                     
-                                 
-                            </div>
-                        </div>
-                    </div>
+                    @Html.TextBoxFor(model => model.username, new { @class = "form-control login-field", placeholder = "Enter your name" })
+                    @Html.ValidationMessageFor(model => model.username)
+                    <label class="login-field-icon fui-user" for="login-name"></label>
                 </div>
 
+                <div class="form-group">
+                     @Html.PasswordFor(model => model.password, new { @class = "form-control login-field", placeholder = "Password" })
+                     @Html.ValidationMessageFor(model => model.password)
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
 
-            </td>
-            </tr>
-        </table>
+                
+                <input type="submit" value="Log in" class="btn btn-primary btn-lg btn-block" />
+                <a class="login-link" href="#">Lost your password?</a>
+              }
+            </div>
+            <!-- end Login dio --------------------------------->
 
+        </div>
+    </div>
+        
+            </div>
+        </div>
+    <!-- /.container -->
 
-    <!-- jubmotron -->
-      <div class="jumbotron">
-  <h1>@Trollo.Resources.Title</h1>
-          <h3>@Trollo.Resources.Subtitle</h3>
-  
-          
-  <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-</div>
+    
+     <!-- Footer -->
 
+      <br />
+
+      <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-9">
+            <h3 class="footer-title">Preporuci nas</h3>
+            <p>Dopada ti se Trollo?<br/>
+              Preporuci nas svojim prijateljima.<br/>
+             
+            </p>
+
+            <p class="pvl">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://designmodo.com/flat-free/" data-text="Flat UI Free - PSD&amp;amp;HTML User Interface Kit" data-via="designmodo">Tweet</a>
+							<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+              
+            </p>
+
+            
+          </div> <!-- /col-xs-7 -->
+
+          <div class="col-xs-3">
+            <div class="footer-banner">
+              <h3 class="footer-title">Trollo</h3>
+              <ul>
+                <li>Kreiraj projekat</li>
+                <li>Dodaj prijatelje na projekat</li>
+                <li>Razmjenjujte ideje</li>
+                <li>Dijelite zadatke</li>
+                
+              </ul>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+   
     
 
     @Scripts.Render("~/bundles/jquery")
