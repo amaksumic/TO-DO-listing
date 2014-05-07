@@ -223,6 +223,7 @@
     <Content Include="basic.css" />
     <Content Include="basic.html" />
     <Content Include="basic.js" />
+    <Content Include="Boards.html" />
     <Content Include="bootstrap\css\bootstrap-docs.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\prettify.css" />
@@ -280,6 +281,12 @@
     <Content Include="Images\icons\svg\pencils.svg" />
     <Content Include="Images\icons\svg\retina.svg" />
     <Content Include="Images\icons\svg\toilet-paper.svg" />
+    <Content Include="Images\todo\done-2x.png" />
+    <Content Include="Images\todo\done.png" />
+    <Content Include="Images\todo\search-2x.png" />
+    <Content Include="Images\todo\search.png" />
+    <Content Include="Images\todo\todo-2x.png" />
+    <Content Include="Images\todo\todo.png" />
     <Content Include="js\application.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrap-switch.js" />
