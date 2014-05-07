@@ -5,6 +5,8 @@
 }
 
 <h2>Login</h2>
+ @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
 @using (Html.BeginForm("Login","Home", FormMethod.Post))
             {
                 //this  is for create form tag

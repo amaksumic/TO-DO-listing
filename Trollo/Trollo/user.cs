@@ -19,6 +19,15 @@ namespace Trollo
             this.board = new HashSet<board>();
             this.board1 = new HashSet<board>();
         }
+
+        public user(string _username, string _password, System.DateTime _creationDate, string _email, string _picture)
+        {
+            username = _username;
+            password = _password;
+            creationDate = _creationDate;
+            email = _email;
+            picture = _picture;
+        }
     
         public int idUser { get; set; }
         public string username { get; set; }

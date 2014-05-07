@@ -215,7 +215,7 @@ namespace Trollo.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return View("../Home/AfterLogin", user);
+                return RedirectToAction("AfterLogin", "Home", user);
             }
             return View(user);
         }
