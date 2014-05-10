@@ -1,30 +1,36 @@
 ﻿
-function Hello($scope, $http) {
-    $http.get('api/TaskApi/GetTasksByCreator?id=1').
+    angular.module("myapp", [])
+       .controller("MyController", function ($scope, $http) {
+           $scope.myForm = {};
+           
+
+           $scope.myForm.submitTheForm = function (item, event) {
+               console.log("--> Submitting form");
+               var dataObject = {
+                   name: $scope.myForm.name
+                  , car: $scope.myForm.car
+               };
+
+               
+               var responsePromise = $http.get('api/TaskApi/GetTasksByCreator?id='+ dataObject.name, {});
+               responsePromise.success(function (data) {
+                   //  console.log(dataFromServer.title
+                   $scope.task = data;
+                   
+               });
+               responsePromise.error(function (data, status, headers, config) {
+                   alert("Submitting form failed!");
+               });
+           }
+
+       });
+
+
+    function Boards($scope, $http) {
+        $scope.sortOrder = "title";
+        $http.get('api/BoardApi/Getboard?id=1').
         success(function (data) {
-            $scope.task = data;
+            $scope.boardsList = data;
         });
-}
 
-function login($scope, $http)
-{
-    $scope.formInfo = {};
-    $http.get('/api/UserAPI/LoginApi?pass="12345"&name="novi"')
-        .success(function (data) {
-            $scope.user = data;
-        });
-}
-
-
-
-function Boards($scope, $http) {
-    $scope.sortOrder = "title";
-    $http.get('api/BoardApi/Getboard?id=4').
-    success(function (data) {
-        $scope.boardsList= data;
-    });
-
-}
-
-
-
+    }

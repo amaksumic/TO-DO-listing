@@ -2,85 +2,34 @@
 					
 <!doctype html>
 
-<html ng-app>
+<html >
 
 	<head>
-		<title>Učimo AngularJS</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-        <link rel="stylesheet" href="Content/bootstrap.min.css">  
-    	<script src="basic.js"></script>
-       <script src="test.js"></script>
-        <script src="Content/bootstrap.js"></script>
+		<title> Ucimo angular</title>
+           <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+           <script src="basic.js"></script>
 	</head>
 
 
-	<body>
+	<body ng-app="myapp">
 
-        <div class="container">
+ <div ng-controller="MyController" >
+  <form>
+      
+      <input type="text" id="name" ng-model="myForm.name" /> Unesi id taska </br>
+    <button ng-click="myForm.submitTheForm()">Submit Form</button>
+  </form>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-            <div class="btn-group">
-                <div class="dropdown">                           
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-        </div>
-            
-
-      <!-- jumbotron -->
-      <div class="jumbotron">
-
-            <h1>Trollo - ucimo AngularJS</h1>
-            <h3></h3> 
-          
-             <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-      </div>
-
-¸    <div>
-        <table>
-            <tr>
-                <td>
-                    <div ng-controller="Hello">
-                        <p>Korisnik Picolo je napravio task naziva {{task.title}}</p>
-                    </div>
-                </td>
-            </tr>
-          
-             <tr>
-                <td>
-                    <div ng-controller="login">
-                        <p>User ima login podatke {{user}}</p>
-                    </div>
-
-                </td>
-            </tr>   
-
-            <tr>
-                <td>
-                    <div ng-controller="List">
-                        <p>Bord sa id=1 ima listu {{list}}</p>
-                    </div>
-
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <div ng-controller="Boards">
-                        Korisnik sa ID=4 ima sljedece Boardove
+ 
+     <div>
+       Task=  {{task}}
+     </div>
+</div>
+         <div ng-controller="Boards">
+                        Korisnik sa ID=1 ima sljedece Boardove
                         <div ng-repeat="b in boardsList">
                             <p>{{b.title}}</p>
                         </div>
-                        
-                    </div>
-                </td>
-            </tr>   
-        </table>
-    </div>
 
 	</body>
 
