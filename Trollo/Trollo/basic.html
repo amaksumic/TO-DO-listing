@@ -69,7 +69,19 @@
                 <p>{{user}} </p>
                    
         </div>
+        <br />
+        <hr> Brisanje korisnika</hr>
+        <div ng-controller="BrisanjeKorisnika" >
 
+          <form>
+              <input type="text" id="Text2" ng-model="brisanjeKorisnika.id" /> ID korisnika za brisanje </br>      
+           
+            <button ng-click="brisanjeKorisnika.submitTheForm()">Obrisi korisnika</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
          <div ng-controller="Boards">
                         Korisnik sa ID=1 ima sljedece Boardove
                         <div ng-repeat="b in boardsList">

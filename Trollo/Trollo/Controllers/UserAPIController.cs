@@ -92,6 +92,7 @@ namespace Trollo.Controllers
         }
 
         // DELETE api/UserAPI/5
+        [HttpGet]
         public HttpResponseMessage Deleteuser(int id)
         {
             user user = db.user.Find(id);

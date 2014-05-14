@@ -137,7 +137,33 @@ angular.module("myapp", [])
                });
            }
 
-});
+           })  .controller("BrisanjeKorisnika", function ($scope, $http) {
+
+               $scope.brisanjeKorisnika = {};
+
+               $scope.brisanjeKorisnika.submitTheForm = function (item, event) {
+                   console.log("--> Submitting form");
+
+
+                   var dataObject = {
+                       id : $scope.brisanjeKorisnika.id,
+                      
+                   };
+
+                   var responsePromise = $http.get("api/UserApi/Deleteuser?id=" + dataObject.id, {});
+
+                   responsePromise.success(function (data) {
+                       $scope.user = data;
+                   });
+
+
+                   responsePromise.error(function (data, status, headers, config) {
+                       alert("Submitting form failed!");
+                   });
+               }
+
+           });
+
 
     function Boards($scope, $http) {
         $scope.sortOrder = "title";
