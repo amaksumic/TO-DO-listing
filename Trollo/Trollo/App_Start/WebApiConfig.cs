@@ -46,6 +46,16 @@ namespace Trollo
                  defaults: new { task = RouteParameter.Optional }
              );
             config.Routes.MapHttpRoute(
+                 name: "Ruta42Api",
+                 routeTemplate: "api/{controller}/{action}/{username}",
+                 defaults: new { username = RouteParameter.Optional }
+             );
+            config.Routes.MapHttpRoute(
+                 name: "Ruta421Api",
+                 routeTemplate: "api/{controller}/{action}/{email}",
+                 defaults: new { email = RouteParameter.Optional }
+             );
+            config.Routes.MapHttpRoute(
                 name: "Ruta2Api",
                 routeTemplate: "api/{controller}/{action}/{id}/{s}",
                 defaults: new { id = RouteParameter.Optional, s = RouteParameter.Optional }

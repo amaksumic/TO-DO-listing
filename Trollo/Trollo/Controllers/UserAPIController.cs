@@ -15,13 +15,6 @@ namespace Trollo.Controllers
     {
         private mydbEntities db = new mydbEntities();
 
-        // GET api/UserAPI
-        public IEnumerable<user> Getusers()
-        {
-            return db.user.AsEnumerable();
-        }
-
-
         [Authorize]
         public class UsersController : ApiController
         {
@@ -42,6 +35,7 @@ namespace Trollo.Controllers
 
             return user;
         }
+
         [HttpGet]
         public string LoginApi(string pass, string name)
         {
@@ -125,5 +119,47 @@ namespace Trollo.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+
+        [HttpGet]
+        // GET api/UserApi/5
+        public user GetUserByUsername(string username)
+        {
+            List<user> user = new List<user>();
+            var users = db.user.Where(a => a.username.Equals(username));
+            
+            foreach (user u in users)
+            {
+               user.Add(new user { username = u.username, email = u.email}); 
+            }
+
+            if (user.Count() == 0)
+            {
+                user.Add(new user { username = "User ne postoji"}); 
+            }
+            return user[0];
+
+        }
+
+        [HttpGet]
+        // GET api/UserApi/5
+        public user GetUserByEmail(string email)
+        {
+            List<user> user = new List<user>();
+            var users = db.user.Where(a => a.email.Contains(email));
+
+            foreach (user u in users)
+            {
+                user.Add(new user {username = u.username, email = u.email });
+            }
+
+            if (user.Count() == 0)
+            {
+                user.Add(new user { email = "User ne postoji" });
+            }
+            return user[0];
+
+        }
+
     }
 }

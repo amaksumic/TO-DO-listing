@@ -25,6 +25,35 @@
        Task=  {{task}}
      </div>
 </div>
+
+
+        <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
+
+         <div ng-controller="Pretraga" >
+
+          <form>      
+            <input type="text" id="username" ng-model="pretragaKorisnika.username" /> Username korisnika </br>
+            <button ng-click="pretragaKorisnika.submitTheForm()">Pretrazi</button>
+          </form>          
+          
+                <p>{{user.username}} </p>
+                   
+        </div>
+
+         <!-- PRETRAGA KORISNIKA PO EMAIL-U -->
+
+         <div ng-controller="PretragaEmail" >
+
+          <form>      
+            <input type="text" id="Text1" ng-model="pretragaKorisnika2.email" /> Email korisnika </br>
+            <button ng-click="pretragaKorisnika2.submitTheForm()">Pretrazi</button>
+          </form>          
+          
+                <p>{{user.username}} </p>
+                   
+        </div>
+
+
          <div ng-controller="Boards">
                         Korisnik sa ID=1 ima sljedece Boardove
                         <div ng-repeat="b in boardsList">
