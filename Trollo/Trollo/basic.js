@@ -109,7 +109,35 @@ angular.module("myapp", [])
                    });
                }
 
-           });
+           })
+           .controller("IzmjenaKorisnika", function ($scope, $http) {
+
+               $scope.izmjenaKorisnika = {};
+
+               $scope.izmjenaKorisnika.submitTheForm = function (item, event) {
+                   console.log("--> Submitting form");
+
+
+                   var dataObject = {
+                       id : $scope.izmjenaKorisnika.id,
+                   stari: $scope.izmjenaKorisnika.stari,
+                   novi :  $scope.izmjenaKorisnika.novi,
+                   noviemail : $scope.izmjenaKorisnika.noviemail
+               };
+
+               var responsePromise = $http.get("api/UserApi/IzmjenaUsera?id=" +dataObject.id + "&stari=" + dataObject.stari + "&novi=" + dataObject.novi + "&noviemail=" + dataObject.noviemail, {});
+
+               responsePromise.success(function (data) {
+                   $scope.user = data;
+               });
+
+
+               responsePromise.error(function (data, status, headers, config) {
+                   alert("Submitting form failed!");
+               });
+           }
+
+});
 
     function Boards($scope, $http) {
         $scope.sortOrder = "title";

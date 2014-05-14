@@ -54,6 +54,22 @@
         </div>
 
 
+         <!-- IZMJENA USERNAME-A I PASSWORD-A -->
+
+         <div ng-controller="IzmjenaKorisnika" >
+
+          <form>
+              <input type="text" id="id" ng-model="izmjenaKorisnika.id" /> ID korisnika </br>      
+            <input type="text" id="stari" ng-model="izmjenaKorisnika.stari" /> Stari password </br>
+              <input type="text" id="novi" ng-model="izmjenaKorisnika.novi" /> Novi password </br>
+              <input type="text" id="noviemail" ng-model="izmjenaKorisnika.noviemail" /> Novi email </br>
+            <button ng-click="izmjenaKorisnika.submitTheForm()">Pretrazi</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+
          <div ng-controller="Boards">
                         Korisnik sa ID=1 ima sljedece Boardove
                         <div ng-repeat="b in boardsList">

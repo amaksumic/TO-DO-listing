@@ -161,5 +161,26 @@ namespace Trollo.Controllers
 
         }
 
+
+
+        [HttpGet]
+        // GET api/UserApi/5
+        public string IzmjenaUsera(int id, string stari, string novi, string noviemail)
+        {
+
+                var user = db.user.Find(id);
+
+                //user.registered = 1;
+                if (novi != "") user.password = novi;
+                if (noviemail != "") user.email = noviemail;
+
+                db.Entry(user).State = EntityState.Modified;
+
+                db.SaveChanges();
+
+            return "Izmjena uspješno izvršena!";
+
+        }
+
     }
 }

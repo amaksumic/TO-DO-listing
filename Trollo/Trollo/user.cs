@@ -27,6 +27,14 @@ namespace Trollo
             password = _password;
         }
 
+        public user(int _id, string _username, string _password, string _email)
+        {
+            idUser = _id;
+            username = _username;
+            password = _password;
+            email = _email;
+        }
+
         public user(string _username)
         {
             username = _username;
