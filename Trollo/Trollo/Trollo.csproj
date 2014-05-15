@@ -287,6 +287,9 @@
     <Content Include="Images\todo\search.png" />
     <Content Include="Images\todo\todo-2x.png" />
     <Content Include="Images\todo\todo.png" />
+    <Content Include="index.css" />
+    <Content Include="index.html" />
+    <Content Include="index.js" />
     <Content Include="js\application.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrap-switch.js" />
