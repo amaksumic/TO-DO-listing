@@ -360,3 +360,4 @@ C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\zh-Hant\System.S
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache

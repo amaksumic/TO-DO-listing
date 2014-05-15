@@ -146,11 +146,37 @@ angular.module("myapp", [])
 
 
                    var dataObject = {
-                       id : $scope.brisanjeKorisnika.id,
+                       id : $scope.brisanjeKorisnika.id
                       
                    };
 
                    var responsePromise = $http.get("api/UserApi/Deleteuser?id=" + dataObject.id, {});
+
+                   responsePromise.success(function (data) {
+                       $scope.user = data;
+                   });
+
+
+                   responsePromise.error(function (data, status, headers, config) {
+                       alert("Submitting form failed!");
+                   });
+               }
+
+           }).controller("UpdateUsername", function ($scope, $http) {
+
+               $scope.updateUsername = {};
+
+               $scope.updateUsername.submitTheForm = function (item, event) {
+                   console.log("--> Submitting form");
+
+
+                   var dataObject = {
+                       id : $scope.updateUsername.id,
+                       pass: $scope.updateUsername.pass,
+                       novi :  $scope.updateUsername.novi
+                   };
+
+                   var responsePromise = $http.get("api/UserApi/UpdateUsername?id=" +dataObject.id + "&pass=" + dataObject.pass + "&novi=" + dataObject.novi, {});
 
                    responsePromise.success(function (data) {
                        $scope.user = data;

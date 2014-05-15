@@ -63,7 +63,7 @@
             <input type="text" id="stari" ng-model="izmjenaKorisnika.stari" /> Stari password </br>
               <input type="text" id="novi" ng-model="izmjenaKorisnika.novi" /> Novi password </br>
               <input type="text" id="noviemail" ng-model="izmjenaKorisnika.noviemail" /> Novi email </br>
-            <button ng-click="izmjenaKorisnika.submitTheForm()">Pretrazi</button>
+            <button ng-click="izmjenaKorisnika.submitTheForm()">Izmijeni</button>
           </form>          
           
                 <p>{{user}} </p>
@@ -82,6 +82,20 @@
                 <p>{{user}} </p>
                    
         </div>
+
+          <div ng-controller="UpdateUsername" >
+
+          <form>
+              <input type="text" id="Text3" ng-model="updateUsername.id" /> ID korisnika </br>      
+            <input type="password" id="Text4" ng-model="updateUsername.pass" /> Vaš password </br>
+              <input type="text" id="Text5" ng-model="updateUsername.novi" /> Novi username </br>
+            <button ng-click="updateUsername.submitTheForm()">Izmijeni</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+
          <div ng-controller="Boards">
                         Korisnik sa ID=1 ima sljedece Boardove
                         <div ng-repeat="b in boardsList">
