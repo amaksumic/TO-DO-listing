@@ -4,7 +4,7 @@ padding : 0;
 } 
 body { 
 font : 73% "Trebuchet MS", Arial, Helvetica, Tahoma, sans-serif;
-background : #white url(images/bg.gif) repeat-y top center;
+background : #white url(index_slicice/bg.gif) repeat-y top center;
 } 
 			/*WRAP*/ 
 #container { 
@@ -20,7 +20,7 @@ color : black;
 #top { 
 padding : 0;
 height : 100px;
-background : #8fb8cc url(images/head.jpg) no-repeat;
+background : #8fb8cc url(index_slicice/head.jpg) no-repeat;
 color : #silver;
 } 
 #top h1 { 
@@ -103,13 +103,13 @@ font-weight : bold;
 height : 20px;
 text-decoration : none;
 color : #505050;
-background : #eaeaea url(images/up.gif) no-repeat left center;
+background : #eaeaea url(index_slicice/up.gif) no-repeat left center;
 display : block;
 padding : 4px 0 0 30px;
 border-left : 0 solid #8fb8cc;
 } 
 #leftnavmenu li a:hover { 
-background : #8fb8cc url(images/right.gif) no-repeat left center;
+background : #8fb8cc url(index_slicice.gif) no-repeat left center;
 color : #fff;
 border-left : 0 solid #003366;
 } 

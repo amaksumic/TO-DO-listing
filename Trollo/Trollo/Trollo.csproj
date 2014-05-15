@@ -290,6 +290,14 @@
     <Content Include="index.css" />
     <Content Include="index.html" />
     <Content Include="index.js" />
+    <Content Include="index_slicice\head.jpg" />
+    <Content Include="index_slicice\head.png" />
+    <Content Include="index_slicice\input.gif" />
+    <Content Include="index_slicice\library_wiz.png" />
+    <Content Include="index_slicice\library_wiz1.png" />
+    <Content Include="index_slicice\logininput.gif" />
+    <Content Include="index_slicice\right.gif" />
+    <Content Include="index_slicice\up.gif" />
     <Content Include="js\application.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrap-switch.js" />
