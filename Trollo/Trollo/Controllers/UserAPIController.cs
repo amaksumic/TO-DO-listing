@@ -206,5 +206,40 @@ namespace Trollo.Controllers
 
         }
 
+
+        [HttpGet]
+        // GET api/UserApi/5
+        public user Registration(string username, string pass, string email)
+        {
+            user kor = new user(0, username, pass, email);
+            kor.picture = "~/uploads/anonim.jpg";
+            db.user.Add(kor);
+            db.SaveChanges();
+            ModelState.Clear();
+            return kor;
+        }
+
+        [HttpGet]
+        // GET api/UserApi/5
+        public user Login(string username, string pass)
+        {
+
+            user kor = new user();
+            kor = db.user.Where(a => a.username.Equals(username) && a.password.Equals(pass)).FirstOrDefault();
+
+            if (kor != null)
+            {
+                return kor;
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public string Logout()
+        {
+            return null;
+        }
+
+
     }
 }

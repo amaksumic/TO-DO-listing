@@ -220,6 +220,7 @@
   <ItemGroup>
     <Content Include="AjaxC.aspx" />
     <Content Include="angIndex.html" />
+    <Content Include="angular.js" />
     <Content Include="basic.css" />
     <Content Include="basic.html" />
     <Content Include="basic.js" />
@@ -331,6 +332,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="AjaxKontrole.Master" />
+    <Content Include="RegistracijaLogin.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
