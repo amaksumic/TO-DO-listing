@@ -1,44 +1,49 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+﻿<!DOCTYPE html>
 <html>
 <head>
-<title>Trollo</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="index.css" rel="stylesheet" type="text/css" />
+
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style>
+        .navbar { border-radius:0; }
+    </style>
+
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="index.js"></script>
+   
+    <link href="index.css" rel="stylesheet" type="text/css" />
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 </head>
 
-<body>
-<div id="container">
-  <div id="top">  
-  </div>
-  
+<!-- apply our angular app to our site -->
+<body ng-app="routerApp">
+
+<!-- NAVIGATION -->
+<div id="container" style="width: 1100px; padding-left: ">
+    <div id="top">  
+</div>
+
+
+
   <div id="navcontainer">
     <ul id="navlist">
-      <li id="active"><a href="..." id="current"> &nbsp; POCETNA &nbsp;</a></li>
-      <li><a href="..."> &nbsp; REGISTRACIJA &nbsp; </a></li>
-      <li><a href="..."> &nbsp; PRIJAVA &nbsp; </a></li>
     </ul>
   </div>
-  
-  <div id="leftnav">
-    <h2>FUNKCIONALNOSTI</h2>
-    <ul id="leftnavmenu">
-      <li><a href="...">Korisnici</a></li>
-      <li><a href="...">Board-ovi</a></li>
-      <li><a href="...">Liste</a></li>
-      <li><a href="...">Task-ovi</a></li>
-    </ul>
-  </div>
-  
-  
-  <div id="content">
-    <h2>Welcome to Trollo</h2>
-  </div>
- 
+
+
+
+<!-- Sadržaj koji injectujemo -->
+<div class="container">
+    <div ui-view></div>
+</div>
+
+
+
  <div id="footer">
     <p>&copy; 2014 Trollo Developers</p>
-  </div>
+</div>
 
-  </div>
-
+</body>
 </html>

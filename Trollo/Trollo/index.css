@@ -91,12 +91,12 @@ font-size : 0.9em;
 #leftnavmenu ul { 
 list-style : none;
 width : 150px;
-margin : 0 0 20px 0;
+margin : 0 0 0 0;
 padding : 0;
-font-size : 1.1em;
+font-size : 0.9em;
 } 
 #leftnavmenu li { 
-margin-bottom : 2px;
+margin-bottom : 3px;
 } 
 #leftnavmenu li a { 
 font-weight : bold;
@@ -105,7 +105,7 @@ text-decoration : none;
 color : #505050;
 background : #eaeaea url(index_slicice/up.gif) no-repeat left center;
 display : block;
-padding : 4px 0 0 30px;
+padding : 0px 0 0 30px;
 border-left : 0 solid #8fb8cc;
 } 
 #leftnavmenu li a:hover { 

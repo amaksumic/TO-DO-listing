@@ -224,6 +224,7 @@
     <Content Include="basic.css" />
     <Content Include="basic.html" />
     <Content Include="basic.js" />
+    <Content Include="board.html" />
     <Content Include="Boards.html" />
     <Content Include="bootstrap\css\bootstrap-docs.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
@@ -254,6 +255,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>model_trollo.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="home.html" />
     <Content Include="Images\icons\png\Book.png" />
     <Content Include="Images\icons\png\Calendar.png" />
     <Content Include="Images\icons\png\Chat.png" />
@@ -316,6 +318,8 @@
     <Content Include="js\jquery.ui.touch-punch.min.js" />
     <Content Include="js\respond.min.js" />
     <Content Include="js\typeahead.js" />
+    <Content Include="korisnik.html" />
+    <Content Include="login.html" />
     <Content Include="model_trollo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>model_trollo.edmx</DependentUpon>
@@ -332,6 +336,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="AjaxKontrole.Master" />
+    <Content Include="nije.html" />
+    <Content Include="registracija.html" />
     <Content Include="RegistracijaLogin.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -671,6 +677,7 @@
     <Content Include="Scripts\ui-bootstrap-0.10.0.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.min.js" />
+    <Content Include="task.html" />
     <Content Include="test.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -771,7 +778,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>64800</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49338/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

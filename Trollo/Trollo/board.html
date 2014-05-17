@@ -1,0 +1,19 @@
+﻿                      
+
+                    <div ng-controller="Boards">
+                    <div class="panel" panel-info>
+                        <div class="panel-heading">Vama dodijeljeni boardovi su</div>
+                          <div class="panel-body">
+                              
+                                            
+                                    <div ng-repeat="b in boardsList | orderBy: sortOrder">
+                                         <div class="panel panel-default">
+                                             <div class="panel-body">
+                                                 {{b.title | uppercase}}
+                                             </div>
+                                         </div>
+                                    </div>      
+                        
+                        
+                               </div>
+                       </div
