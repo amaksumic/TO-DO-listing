@@ -1,15 +1,26 @@
 ﻿                      
 
-                    <div ng-controller="Boards">
+                    <div ng-controller="NoviBoard">
                     <div class="panel" panel-info>
-                        <div class="panel-heading">Vama dodijeljeni boardovi su</div>
+                        <div class="panel-heading">Boards</div>
                           <div class="panel-body">
                               
-                                            
+                              <!--KREIRANJE BOARDA -->
+                              <form role="form">
+                                <div class="form-group">
+                                    <label for="noviBoard">Novi board:</label>
+                                    <input type="text" class="form-control" id="noviBoard" ng-model="NoviBoard.name" placeholder="Unesi naziv boarda">
+
+                                </div>
+                                   <button type="submit" class="btn btn-primary" ng-click="submitBoard()">Kreiraj</button>
+                               </form>   
+                                    
+                                    <br />
+                                    <h2>Pregled boardova</h2>
                                     <div ng-repeat="b in boardsList | orderBy: sortOrder">
                                          <div class="panel panel-default">
                                              <div class="panel-body">
-                                                 {{b.title | uppercase}}
+                                                 <button class="btn btn-default btn-lg" ng-click="pregled(b.idBoard)"> {{b.title | uppercase}}</button>
                                              </div>
                                          </div>
                                     </div>      

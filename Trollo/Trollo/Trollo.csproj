@@ -337,6 +337,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="AjaxKontrole.Master" />
     <Content Include="nije.html" />
+    <Content Include="pregled.html" />
     <Content Include="registracija.html" />
     <Content Include="RegistracijaLogin.html" />
     <Content Include="Scripts\angular-animate.js" />
