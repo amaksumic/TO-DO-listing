@@ -205,18 +205,18 @@ routerApp.controller('scotchController', function ($scope) {
 
            }).controller("UpdatePassword", function ($scope, $http) {
 
-               $scope.updateUsername = {};
+               $scope.updatePassword = {};
 
-               $scope.updateUsername.submitTheForm = function (item, event) {
+               $scope.updatePassword.submitTheForm = function (item, event) {
                    console.log("--> Submitting form");
 
 
                    var dataObject = {
-                       novi: $scope.updateUsername.novi,
-                       repeate: $scope.updateUsername.repeate
+                       novi: $scope.updatePassword.novi,
+                       repeate: $scope.updatePassword.repeate
                    };
 
-                   var responsePromise = $http.get("api/UserApi/UpdatePassword?id=1" + /*dataObject.id + */ + "&novi=" + dataObject.novi + "&repeate=" + dataObject.repeate, {});
+                   var responsePromise = $http.get("api/UserApi/UpdatePassword?id=1" + /*dataObject.id + */ "&novi=" + dataObject.novi + "&repeate=" + dataObject.repeate, {});
 
                    responsePromise.success(function (data) {
                        $scope.user = data;
@@ -230,17 +230,17 @@ routerApp.controller('scotchController', function ($scope) {
                }
         }).controller("UpdateEmail", function ($scope, $http) {
 
-            $scope.updateUsername = {};
+            $scope.updateEmail = {};
 
-            $scope.updateUsername.submitTheForm = function (item, event) {
+            $scope.updateEmail.submitTheForm = function (item, event) {
                 console.log("--> Submitting form");
 
 
                 var dataObject = {
-                    email: $scope.updateUsername.email
+                    email: $scope.updateEmail.email
                 };
 
-                var responsePromise = $http.get("api/UserApi/UpdateEmail?id=1" + /*dataObject.id + */ + "&noviemail=" + dataObject.novi, {});
+                var responsePromise = $http.get("api/UserApi/UpdateEmail?id=1" + /*dataObject.id + */  "&noviemail=" + dataObject.email, {});
 
                 responsePromise.success(function (data) {
                     $scope.user = data;
@@ -287,10 +287,10 @@ routerApp.controller('scotchController', function ($scope) {
 
 
                    var dataObject = {
-                       id: $scope.updateUsername.username
+                       novi: $scope.updateUsername.username
                    };
 
-                   var responsePromise = $http.get("api/UserApi/UpdateUsername?id=1" + /*dataObject.id + */ + "&novi=" + dataObject.novi, {});
+                   var responsePromise = $http.get("api/UserApi/UpdateUsername?id=1" + /*dataObject.id + */  "&novi=" + dataObject.novi, {});
 
                    responsePromise.success(function (data) {
                        $scope.user = data;
@@ -394,6 +394,7 @@ routerApp.controller('scotchController', function ($scope) {
            }).controller("Username", function ($scope, $window) {
         
                $scope.username2 = $window.sessionStorage.token;
+               $scope.username3 = $window.sessionStorage.token;
 
            }) .controller("ViewBoard",  function($scope, $stateParams, $http ) {    
                console.log($stateParams.id);

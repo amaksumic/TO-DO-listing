@@ -13,7 +13,7 @@
         </button> &nbsp;
         <ul class="dropdown-menu" >
           <li ><a ui-sref=".profil">Profile</a></li>
-          <li><a href="../index.html#/pocetna">Home</a></li>
+          <li><a ui-sref=".boards">Home</a></li>
         </ul>
         <!-- fali odjava -->
       </div><button type="button" class="btn btn-default" onclick="odjava()" style="margin-bottom:0px; bottom:0px;">Logout</button>
@@ -26,19 +26,8 @@
     <!--                             PRIKAZ BOARD-OVA ZA KORISNIKA                                -->
     <!----------------------------------------------------------------------------------------- -->
 
-<table><tr>
-    <td style="width: 5cm; vertical-align: text-top; text-align: start">
-        <div class="list-group" style="width: 5cm">
-            <a ui-sref=".boards" class="list-group-item active" >My boards</a>
-            <a ui-sref=".assignments" class="list-group-item">My assignments</a>
-            <a ui-sref=".calendar" class="list-group-item">My calendar</a>
-        </div>
 
-
-    </td> <td style="width: 1cm"></td><td style="vertical-align:text-top; text-align: start; width:auto">
-    
     <div ui-view></div>
 
 
 
-</td></tr></table>
