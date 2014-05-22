@@ -2,13 +2,32 @@
             
     <BR>
 
-    <form>Username <br> 
-        <input type="text" id="name" ng-model="registracija.name" />  <br>Password <br>    
-        <input type="text" id="pass" ng-model="registracija.pass" /> <br>Email <br />
-         
-        <input type="text" id="Text1" ng-model="registracija.email" /> <br>
+     <form name="userForm" ng-submit="submitForm()" novalidate>
 
-        <button ng-click="registracija.submitTheForm()">Registruj</button>
+        <!-- NAME -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+            <label>Username</label>
+            <input type="text" name="name" class="form-control" ng-model="user.name" required>
+            <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+        </div>
+      
+      <!--  PASSWORD -->
+<div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+    <label>Password</label>
+    <input type="password" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+    <p ng-show="userForm.username.$error.minlength" class="help-block">Password is too short.</p>
+    <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+</div>
+        
+        <!-- EMAIL -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="user.email">
+            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+        
     </form>
 
     <BR>

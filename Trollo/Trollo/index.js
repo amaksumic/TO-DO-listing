@@ -1,5 +1,5 @@
 ﻿var routerApp = angular.module('routerApp', ['ui.router']);
-var username2 = 101;
+
 
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -302,7 +302,7 @@ routerApp.controller('scotchController', function ($scope) {
                    });
                }
 
-           }).controller("Login", function ($scope, $http) {
+           }).controller("Login", function ($scope, $http, $window) {
 
                $scope.login = {};
 
@@ -320,7 +320,7 @@ routerApp.controller('scotchController', function ($scope) {
                    responsePromise.success(function (data) {
                        $scope.user = data;
                        window.location = 'index.html#/pocetna/boards';
-                       username2 = "Hana";
+                       $window.sessionStorage.token = data.username;
                        //location.path = '/home';
                    });
 
@@ -355,36 +355,45 @@ routerApp.controller('scotchController', function ($scope) {
                        //window.location = 'index.html#/prijava';
                    });
                }
-           }).controller("Registracija", function ($scope, $http) {
+           }).controller("Registracija", function ($scope, $http, $window) {
 
-               $scope.registracija = {};
+               $scope.userForm = {};
+               // function to submit the form after all validation has occurred			
+               $scope.submitForm = function () {
 
-               $scope.registracija.submitTheForm = function (item, event) {
-                   console.log("--> Submitting form");
+                   // check to make sure the form is completely valid
+                   if ($scope.userForm.$valid) {
+                       console.log("--> Submitting form");
 
 
-                   var dataObject = {
-                       user: $scope.registracija.name,
-                       pass: $scope.registracija.pass,
-                       email: $scope.registracija.email
-                   };
+                       var dataObject = {
+                           user: $scope.user.name,
+                           pass: $scope.user.username,
+                           email: $scope.user.email
+                       };
 
-                   var responsePromise = $http.get("api/UserApi/Registration?username=" + dataObject.user + "&pass=" + dataObject.pass + "&email=" + dataObject.email, {});
+                       var responsePromise = $http.get("api/UserApi/Registration?username=" + dataObject.user + "&pass=" + dataObject.pass + "&email=" + dataObject.email, {});
 
-                   responsePromise.success(function (data) {
-                       $scope.user = data;
-                       window.location = 'index.html#/prijava';
-                   });
+                       responsePromise.success(function (data) {
+                           $scope.user = data;
+                           window.location = 'index.html';
+                           $window.sessionStorage.token = data.username;
+                       });
 
-                   responsePromise.error(function (data, status, headers, config) {
-                       alert("Submitting form failed!");
-                       window.location = 'index.html#/prijava';
-                   });
-               }
+                       responsePromise.error(function (data, status, headers, config) {
+                           alert("Submitting form failed!");
+                           window.location = 'index.html#/prijava';
+                       });
 
-           }).controller("Username", function ($scope) {
+                   }
+               };
 
-               $scope.username2 = username2;
+
+
+
+           }).controller("Username", function ($scope, $window) {
+        
+               $scope.username2 = $window.sessionStorage.token;
 
            }) .controller("ViewBoard",  function($scope, $stateParams, $http ) {    
                console.log($stateParams.id);
