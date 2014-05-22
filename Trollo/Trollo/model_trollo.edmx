@@ -16,10 +16,6 @@
             <End Role="user" EntitySet="user" />
             <End Role="board" EntitySet="board" />
           </AssociationSet>
-          <AssociationSet Name="fk_Board_has_User_User1" Association="mydbModel.Store.fk_Board_has_User_User1">
-            <End Role="user" EntitySet="user" />
-            <End Role="boardmembers" EntitySet="boardmembers" />
-          </AssociationSet>
           <AssociationSet Name="fk_List_Project1" Association="mydbModel.Store.fk_List_Project1">
             <End Role="board" EntitySet="board" />
             <End Role="list" EntitySet="list" />
@@ -27,10 +23,6 @@
           <AssociationSet Name="fk_Task_List1" Association="mydbModel.Store.fk_Task_List1">
             <End Role="list" EntitySet="list" />
             <End Role="task" EntitySet="task" />
-          </AssociationSet>
-          <AssociationSet Name="fk_User_has_Board_Board1" Association="mydbModel.Store.fk_User_has_Board_Board1">
-            <End Role="board" EntitySet="board" />
-            <End Role="boardmembers" EntitySet="boardmembers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="board">
@@ -44,11 +36,11 @@
         </EntityType>
         <EntityType Name="boardmembers">
           <Key>
-            <PropertyRef Name="User_idUser" />
-            <PropertyRef Name="Board_idBoard" />
+            <PropertyRef Name="idboardmembers" />
           </Key>
-          <Property Name="User_idUser" Type="int" Nullable="false" />
-          <Property Name="Board_idBoard" Type="int" Nullable="false" />
+          <Property Name="idboardmembers" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idkorisnik" Type="int" />
+          <Property Name="idploca" Type="int" />
         </EntityType>
         <EntityType Name="list">
           <Key>
@@ -104,18 +96,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Board_has_User_User1">
-          <End Role="user" Type="mydbModel.Store.user" Multiplicity="1" />
-          <End Role="boardmembers" Type="mydbModel.Store.boardmembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="idUser" />
-            </Principal>
-            <Dependent Role="boardmembers">
-              <PropertyRef Name="User_idUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_List_Project1">
           <End Role="board" Type="mydbModel.Store.board" Multiplicity="1" />
           <End Role="list" Type="mydbModel.Store.list" Multiplicity="*" />
@@ -137,18 +117,6 @@
             </Principal>
             <Dependent Role="task">
               <PropertyRef Name="ownerList" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_User_has_Board_Board1">
-          <End Role="board" Type="mydbModel.Store.board" Multiplicity="1" />
-          <End Role="boardmembers" Type="mydbModel.Store.boardmembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="board">
-              <PropertyRef Name="idBoard" />
-            </Principal>
-            <Dependent Role="boardmembers">
-              <PropertyRef Name="Board_idBoard" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -174,10 +142,7 @@
             <End Role="list" EntitySet="list" />
             <End Role="task" EntitySet="task" />
           </AssociationSet>
-          <AssociationSet Name="boardmembers" Association="mydbModel.boardmembers">
-            <End Role="board" EntitySet="board" />
-            <End Role="user" EntitySet="user" />
-          </AssociationSet>
+          <EntitySet Name="boardmembers" EntityType="mydbModel.boardmembers" />
         </EntityContainer>
         <EntityType Name="board">
           <Key>
@@ -189,7 +154,6 @@
           <Property Name="boardOwner" Type="Int32" Nullable="false" />
           <NavigationProperty Name="user" Relationship="mydbModel.fk_Board_User1" FromRole="board" ToRole="user" />
           <NavigationProperty Name="list" Relationship="mydbModel.fk_List_Project1" FromRole="board" ToRole="list" />
-          <NavigationProperty Name="user1" Relationship="mydbModel.boardmembers" FromRole="board" ToRole="user" />
         </EntityType>
         <EntityType Name="list">
           <Key>
@@ -236,7 +200,6 @@
           <Property Name="registered" Type="Int32" />
           <Property Name="picture" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="board" Relationship="mydbModel.fk_Board_User1" FromRole="user" ToRole="board" />
-          <NavigationProperty Name="board1" Relationship="mydbModel.boardmembers" FromRole="user" ToRole="board" />
         </EntityType>
         <Association Name="fk_Board_User1">
           <End Role="user" Type="mydbModel.user" Multiplicity="1" />
@@ -274,10 +237,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="boardmembers">
-          <End Role="board" Type="mydbModel.board" Multiplicity="*" />
-          <End Role="user" Type="mydbModel.user" Multiplicity="*" />
-        </Association>
+        <EntityType Name="boardmembers">
+          <Key>
+            <PropertyRef Name="idboardmembers" />
+          </Key>
+          <Property Type="Int32" Name="idboardmembers" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idkorisnik" />
+          <Property Type="Int32" Name="idploca" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -340,14 +307,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="boardmembers" TypeName="mydbModel.boardmembers" StoreEntitySet="boardmembers">
-            <EndProperty Name="board">
-              <ScalarProperty Name="idBoard" ColumnName="Board_idBoard" />
-            </EndProperty>
-            <EndProperty Name="user">
-              <ScalarProperty Name="idUser" ColumnName="User_idUser" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="boardmembers">
+            <EntityTypeMapping TypeName="mydbModel.boardmembers">
+              <MappingFragment StoreEntitySet="boardmembers">
+                <ScalarProperty Name="idploca" ColumnName="idploca" />
+                <ScalarProperty Name="idkorisnik" ColumnName="idkorisnik" />
+                <ScalarProperty Name="idboardmembers" ColumnName="idboardmembers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

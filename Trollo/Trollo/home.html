@@ -26,21 +26,17 @@
     <!--                             PRIKAZ BOARD-OVA ZA KORISNIKA                                -->
     <!----------------------------------------------------------------------------------------- -->
 
-<table><tr><td style="width : 12cm; vertical-align:text-top; text-align :start">
-<!--
-<div id="leftnav">
-    <h2>FUNKCIONALNOSTI</h2>
-    <ul id="leftnavmenu">
-        <li><a ui-sref=".korisnik">Korisnici</a></li>
-        <li><a ui-sref=".board">Board-ovi</a></li>
-        <li><a ui-sref=".nije">Liste</a></li>
-        <li><a ui-sref=".task">Task-ovi</a></li>
-    </ul>
-</div>
+<table><tr>
+    <td style="width: 5cm; vertical-align: text-top; text-align: start">
+        <div class="list-group" style="width: 5cm">
+            <a ui-sref=".boards" class="list-group-item active" >My boards</a>
+            <a ui-sref=".assignments" class="list-group-item">My assignments</a>
+            <a ui-sref=".calendar" class="list-group-item">My calendar</a>
+        </div>
 
-</td><td>
-    <BR><BR><BR><BR>
-    -->
+
+    </td> <td style="width: 1cm"></td><td style="vertical-align:text-top; text-align: start; width:auto">
+    
     <div ui-view></div>
 
 

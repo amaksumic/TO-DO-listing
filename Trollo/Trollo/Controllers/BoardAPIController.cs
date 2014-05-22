@@ -62,6 +62,15 @@ namespace Trollo.Controllers
             return Boards;
         }
 
+
+        [HttpGet]
+        // GET api/BoardApi/5
+        public board GetTitle(int id)
+        {
+            board board = db.board.Find(id);
+            return board;
+        }
+
         // PUT api/BoardApi/5
         public HttpResponseMessage Putboard(int id, board board)
         {

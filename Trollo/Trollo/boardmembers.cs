@@ -12,19 +12,21 @@ namespace Trollo
     using System;
     using System.Collections.Generic;
     
-    public partial class board
+    public partial class boardmembers
     {
-        public board()
+
+        public boardmembers()
         {
-            this.list = new HashSet<list>();
+
         }
-    
-        public int idBoard { get; set; }
-        public string title { get; set; }
-        public System.DateTime creationDate { get; set; }
-        public int boardOwner { get; set; }
-    
-        public virtual user user { get; set; }
-        public virtual ICollection<list> list { get; set; }
+        public boardmembers(int _idkorisnik, int _idploca)
+        {
+            idkorisnik = _idkorisnik;
+            idploca = _idploca;
+        }
+
+        public int idboardmembers { get; set; }
+        public Nullable<int> idkorisnik { get; set; }
+        public Nullable<int> idploca { get; set; }
     }
 }

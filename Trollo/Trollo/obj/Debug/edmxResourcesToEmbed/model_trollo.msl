@@ -57,13 +57,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="boardmembers" TypeName="mydbModel.boardmembers" StoreEntitySet="boardmembers">
-      <EndProperty Name="board">
-        <ScalarProperty Name="idBoard" ColumnName="Board_idBoard" />
-      </EndProperty>
-      <EndProperty Name="user">
-        <ScalarProperty Name="idUser" ColumnName="User_idUser" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="boardmembers">
+      <EntityTypeMapping TypeName="mydbModel.boardmembers">
+        <MappingFragment StoreEntitySet="boardmembers">
+          <ScalarProperty Name="idploca" ColumnName="idploca" />
+          <ScalarProperty Name="idkorisnik" ColumnName="idkorisnik" />
+          <ScalarProperty Name="idboardmembers" ColumnName="idboardmembers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

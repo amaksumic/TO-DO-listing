@@ -18,10 +18,7 @@
       <End Role="list" EntitySet="list" />
       <End Role="task" EntitySet="task" />
     </AssociationSet>
-    <AssociationSet Name="boardmembers" Association="mydbModel.boardmembers">
-      <End Role="board" EntitySet="board" />
-      <End Role="user" EntitySet="user" />
-    </AssociationSet>
+    <EntitySet Name="boardmembers" EntityType="mydbModel.boardmembers" />
   </EntityContainer>
   <EntityType Name="board">
     <Key>
@@ -33,7 +30,6 @@
     <Property Name="boardOwner" Type="Int32" Nullable="false" />
     <NavigationProperty Name="user" Relationship="mydbModel.fk_Board_User1" FromRole="board" ToRole="user" />
     <NavigationProperty Name="list" Relationship="mydbModel.fk_List_Project1" FromRole="board" ToRole="list" />
-    <NavigationProperty Name="user1" Relationship="mydbModel.boardmembers" FromRole="board" ToRole="user" />
   </EntityType>
   <EntityType Name="list">
     <Key>
@@ -80,7 +76,6 @@
     <Property Name="registered" Type="Int32" />
     <Property Name="picture" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="board" Relationship="mydbModel.fk_Board_User1" FromRole="user" ToRole="board" />
-    <NavigationProperty Name="board1" Relationship="mydbModel.boardmembers" FromRole="user" ToRole="board" />
   </EntityType>
   <Association Name="fk_Board_User1">
     <End Role="user" Type="mydbModel.user" Multiplicity="1" />
@@ -118,8 +113,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="boardmembers">
-    <End Role="board" Type="mydbModel.board" Multiplicity="*" />
-    <End Role="user" Type="mydbModel.user" Multiplicity="*" />
-  </Association>
+  <EntityType Name="boardmembers">
+    <Key>
+      <PropertyRef Name="idboardmembers" />
+    </Key>
+    <Property Type="Int32" Name="idboardmembers" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="idkorisnik" />
+    <Property Type="Int32" Name="idploca" />
+  </EntityType>
 </Schema>

@@ -1,10 +1,56 @@
 ﻿               <!-- NAKON SELEKTOVANJA BOARDA -->
         
+<table><tr><td style="width:12cm; vertical-align:text-top">
 
-                    <div ng-controller="NoviBoard">
-                    <div class="panel" panel-info>
-                        <div class="panel-heading">Pregled</div>
-                          <div class="panel-body">                
+                    <div ng-controller="ViewBoard">
+                    <div class="panel" >
+                       
+     <span style ="color:cadetblue; font-size:larger; font-weight:bold">Overview</span>
+                          <div class="panel-body">
+                              
+                            <p>  Title: {{board.title}}    </p>
+                                              
                           </div>
                        </div>
                     </div>
+
+</td><td style="text-align:right; vertical-align:text-top">
+
+ <div class="btn-group-vertical">
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal6">
+  + Add user
+</button>
+</div>
+
+
+    <!---------------->
+    <!-- DODAJ USER -->
+    <!---------------->
+<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+            <div ng-controller="AddUser" >
+            <form><table><tr><td style =" text-align : right">
+
+
+         <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
+
+            <div class="input-group">
+            <span>Username</span>   
+            <input type="text" id="username" class="form-control" ng-model="addUser.username" />
+                <br/>
+                <br/> </div>
+            <button class="btn btn-default" ng-click="addUser.submitTheForm()">Add</button>
+           
+            </td></tr></table></form></div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</td></tr></table>

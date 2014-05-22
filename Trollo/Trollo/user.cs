@@ -14,25 +14,10 @@ namespace Trollo
     
     public partial class user
     {
+
         public user()
         {
-            this.board = new HashSet<board>();
-            this.board1 = new HashSet<board>();
-        }
 
-
-        public user(string _username, string _password)
-        {
-            username = _username;
-            password = _password;
-        }
-
-        public user(int _id, string _username, string _password, string _email)
-        {
-            idUser = _id;
-            username = _username;
-            password = _password;
-            email = _email;
         }
 
         public user(string _username)
@@ -40,14 +25,20 @@ namespace Trollo
             username = _username;
         }
 
-        public user(string _username, string _password, System.DateTime _creationDate, string _email, string _picture)
+        public user(int _registered, string _username, string _password, string _email)
         {
+            registered = _registered;
             username = _username;
             password = _password;
-            creationDate = _creationDate;
             email = _email;
-            picture = _picture;
         }
+
+        public user(string _username, string _email)
+        {
+            username = _username;
+            email = _email;
+        }
+
     
         public int idUser { get; set; }
         public string username { get; set; }
@@ -58,6 +49,5 @@ namespace Trollo
         public string picture { get; set; }
     
         public virtual ICollection<board> board { get; set; }
-        public virtual ICollection<board> board1 { get; set; }
     }
 }

@@ -161,9 +161,13 @@
     <Compile Include="board.cs">
       <DependentUpon>model_trollo.tt</DependentUpon>
     </Compile>
+    <Compile Include="boardmembers.cs">
+      <DependentUpon>model_trollo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BoardAPIController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
+    <Compile Include="Controllers\BoardMembersAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListAPIController.cs" />
     <Compile Include="Controllers\ListController.cs" />
@@ -218,14 +222,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AjaxC.aspx" />
-    <Content Include="angIndex.html" />
     <Content Include="angular.js" />
     <Content Include="basic.css" />
     <Content Include="basic.html" />
     <Content Include="basic.js" />
     <Content Include="board.html" />
-    <Content Include="Boards.html" />
     <Content Include="bootstrap\css\bootstrap-docs.css" />
     <Content Include="bootstrap\css\bootstrap.css" />
     <Content Include="bootstrap\css\prettify.css" />
@@ -245,13 +246,13 @@
     <Content Include="css\docs.css" />
     <Content Include="css\flat-ui.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\flat-ui-icons-regular.svg" />
-    <Content Include="fonts\lato\lato-black.svg" />
-    <Content Include="fonts\lato\lato-bold.svg" />
-    <Content Include="fonts\lato\lato-bolditalic.svg" />
-    <Content Include="fonts\lato\lato-italic.svg" />
-    <Content Include="fonts\lato\lato-light.svg" />
-    <Content Include="fonts\lato\lato-regular.svg" />
+    <Content Include="css\fonts\flat-ui-icons-regular.svg" />
+    <Content Include="css\fonts\lato\lato-black.svg" />
+    <Content Include="css\fonts\lato\lato-bold.svg" />
+    <Content Include="css\fonts\lato\lato-bolditalic.svg" />
+    <Content Include="css\fonts\lato\lato-italic.svg" />
+    <Content Include="css\fonts\lato\lato-light.svg" />
+    <Content Include="css\fonts\lato\lato-regular.svg" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="model_trollo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -338,7 +339,6 @@
     </Content>
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="AjaxKontrole.Master" />
     <Content Include="nije.html" />
     <Content Include="pregled.html" />
     <Content Include="profil.html" />
@@ -372,27 +372,27 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="fonts\flat-ui-icons-regular.eot" />
-    <Content Include="fonts\flat-ui-icons-regular.ttf" />
-    <Content Include="fonts\flat-ui-icons-regular.woff" />
-    <Content Include="fonts\lato\lato-black.eot" />
-    <Content Include="fonts\lato\lato-black.ttf" />
-    <Content Include="fonts\lato\lato-black.woff" />
-    <Content Include="fonts\lato\lato-bold.eot" />
-    <Content Include="fonts\lato\lato-bold.ttf" />
-    <Content Include="fonts\lato\lato-bold.woff" />
-    <Content Include="fonts\lato\lato-bolditalic.eot" />
-    <Content Include="fonts\lato\lato-bolditalic.ttf" />
-    <Content Include="fonts\lato\lato-bolditalic.woff" />
-    <Content Include="fonts\lato\lato-italic.eot" />
-    <Content Include="fonts\lato\lato-italic.ttf" />
-    <Content Include="fonts\lato\lato-italic.woff" />
-    <Content Include="fonts\lato\lato-light.eot" />
-    <Content Include="fonts\lato\lato-light.ttf" />
-    <Content Include="fonts\lato\lato-light.woff" />
-    <Content Include="fonts\lato\lato-regular.eot" />
-    <Content Include="fonts\lato\lato-regular.ttf" />
-    <Content Include="fonts\lato\lato-regular.woff" />
+    <Content Include="css\fonts\flat-ui-icons-regular.eot" />
+    <Content Include="css\fonts\flat-ui-icons-regular.ttf" />
+    <Content Include="css\fonts\flat-ui-icons-regular.woff" />
+    <Content Include="css\fonts\lato\lato-black.eot" />
+    <Content Include="css\fonts\lato\lato-black.ttf" />
+    <Content Include="css\fonts\lato\lato-black.woff" />
+    <Content Include="css\fonts\lato\lato-bold.eot" />
+    <Content Include="css\fonts\lato\lato-bold.ttf" />
+    <Content Include="css\fonts\lato\lato-bold.woff" />
+    <Content Include="css\fonts\lato\lato-bolditalic.eot" />
+    <Content Include="css\fonts\lato\lato-bolditalic.ttf" />
+    <Content Include="css\fonts\lato\lato-bolditalic.woff" />
+    <Content Include="css\fonts\lato\lato-italic.eot" />
+    <Content Include="css\fonts\lato\lato-italic.ttf" />
+    <Content Include="css\fonts\lato\lato-italic.woff" />
+    <Content Include="css\fonts\lato\lato-light.eot" />
+    <Content Include="css\fonts\lato\lato-light.ttf" />
+    <Content Include="css\fonts\lato\lato-light.woff" />
+    <Content Include="css\fonts\lato\lato-regular.eot" />
+    <Content Include="css\fonts\lato\lato-regular.ttf" />
+    <Content Include="css\fonts\lato\lato-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -744,6 +744,11 @@
     <Content Include="Views\List\Chart1.cshtml" />
     <Content Include="Views\List\Chart2.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\BoardUserAPI\Index.cshtml" />
+    <Content Include="Views\BoardUserAPI\Details.cshtml" />
+    <Content Include="Views\BoardUserAPI\Create.cshtml" />
+    <Content Include="Views\BoardUserAPI\Edit.cshtml" />
+    <Content Include="Views\BoardUserAPI\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

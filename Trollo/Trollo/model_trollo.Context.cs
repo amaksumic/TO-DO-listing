@@ -30,5 +30,6 @@ namespace Trollo
         public DbSet<task> task { get; set; }
         public DbSet<taskmembers> taskmembers { get; set; }
         public DbSet<user> user { get; set; }
+        public DbSet<boardmembers> boardmembers { get; set; }
     }
 }
