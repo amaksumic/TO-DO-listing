@@ -1,9 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-
-    <!-- CSS (load bootstrap) -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<head>   
+    
     <style>
         .navbar { border-radius:0; }
     </style>
@@ -14,7 +12,10 @@
     <script src="index.js"></script>
    
     <link href="index.css" rel="stylesheet" type="text/css" />
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- CSS (load bootstrap) -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
 </head>
 
 <!-- apply our angular app to our site -->
@@ -32,11 +33,16 @@
     </ul>
   </div>
 
-
+    
+    <div ng-controller="Main">
+  <input type="text" ng-model="rootFolders"/>
+</div>
 
 <!-- Sadržaj koji injectujemo -->
 <div class="container">
+    <table style="height:420px; text-align:start; vertical-align :text-top;"><tr><td style=" text-align:start; vertical-align :text-top;">
     <div ui-view></div>
+    </td></tr></table>
 </div>
 
 
@@ -44,6 +50,11 @@
  <div id="footer">
     <p>&copy; 2014 Trollo Developers</p>
 </div>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

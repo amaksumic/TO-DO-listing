@@ -37,7 +37,10 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/task',
             templateUrl: 'task.html'
         })
-
+        .state('pocetna.profil', {
+            url: '/profil',
+            templateUrl: 'profil.html'
+        })
         .state('pocetna.pregled', {
             url: '/pregled',
             templateUrl: 'pregled.html'
@@ -186,36 +189,56 @@ routerApp.controller('scotchController', function ($scope) {
                    });
                }
 
-           })
-           .controller("IzmjenaKorisnika", function ($scope, $http) {
+           }).controller("UpdatePassword", function ($scope, $http) {
 
-               $scope.izmjenaKorisnika = {};
+               $scope.updateUsername = {};
 
-               $scope.izmjenaKorisnika.submitTheForm = function (item, event) {
+               $scope.updateUsername.submitTheForm = function (item, event) {
                    console.log("--> Submitting form");
 
 
                    var dataObject = {
-                       id: $scope.izmjenaKorisnika.id,
-                       stari: $scope.izmjenaKorisnika.stari,
-                       novi: $scope.izmjenaKorisnika.novi,
-                       noviemail: $scope.izmjenaKorisnika.noviemail
+                       novi: $scope.updateUsername.novi,
+                       repeate: $scope.updateUsername.repeate
                    };
 
-                   var responsePromise = $http.get("api/UserApi/IzmjenaUsera?id=1" + /*dataObject.id +*/ "&stari=" + dataObject.stari + "&novi=" + dataObject.novi + "&noviemail=" + dataObject.noviemail, {});
+                   var responsePromise = $http.get("api/UserApi/UpdatePassword?id=1" + /*dataObject.id + */ + "&novi=" + dataObject.novi + "&repeate=" + dataObject.repeate, {});
 
                    responsePromise.success(function (data) {
                        $scope.user = data;
                    });
 
 
-
                    responsePromise.error(function (data, status, headers, config) {
                        alert("Submitting form failed!");
                    });
+           
                }
+        }).controller("UpdateEmail", function ($scope, $http) {
 
-           }).controller("BrisanjeKorisnika", function ($scope, $http) {
+            $scope.updateUsername = {};
+
+            $scope.updateUsername.submitTheForm = function (item, event) {
+                console.log("--> Submitting form");
+
+
+                var dataObject = {
+                    email: $scope.updateUsername.email
+                };
+
+                var responsePromise = $http.get("api/UserApi/UpdateEmail?id=1" + /*dataObject.id + */ + "&noviemail=" + dataObject.novi, {});
+
+                responsePromise.success(function (data) {
+                    $scope.user = data;
+                });
+
+
+                responsePromise.error(function (data, status, headers, config) {
+                    alert("Submitting form failed!");
+                });
+            }
+
+        }).controller("BrisanjeKorisnika", function ($scope, $http) {
 
                $scope.brisanjeKorisnika = {};
 
@@ -232,7 +255,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                    responsePromise.success(function (data) {
                        $scope.user = data;
-                       window.location = 'index.html#/prijava';;
+                       window.location = 'index.html#/prijava';
                    });
 
 
@@ -250,12 +273,10 @@ routerApp.controller('scotchController', function ($scope) {
 
 
                    var dataObject = {
-                       id: $scope.updateUsername.id,
-                       pass: $scope.updateUsername.pass,
-                       novi: $scope.updateUsername.novi
+                       id: $scope.updateUsername.username
                    };
 
-                   var responsePromise = $http.get("api/UserApi/UpdateUsername?id=1" + /*dataObject.id + */"&pass=" + dataObject.pass + "&novi=" + dataObject.novi, {});
+                   var responsePromise = $http.get("api/UserApi/UpdateUsername?id=1" + /*dataObject.id + */ + "&novi=" + dataObject.novi, {});
 
                    responsePromise.success(function (data) {
                        $scope.user = data;
@@ -329,10 +350,7 @@ routerApp.controller('scotchController', function ($scope) {
            })
 
 
-        .controller("NoviBoard", function ($scope, $http) {
-
-
-           
+        .controller("NoviBoard", function ($scope, $http) {        
 
            
             $scope.sortOrder = "title";
@@ -340,9 +358,7 @@ routerApp.controller('scotchController', function ($scope) {
             success(function (data) {
                 $scope.boardsList = data;
             });
-
-
-            $scope.submitBoard = function () {
+                $scope.submitBoard = function () {
                 console.log("--> Submitting board");
 
                 var board = {
@@ -355,8 +371,7 @@ routerApp.controller('scotchController', function ($scope) {
                 var response = $http.post('api/boardapi/postboard', board);
 
                 response.success(function (data) {
-
-                    //ponovo ucitaj boardove sa novo dodanim
+                    //ponovo ucitaj boardove sa novododanim
                     $http.get('api/BoardApi/Getboard?id=4').
                     success(function (data) {
                         $scope.boardsList = data;
@@ -367,16 +382,17 @@ routerApp.controller('scotchController', function ($scope) {
                     alert("Submitting board failed!");
                     window.location = 'index.html#/pocetna/board';
                 });
-
-
-
             };
 
             $scope.pregled = function (id) {
                 window.location = 'index.html#/pocetna/pregled';
                 $scope.nesto = id;
                 window.alert("ID odabranog board-a je: "+id);
+            };
 
+            function Main($scope) {
+                window.location = 'index.html#/pocetna/profil';
+                $scope.rootFolders = 'bob';
             };
         });
 

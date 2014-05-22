@@ -9,7 +9,6 @@ background : #white url(index_slicice/bg.gif) repeat-y top center;
 			/*WRAP*/ 
 #container { 
 width : 80%;
-height:auto;
 margin :  auto;
 border : 10px solid white;
 line-height : 2em;

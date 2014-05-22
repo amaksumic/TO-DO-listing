@@ -166,13 +166,12 @@ namespace Trollo.Controllers
 
         [HttpGet]
         // GET api/UserApi/5
-        public string IzmjenaUsera(int id, string stari, string novi, string noviemail)
+        public string UpdateEmail(int id, string noviemail)
         {
 
                 var user = db.user.Find(id);
 
                 //user.registered = 1;
-                if (novi != "") user.password = novi;
                 if (noviemail != "") user.email = noviemail;
 
                 db.Entry(user).State = EntityState.Modified;
@@ -185,13 +184,31 @@ namespace Trollo.Controllers
 
         [HttpGet]
         // GET api/UserApi/5
-        public string UpdateUsername(int id, string pass, string novi)
+        public string UpdatePassword(int id, string novi, string repeate)
+        {
+
+            var user = db.user.Find(id);            
+
+            //user.registered = 1;
+            if (novi != "" && novi.Equals(repeate)) user.password = novi;
+
+            db.Entry(user).State = EntityState.Modified;
+
+            db.SaveChanges();
+
+            return "Izmjena uspješno izvršena!";
+
+        }
+
+        [HttpGet]
+        // GET api/UserApi/5
+        public string UpdateUsername(int id, string novi)
         {
 
             var user = db.user.Find(id);
 
             //user.registered = 1;
-            if (user.password == pass && novi != "")
+            if (novi != "")
             {
 
                 user.username = novi;

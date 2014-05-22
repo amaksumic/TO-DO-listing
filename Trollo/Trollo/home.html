@@ -1,12 +1,33 @@
 ﻿<div ng-controller="Username" >
             
    
-    Prijavljeni ste kao  <a href='index.html#/home.korisnik'>{{username2}}</a>. <a href='index.html#/prijava'>Odjava</a>
+    <!----------------------------------------------------------------------------------------- --> 
+    <!--                             PROFIL KORISNIKA I ODJAVA!                                   -->
+    <!----------------------------------------------------------------------------------------- -->
 
+    <table style="width : 1067px"><tr><td  style =" text-align :right">
+      <div class="btn-group" style =" text-align :left">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" style="width :90px; bottom:0px; margin-bottom:0px">
+          {{username2}}
+          <span class="caret"></span>
+        </button> &nbsp;
+        <ul class="dropdown-menu" >
+          <li ><a ui-sref=".profil">Profile</a></li>
+          <li><a href="../index.html#/pocetna">Home</a></li>
+        </ul>
+        <!-- fali odjava -->
+      </div><button type="button" class="btn btn-default" onclick="odjava()" style="margin-bottom:0px; bottom:0px;">Logout</button>
+
+    </td></tr></table>
 </div>
 
-<table><tr><td style="width : 12cm; vertical-align:text-top; text-align :start">
 
+    <!----------------------------------------------------------------------------------------- --> 
+    <!--                             PRIKAZ BOARD-OVA ZA KORISNIKA                                -->
+    <!----------------------------------------------------------------------------------------- -->
+
+<table><tr><td style="width : 12cm; vertical-align:text-top; text-align :start">
+<!--
 <div id="leftnav">
     <h2>FUNKCIONALNOSTI</h2>
     <ul id="leftnavmenu">
@@ -19,7 +40,7 @@
 
 </td><td>
     <BR><BR><BR><BR>
-
+    -->
     <div ui-view></div>
 
 
