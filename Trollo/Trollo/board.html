@@ -12,17 +12,8 @@
 
 <div ng-controller="NoviBoard">
                               
-                              <!--KREIRANJE BOARDA 
-                              <form role="form">
-                                <div class="form-group">
-                                    <label for="noviBoard">Novi board:</label>
-                                    <input type="text" class="form-control" id="noviBoard" ng-model="NoviBoard.name" placeholder="Unesi naziv boarda">
-
-                                </div>
-                                   <button type="submit" class="btn btn-primary" ng-click="submitBoard()">Kreiraj</button>
-                               </form>   -->
-                                    
-  
+                          
+  <table><tr><td>
      <span style ="color:cadetblue; font-size:larger; font-weight:bold">My boards</span>
     
      <div ng-repeat="b in boardsList | orderBy: sortOrder"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
@@ -31,6 +22,51 @@
             <button type="button" class="btn btn-info btn-lg" ng-click="pregled(b.idBoard)" style="width:4cm; height:2.5cm; "> {{b.title | uppercase}}</button>
     </div>     
          </div>
+
+    </td><td style="text-align:right; vertical-align:text-top">
+
+ <div class="btn-group-vertical">
+
+
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal7">
+  + Add board
+</button>
+</div>
+
+
+    <!----------------->
+    <!-- DODAJ BOARD -->
+    <!----------------->
+<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+          <table><tr><td style =" text-align : right">
+
+
+         <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
+
+                                  <!--KREIRANJE BOARDA -->
+                              <form role="form">
+                                <div class="form-group">
+                                    <label for="noviBoard">New board name:</label>
+                                    <input type="text" class="form-control" id="noviBoard" ng-model="NoviBoard.name" placeholder="Unesi naziv boarda">
+
+                                </div>
+                                   <button type="submit" class="btn btn-primary" ng-click="submitBoard()">Add</button>
+                               </form> 
+           
+            </td></tr></table>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+      </td></tr></table>
                           
 </div>
 
