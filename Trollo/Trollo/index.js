@@ -1,7 +1,8 @@
 ﻿var routerApp = angular.module('routerApp', ['ui.router']);
 
 var odabraniBoard = 1;
-var ja = 1;
+var odabraniList = 1;
+
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/pocetna');
@@ -536,8 +537,36 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.nesto = odabraniList;
                 // window.alert("ID odabranog board-a je: "+id);
             };
+            $scope.pregledLista = function (id) {
+                odabraniList = id;
+            };
 
+            $scope.submitTask = function () {
+                console.log("--> Submitting task");
+
+                var task = {
+                    title: $scope.NoviList.tasktitle,
+                    ownerList: odabraniList
+                };
+
+                console.log(odabraniList);
+                console.log($stateParams.id);
+                var response = $http.post('api/TaskApi/CreateTask', task);
+                response.success(function (data) {
+
+                    var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
+
+                    responsePromise.success(function (data) {
+                        $scope.list = data;
+                    });
+
+                    var responsePromise = $http.get('api/TaskApi/Gettasks', {});
+
+                    responsePromise.success(function (data) {
+                        $scope.task = data;
+                    });
+                });
+
+                
+            }
         });
-
-
-

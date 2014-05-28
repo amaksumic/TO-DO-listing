@@ -25,16 +25,24 @@
                       <div class="panel-group">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <h3 class="panel-title">{{l.title | uppercase}}</h3>
+                              <table style="width : 420px"><tr>
+                            <td ><h3 class="panel-title">{{l.title | uppercase}}</h3></td>
+                             <td style="text-align:right"> <div class="btn-group-vertical">
+                                          <button class="btn btn-default " data-toggle="modal" ng-click="pregledLista(l.idList)" data-target="#myModal8">
+                                           + Add task
+                                          </button>
+                                           
+                                      </div></td></tr> </table>
                           </div>
+                           
+                           
                           <div class="panel-body">
                             
-                              
-                                 
                                 <div ng-repeat="d in task | orderBy: sortOrder">   
                                 <br />
                                     <div ng-if= "d.ownerList == l.idList">
                                 <div class="btn-group">
+     
                                     <button type="button" class="btn btn-info btn-lg" ng-click="pregled(d.idList)" id="{{d.idTask}}" style="width:4cm; height:1.5cm; "> {{d.title | uppercase}}</button>
                                 </div> 
                                      </div>
@@ -119,6 +127,33 @@
 </div><!-- /.modal -->
 
 
+    <!---------------->
+    <!-- DODAJ TASK -->
+    <!---------------->
+<div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+          <table><tr><td style =" text-align : right">   
+
+                                  <!--KREIRANJE TASKA -->
+                              <form role="form">
+                                <div class="form-group">
+                                    <label for="noviTask">New task name:</label>
+                                    <input type="text" class="form-control" id="Text1" ng-model="NoviList.tasktitle" >
+
+                                </div>
+                                   <button type="submit" class="btn btn-primary" ng-click="submitTask()">Add</button>
+                               </form> 
+           
+            </td></tr></table>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
             </div>
         </td>
     </tr>
