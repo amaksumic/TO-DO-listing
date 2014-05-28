@@ -1,6 +1,7 @@
 ﻿var routerApp = angular.module('routerApp', ['ui.router']);
 
 var odabraniBoard = 1;
+var ja = 1;
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/pocetna');
@@ -226,33 +227,33 @@ routerApp.controller('scotchController', function ($scope) {
                    responsePromise.error(function (data, status, headers, config) {
                        alert("Submitting form failed!");
                    });
-           
+
                }
-        }).controller("UpdateEmail", function ($scope, $http) {
+           }).controller("UpdateEmail", function ($scope, $http) {
 
-            $scope.updateEmail = {};
+               $scope.updateEmail = {};
 
-            $scope.updateEmail.submitTheForm = function (item, event) {
-                console.log("--> Submitting form");
-
-
-                var dataObject = {
-                    email: $scope.updateEmail.email
-                };
-
-                var responsePromise = $http.get("api/UserApi/UpdateEmail?id=1" + /*dataObject.id + */  "&noviemail=" + dataObject.email, {});
-
-                responsePromise.success(function (data) {
-                    $scope.user = data;
-                });
+               $scope.updateEmail.submitTheForm = function (item, event) {
+                   console.log("--> Submitting form");
 
 
-                responsePromise.error(function (data, status, headers, config) {
-                    alert("Submitting form failed!");
-                });
-            }
+                   var dataObject = {
+                       email: $scope.updateEmail.email
+                   };
 
-        }).controller("BrisanjeKorisnika", function ($scope, $http) {
+                   var responsePromise = $http.get("api/UserApi/UpdateEmail?id=1" + /*dataObject.id + */  "&noviemail=" + dataObject.email, {});
+
+                   responsePromise.success(function (data) {
+                       $scope.user = data;
+                   });
+
+
+                   responsePromise.error(function (data, status, headers, config) {
+                       alert("Submitting form failed!");
+                   });
+               }
+
+           }).controller("BrisanjeKorisnika", function ($scope, $http) {
 
                $scope.brisanjeKorisnika = {};
 
@@ -340,9 +341,9 @@ routerApp.controller('scotchController', function ($scope) {
 
                    var dataObject = {
                        username: $scope.addUser.username
-                       
+
                    };
-                    //console.log(dataObject.username);
+                   //console.log(dataObject.username);
                    var responsePromise = $http.get('api/BoardMembersAPI/UserToBoard?username=' + dataObject.username + '&id=' + username2, {});
 
                    responsePromise.success(function (data) {
@@ -392,17 +393,17 @@ routerApp.controller('scotchController', function ($scope) {
 
 
            }).controller("Username", function ($scope, $window) {
-        
+
                $scope.username2 = $window.sessionStorage.token;
                $scope.username3 = $window.sessionStorage.token;
 
-           }) .controller("ViewBoard",  function($scope, $stateParams, $http ) {    
+           }).controller("ViewBoard", function ($scope, $stateParams, $http) {
                console.log($stateParams.id);
                username2 = $stateParams.id;
                var responsePromise = $http.get("api/BoardApi/GetTitle?id=" + $stateParams.id, {});
 
                responsePromise.success(function (data) {
-                   window.location = 'index.html#/pocetna/pregled/'+$stateParams.id;
+                   window.location = 'index.html#/pocetna/pregled/' + $stateParams.id;
                    console.log(data);
                    $scope.board = data;
                });
@@ -411,20 +412,42 @@ routerApp.controller('scotchController', function ($scope) {
                    alert("Submitting form failed!");
                    window.location = 'index.html#/prijava';
                });
-                         
+
            })
+    .controller("Username", function ($scope, $window) {
+
+        $scope.username2 = $window.sessionStorage.token;
+        $scope.username3 = $window.sessionStorage.token;
+
+    }).controller("ViewBoard", function ($scope, $stateParams, $http) {
+        console.log($stateParams.id);
+        username2 = $stateParams.id;
+        var responsePromise = $http.get("api/BoardApi/GetTitle?id=" + $stateParams.id, {});
+
+        responsePromise.success(function (data) {
+            window.location = 'index.html#/pocetna/pregled/' + $stateParams.id;
+            console.log(data);
+            $scope.board = data;
+        });
+
+        responsePromise.error(function (data, status, headers, config) {
+            alert("Submitting form failed!");
+            window.location = 'index.html#/prijava';
+        });
+
+    })
 
 
 
-        .controller("NoviBoard", function ($scope, $http) {        
+        .controller("NoviBoard", function ($scope, $http) {
 
-           
+
             $scope.sortOrder = "title";
             $http.get('api/BoardApi/Getboard?id=4').
             success(function (data) {
                 $scope.boardsList = data;
             });
-                $scope.submitBoard = function () {
+            $scope.submitBoard = function () {
                 console.log("--> Submitting board");
 
                 var board = {
@@ -448,14 +471,14 @@ routerApp.controller('scotchController', function ($scope) {
                     alert("Submitting board failed!");
                     window.location = 'index.html#/pocetna/board';
                 })
-               };
-                    
-                   
+            };
+
+
 
             $scope.pregled = function (id) {
-                window.location = "index.html#/pocetna/pregled/"+id;
+                window.location = "index.html#/pocetna/pregled/" + id;
                 $scope.nesto = id;
-               // window.alert("ID odabranog board-a je: "+id);
+                // window.alert("ID odabranog board-a je: "+id);
             };
         })
 
@@ -465,9 +488,16 @@ routerApp.controller('scotchController', function ($scope) {
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
             $scope.sortOrder = "title";
-            $http.get('api/ListApi/GetLists?id=' + odabraniBoard).
-            success(function (data) {
+            var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
+
+            responsePromise.success(function (data) {
                 $scope.list = data;
+            });
+
+            var responsePromise = $http.get('api/TaskApi/Gettasks', {});
+
+            responsePromise.success(function (data) {
+                $scope.task = data;
             });
             $scope.submitList = function () {
                 console.log("--> Submitting list");
@@ -478,12 +508,18 @@ routerApp.controller('scotchController', function ($scope) {
                 };
                 console.log($stateParams.id);
                 var response = $http.post('api/ListApi/PostList', list);
-                console.log($stateParams.id);
                 response.success(function (data) {
-                    //ponovo ucitaj boardove sa novododanim
-                    $http.get('api/ListApi/GetLists?id=' + odabraniBoard ).
-                    success(function (data) {
+
+                    var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
+
+                    responsePromise.success(function (data) {
                         $scope.list = data;
+                    });
+
+                    var responsePromise = $http.get('api/TaskApi/Gettasks', {});
+
+                    responsePromise.success(function (data) {
+                        $scope.task = data;
                     });
                 });
 
@@ -495,12 +531,13 @@ routerApp.controller('scotchController', function ($scope) {
 
 
 
-            $scope.pregled = function (id) {
-                window.location = "index.html#/pocetna/pregled/" + id;
-                $scope.nesto = id;
+            $scope.pregled = function (odabraniList) {
+                window.location = "index.html#/pocetna/pregled/" + odabraniBoard;
+                $scope.nesto = odabraniList;
                 // window.alert("ID odabranog board-a je: "+id);
             };
-        })
+
+        });
 
 
 

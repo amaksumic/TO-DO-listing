@@ -22,10 +22,31 @@
                  <span style ="color:cadetblue; font-size:larger; font-weight:bold">Lists</span>
                   <div ng-repeat="l in list | orderBy: sortOrder"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
                  <br />
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info btn-lg" ng-click="pregled(l.idList)" style="width:4cm; height:2.5cm; "> {{l.title | uppercase}}</button>
-                 </div>     
-                </div>
+                      <div class="panel-group">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">{{l.title | uppercase}}</h3>
+                          </div>
+                          <div class="panel-body">
+                            
+                              
+                                 
+                                <div ng-repeat="d in task | orderBy: sortOrder">   
+                                <br />
+                                    <div ng-if= "d.ownerList == l.idList">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info btn-lg" ng-click="pregled(d.idList)" id="{{d.idTask}}" style="width:4cm; height:1.5cm; "> {{d.title | uppercase}}</button>
+                                </div> 
+                                     </div>
+                            </div>                            
+                            </div> 
+
+
+                        </div>
+
+                        </div>     
+                    </div>
+                  </div>
             </td>             
             <td style="text-align:right; vertical-align:text-top">
 

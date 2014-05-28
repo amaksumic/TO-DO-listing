@@ -14,6 +14,19 @@ namespace Trollo
     
     public partial class task
     {
+        public task()
+        {
+
+        }
+
+        public task(int _id, string _title, int _ownerList)
+        {
+            idTask = _id;
+            title = _title;
+            ownerList = _ownerList;
+        }
+
+
         public int idTask { get; set; }
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }

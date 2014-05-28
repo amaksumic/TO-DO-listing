@@ -24,7 +24,7 @@ namespace Trollo.Controllers
 
             foreach (var t in task)
             {
-                tasks.Add(new task { idTask = t.idTask, title = t.title });
+                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList });
             }
 
             return tasks;
@@ -49,10 +49,10 @@ namespace Trollo.Controllers
         }
 
         //** L I S T A  I  NJENI TASKOVI
-        /*
+     
         // GET api/TaskApi/5/5
         [HttpGet]
-        public List<task> GetListsTasks(int id, int i = 0)
+        public List<task> GetListsTasks(int id)
         {
             var session = HttpContext.Current.Session;
             if (session != null)
@@ -72,7 +72,7 @@ namespace Trollo.Controllers
 
             return tasks;
         }
-        */
+        
 
         //** K O R I S N I K  I  TASKOVI KOJE JE KREIRAO
 

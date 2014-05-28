@@ -193,7 +193,7 @@ angular.module("myapp", [])
 
     function Boards($scope, $http) {
         $scope.sortOrder = "title";
-        $http.get('api/BoardApi/Getboard?id=1').
+        $http.get('api/BoardApi/Getboard?id=' + id).
         success(function (data) {
             $scope.boardsList = data;
         });
