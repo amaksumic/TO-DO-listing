@@ -11,20 +11,9 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class boardmembers
     {
-
-        public boardmembers()
-        {
-
-        }
-        public boardmembers(int _idkorisnik, int _idploca)
-        {
-            idkorisnik = _idkorisnik;
-            idploca = _idploca;
-        }
-
         public int idboardmembers { get; set; }
         public Nullable<int> idkorisnik { get; set; }
         public Nullable<int> idploca { get; set; }

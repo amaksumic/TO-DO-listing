@@ -59,10 +59,11 @@
         </EntityType>
         <EntityType Name="taskmembers">
           <Key>
-            <PropertyRef Name="User_idUser" />
+            <PropertyRef Name="idtaskmembers" />
           </Key>
-          <Property Name="Task_idTask" Type="int" Nullable="false" />
-          <Property Name="User_idUser" Type="int" Nullable="false" />
+          <Property Name="idtaskmembers" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idtask" Type="int" />
+          <Property Name="iduser" Type="int" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -151,10 +152,11 @@
         </EntityType>
         <EntityType Name="taskmembers">
           <Key>
-            <PropertyRef Name="User_idUser" />
+            <PropertyRef Name="idtaskmembers" />
           </Key>
-          <Property Name="Task_idTask" Type="Int32" Nullable="false" />
-          <Property Name="User_idUser" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="idtaskmembers" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idtask" />
+          <Property Type="Int32" Name="iduser" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -257,8 +259,9 @@
           <EntitySetMapping Name="taskmembers">
             <EntityTypeMapping TypeName="mydbModel.taskmembers">
               <MappingFragment StoreEntitySet="taskmembers">
-                <ScalarProperty Name="Task_idTask" ColumnName="Task_idTask" />
-                <ScalarProperty Name="User_idUser" ColumnName="User_idUser" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idtask" ColumnName="idtask" />
+                <ScalarProperty Name="idtaskmembers" ColumnName="idtaskmembers" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

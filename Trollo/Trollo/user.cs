@@ -11,35 +11,21 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class user
     {
-
         public user()
         {
-
+            //new user(0, username, pass, email);
         }
-
-        public user(string _username)
+        public user(int id, string _username, string _pass, string _email)
         {
+            registered = id;
             username = _username;
-        }
-
-        public user(int _registered, string _username, string _password, string _email)
-        {
-            registered = _registered;
-            username = _username;
-            password = _password;
+            password = _pass;
             email = _email;
         }
-
-        public user(string _username, string _email)
-        {
-            username = _username;
-            email = _email;
-        }
-
-
+    
         public int idUser { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -47,7 +33,7 @@ namespace Trollo
         public string email { get; set; }
         public Nullable<int> registered { get; set; }
         public string picture { get; set; }
-
+    
         public virtual ICollection<board> board { get; set; }
     }
 }

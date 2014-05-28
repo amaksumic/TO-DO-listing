@@ -59,10 +59,11 @@
   </EntityType>
   <EntityType Name="taskmembers">
     <Key>
-      <PropertyRef Name="User_idUser" />
+      <PropertyRef Name="idtaskmembers" />
     </Key>
-    <Property Name="Task_idTask" Type="Int32" Nullable="false" />
-    <Property Name="User_idUser" Type="Int32" Nullable="false" />
+    <Property Type="Int32" Name="idtaskmembers" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="idtask" />
+    <Property Type="Int32" Name="iduser" />
   </EntityType>
   <EntityType Name="user">
     <Key>

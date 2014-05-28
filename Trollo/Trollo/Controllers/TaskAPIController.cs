@@ -24,7 +24,7 @@ namespace Trollo.Controllers
 
             foreach (var t in task)
             {
-                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList });
+                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList, label = t.label });
             }
 
             return tasks;
@@ -80,34 +80,39 @@ namespace Trollo.Controllers
 
         [HttpGet]
         // GET api/TaskApi/5/5
-        public task GetTasksByCreator(int id) //Vraca task-ove za task creatora
+        public  List<obaveze> GetTasksByOwner(int id) //Vraca task-ove za task creatora
         {
 
-            List<task> tasks = new List<task>();
+            List<obaveze> obaveze = new List<obaveze>();
 
-            //var session = HttpContext.Current.Session;
-            //if (session != null)
-            //{
-            //string Admin = session["Admin"].ToString();
-            //task task = new task; 
 
-            var task = db.task.Where(t => t.taskCreator == id); //to se ovdje odredi, ima svakakvih mimo Where, 
-            //čak i select, na fazon upita je
 
-            foreach (var t in task)
+             IEnumerable<obaveze> assignment = db.Database.SqlQuery<obaveze>("SELECT t.title as task, l.title as list, b.title as board, b.idBoard as id FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" + 
+                            " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
+
+
+            foreach (var a in assignment)
             {
-                tasks.Add(new task { idTask = t.idTask, title = t.title }); //ovo je da bi se ispisalo, ako se
-                //ne dodaju svi atributi ispisati će ih samo djelimično, donosno kod mene svuda piše nil i 0
-                //sem za polja koja sam navela
+                obaveze.Add(new obaveze { task = a.task, list = a.list, board=a.board, id = a.id});
             }
-            return tasks[0];
-            //}
+            return obaveze;
+        }
 
-            //else
-            //{
-            //  tasks.Add(new task { idTask = 888, title = "Niste prijavljeni kao administrator!" });
-            //return tasks;
-            //}
+
+        [HttpGet]
+        // GET api/TaskApi/5/5
+        public void TaskToMember(string username, int idtask) //Vraca task-ove za task creatora
+        {
+
+              
+                user kor = new user();
+                kor = db.user.Where(a => a.username.Equals(username)).FirstOrDefault();
+
+                    taskmembers taskmember = new taskmembers { idtask = idtask, iduser = kor.idUser };
+
+                    db.taskmembers.Add(taskmember);
+                    db.SaveChanges();
+
         }
 
 
@@ -123,11 +128,11 @@ namespace Trollo.Controllers
         }
 
         // PUT api/TaskApi/5
-        /* public HttpResponseMessage Puttask(int id, task task)
+        /*public HttpResponseMessage Puttask(task task)
          {
              //task task = new task; 
              List<task> tasks = new List<task>();
-             var task = db.task.Where(t => t.taskCreator == id); //To se ovdje odredi, ima svakakvih mimo Where, 
+             var task2 = db.task.Where(t => t.taskCreator == task.idTask); //To se ovdje odredi, ima svakakvih mimo Where, 
              //čak i select, na fazon upita je.
 
              foreach (var t in task)
@@ -146,35 +151,34 @@ namespace Trollo.Controllers
         // {"idTask" : 9, "title" : "21BOO", "comment" : "23HALLO!", "label" : 1, "ownerList" : 1, "taskCreator" : 1}
 
         // POST api/TaskApi/5
-        [HttpPost]
-        public HttpResponseMessage UpdateTask(task task, int id)
+        [HttpGet]
+        public void UpdateTask(int id, string comment, bool label)
         {
-            var session = HttpContext.Current.Session;
+            /*var session = HttpContext.Current.Session;
             if (session != null)
             {
                 string Admin = session["Admin"].ToString();
-            }
+            }*/
             //int id = 9;
-            if (ModelState.IsValid && id == task.idTask)
-            {
+            //if (ModelState.IsValid && id == task.idTask)
+            //{
                 //Ovdje se mijenjam->
-                db.Entry(task).State = EntityState.Modified;
 
-                try
-                {
+                var task = db.task.Find(id);
+                
+                    task.comment = comment;
+                    if (label == true) task.label = 1;
+                    else task.label = 0;
+
+                    db.Entry(task).State = EntityState.Modified;
+
                     db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
 
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
+            //}
+            //else
+            //{
+              //  return Request.CreateResponse(HttpStatusCode.BadRequest);
+            //}
         }
 
 

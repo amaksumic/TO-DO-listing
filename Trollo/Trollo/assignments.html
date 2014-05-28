@@ -1,0 +1,10 @@
+﻿<div ng-controller="obaveze">
+    
+    <div ng-repeat="o in obaveze | orderBy: sortOrder"> 
+    <br />
+
+        Task <b>{{o.task}}</b> in list <b>{{o.list}}</b> within board <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
+    
+    </div>
+       
+</div>    

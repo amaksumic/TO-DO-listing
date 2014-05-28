@@ -14,7 +14,8 @@ namespace Trollo
     
     public partial class taskmembers
     {
-        public int Task_idTask { get; set; }
-        public int User_idUser { get; set; }
+        public int idtaskmembers { get; set; }
+        public Nullable<int> idtask { get; set; }
+        public Nullable<int> iduser { get; set; }
     }
 }

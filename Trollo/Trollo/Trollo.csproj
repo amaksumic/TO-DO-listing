@@ -198,6 +198,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>model_trollo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="obaveze.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.bs.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -223,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="angular.js" />
+    <Content Include="assignments.html" />
     <Content Include="basic.css" />
     <Content Include="basic.html" />
     <Content Include="basic.js" />
@@ -303,6 +305,7 @@
     <Content Include="index_slicice\library_wiz1.png" />
     <Content Include="index_slicice\logininput.gif" />
     <Content Include="index_slicice\right.gif" />
+    <Content Include="index_slicice\task.png" />
     <Content Include="index_slicice\up.gif" />
     <Content Include="jquery-1.5.1.min.js" />
     <Content Include="js\application.js" />

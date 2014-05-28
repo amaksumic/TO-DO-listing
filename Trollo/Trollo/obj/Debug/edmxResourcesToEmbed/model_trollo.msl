@@ -39,8 +39,9 @@
     <EntitySetMapping Name="taskmembers">
       <EntityTypeMapping TypeName="mydbModel.taskmembers">
         <MappingFragment StoreEntitySet="taskmembers">
-          <ScalarProperty Name="Task_idTask" ColumnName="Task_idTask" />
-          <ScalarProperty Name="User_idUser" ColumnName="User_idUser" />
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
+          <ScalarProperty Name="idtask" ColumnName="idtask" />
+          <ScalarProperty Name="idtaskmembers" ColumnName="idtaskmembers" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

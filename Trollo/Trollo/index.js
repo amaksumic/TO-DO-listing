@@ -2,6 +2,10 @@
 
 var odabraniBoard = 1;
 var odabraniList = 1;
+var odabraniTask = 1;
+var changed = 0;
+var username;
+
 
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -53,13 +57,14 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/boards',
             templateUrl: 'board.html'
         })
+
         .state('pocetna.calendar', {
             url: '/calendar',
             templateUrl: 'nije.html'
         })
         .state('pocetna.assignments', {
             url: '/assignments',
-            templateUrl: 'nije.html'
+            templateUrl: 'assignments.html'
         })
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {
@@ -323,6 +328,7 @@ routerApp.controller('scotchController', function ($scope) {
                        $scope.user = data;
                        window.location = 'index.html#/pocetna/boards';
                        $window.sessionStorage.token = data.username;
+                       username = data.username;
                        //location.path = '/home';
                    });
 
@@ -484,7 +490,7 @@ routerApp.controller('scotchController', function ($scope) {
         })
 
 
-        .controller("NoviList", function ($scope, $stateParams, $http) {
+        .controller("NoviList", function ($scope, $stateParams, $http){
 
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
@@ -540,13 +546,17 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.pregledLista = function (id) {
                 odabraniList = id;
             };
+            $scope.pregledTask = function (id) {
+                odabraniTask = id;
+            };
 
             $scope.submitTask = function () {
                 console.log("--> Submitting task");
 
                 var task = {
                     title: $scope.NoviList.tasktitle,
-                    ownerList: odabraniList
+                    ownerList: odabraniList,
+                    label: 0
                 };
 
                 console.log(odabraniList);
@@ -566,7 +576,67 @@ routerApp.controller('scotchController', function ($scope) {
                         $scope.task = data;
                     });
                 });
-
-                
             }
+            $scope.submitTaskUpdate = function () {
+                console.log("--> Submitting task");
+
+                console.log(odabraniList);
+                console.log($stateParams.id);
+                if ($scope.NoviList.opis != null && $scope.NoviList.crveno!=null){
+                    var response = $http.get('api/TaskApi/UpdateTask?id=' + odabraniTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno);
+                    response.success(function (data) {
+
+                        var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
+
+                        responsePromise.success(function (data) {
+                            $scope.list = data;
+                        });
+
+                        var responsePromise = $http.get('api/TaskApi/Gettasks', {});
+
+                        responsePromise.success(function (data) {
+                            $scope.task = data;
+                        });
+                    })
+                    }
+                if ($scope.NoviList.taskuser !=null){
+                    var responsePromise = $http.get('api/TaskApi/TaskToMember?username=' + $scope.NoviList.taskuser + '&idtask=' + odabraniTask, {});
+
+                    responsePromise.success(function (data) {
+                        var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
+
+                        responsePromise.success(function (data) {
+                            $scope.list = data;
+                        });
+
+                        var responsePromise = $http.get('api/TaskApi/Gettasks', {});
+
+                        responsePromise.success(function (data) {
+                            $scope.task = data;
+                        });
+                    });
+                }
+
+
+
+            }})
+        .controller("obaveze", function ($scope, $http) {
+            
+
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + username);
+            responsePromise.success(function (data) {
+                iduser = data;
+                console.log(iduser);
+                var responsePromise = $http.get('api/TaskApi/GetTasksByOwner?id=' + iduser);
+
+                responsePromise.success(function (data) {
+                    $scope.obaveze = data;
+                });
+            });
+
+            $scope.preusmjeri = function (id) {
+                window.location = "index.html#/pocetna/pregled/" + id;
+            };
+
         });
+        

@@ -19,13 +19,22 @@ namespace Trollo
 
         }
 
-        public task(int _id, string _title, int _ownerList)
+        public task(int _id, string _title, int _ownerList, int _label)
         {
             idTask = _id;
             title = _title;
             ownerList = _ownerList;
+            label = _label;
         }
 
+        public task(int _id, string _title, string _comment, int _ownerList, int _label)
+        {
+            idTask = _id;
+            title = _title;
+            comment = _comment;
+            ownerList = _ownerList;
+            label = _label;
+        }
 
         public int idTask { get; set; }
         public string title { get; set; }

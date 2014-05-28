@@ -238,6 +238,18 @@ namespace Trollo.Controllers
 
         [HttpGet]
         // GET api/UserApi/5
+        public int GetId(string username)
+        {
+            user kor = new user();
+            kor = db.user.Where(u=>u.username.Equals(username)).FirstOrDefault();
+
+            return kor.idUser;
+
+        }
+
+
+        [HttpGet]
+        // GET api/UserApi/5
         public user Login(string username, string pass)
         {
 
