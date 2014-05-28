@@ -34,7 +34,7 @@ namespace Trollo.Controllers
             return list;
         }
         // GET api/ListApi/5/5
-        public List<list> GetLists(int id, string s) //Vraca liste jednog board-a
+        public List<list> GetLists(int id) //Vraca liste jednog board-a
         {
 
             List<list> liste = new List<list>();
@@ -81,9 +81,11 @@ namespace Trollo.Controllers
                 db.list.Add(list);
                 db.SaveChanges();
 
+                
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, list);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = list.idList }));
+                response.Headers.Location = new Uri(Url.Link("RutaList", new { id = list.idList }));
                 return response;
+                 
             }
             else
             {

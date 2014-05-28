@@ -85,6 +85,11 @@ namespace Trollo
                 routeTemplate: "api/{controller}/{action}/{board}",
                 defaults: new { board = RouteParameter.Optional }
                 );
+            config.Routes.MapHttpRoute(
+                name: "RutaList",
+                routeTemplate: "api/{controller}/{action}/{list}",
+                defaults: new { list = RouteParameter.Optional }
+                );
         }
     }
 }

@@ -11,14 +11,6 @@
       <End Role="user" EntitySet="user" />
       <End Role="board" EntitySet="board" />
     </AssociationSet>
-    <AssociationSet Name="fk_List_Project1" Association="mydbModel.Store.fk_List_Project1">
-      <End Role="board" EntitySet="board" />
-      <End Role="list" EntitySet="list" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Task_List1" Association="mydbModel.Store.fk_Task_List1">
-      <End Role="list" EntitySet="list" />
-      <End Role="task" EntitySet="task" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="board">
     <Key>
@@ -41,7 +33,7 @@
     <Key>
       <PropertyRef Name="idList" />
     </Key>
-    <Property Name="idList" Type="int" Nullable="false" />
+    <Property Name="idList" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="ownerBoard" Type="int" Nullable="false" />
   </EntityType>
@@ -88,30 +80,6 @@
       </Principal>
       <Dependent Role="board">
         <PropertyRef Name="boardOwner" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_List_Project1">
-    <End Role="board" Type="mydbModel.Store.board" Multiplicity="1" />
-    <End Role="list" Type="mydbModel.Store.list" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="board">
-        <PropertyRef Name="idBoard" />
-      </Principal>
-      <Dependent Role="list">
-        <PropertyRef Name="ownerBoard" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Task_List1">
-    <End Role="list" Type="mydbModel.Store.list" Multiplicity="1" />
-    <End Role="task" Type="mydbModel.Store.task" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="list">
-        <PropertyRef Name="idList" />
-      </Principal>
-      <Dependent Role="task">
-        <PropertyRef Name="ownerList" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

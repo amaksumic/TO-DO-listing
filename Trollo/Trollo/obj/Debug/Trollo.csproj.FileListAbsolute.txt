@@ -264,9 +264,6 @@ C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.c
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
-C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.resources
-C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.bs.resources
-C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.Cache
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Trollo.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\Trollo.pdb
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\bs\Trollo.resources.dll
@@ -357,7 +354,9 @@ C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\ko\System.Spatia
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\ru\System.Spatial.resources.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.resources
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.Resources.bs.resources
+C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csproj.GenerateResource.Cache
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
-C:\Users\Haana\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
