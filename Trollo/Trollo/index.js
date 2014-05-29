@@ -1,4 +1,15 @@
-﻿var routerApp = angular.module('routerApp', ['ui.router']);
+﻿var routerApp = angular.module('routerApp', ['ui.router']).
+    service('AuthService', [function () {
+    var userIsAuthenticated = false;
+
+    this.setUserAuthenticated = function (value) {
+        userIsAuthenticated = value;
+    };
+
+    this.getUserAuthenticated = function () {
+        return userIsAuthenticated;
+    };
+}]);
 
 var odabraniBoard = 1;
 var odabraniList = 1;
@@ -80,7 +91,16 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
         });
 
-});
+}).run(['$rootScope', 'AuthService', '$location', function($rootScope, AuthService, $location){
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+        // Everytime the route in our app changes check auth status
+        if (AuthService.getUserAuthenticated()==false) {
+            // if you're logged out send to login page.
+            $location.path('/registracija');
+            event.preventDefault();
+        }
+    });
+}]);
 
 routerApp.controller('scotchController', function ($scope) {
 
@@ -325,20 +345,35 @@ routerApp.controller('scotchController', function ($scope) {
                    var responsePromise = $http.get("api/UserApi/Login?username=" + dataObject.user + "&pass=" + dataObject.pass, {});
 
                    responsePromise.success(function (data) {
-                       $scope.user = data;
-                       window.location = 'index.html#/pocetna/boards';
-                       $window.sessionStorage.token = data.username;
-                       username = data.username;
-                       //location.path = '/home';
+                       if (data != "null") {
+                           $scope.user = data;
+                           $window.sessionStorage.token = data.username;
+                           window.location = 'index.html#/pocetna/boards';       
+                           AuthService.setUserAuthenticated(true);
+                          
+                           //location.path = '/home';
+                       }
+                       else {
+                           window.location = 'index.html#/prijava';
+                       }
                    });
 
                    responsePromise.error(function (data, status, headers, config) {
                        alert("Submitting form failed!");
-                       //window.location = 'index.html#/prijava';
+                       window.location = 'index.html#/prijava';
                    });
                }
 
-           }).controller("AddUser", function ($scope, $http) {
+           }).controller("odjava", function ($scope, $window) {
+                       $scope.odjava = function () {
+                           $window.sessionStorage.token = "";
+                           $scope.username2 = "";
+                           $scope.username3 = "";
+                   
+                           window.location = 'index.html#/prijava';
+                       };
+
+                   }).controller("AddUser", function ($scope, $http) {
 
                $scope.addUser = {};
 
