@@ -350,7 +350,7 @@ routerApp.controller('scotchController', function ($scope) {
                            $window.sessionStorage.token = data.username;
                            window.location = 'index.html#/pocetna/boards';       
                            AuthService.setUserAuthenticated(true);
-                          
+                           username = data.username;
                            //location.path = '/home';
                        }
                        else {
