@@ -25,6 +25,11 @@ namespace Trollo
             password = _pass;
             email = _email;
         }
+        public user(int id, string _username)
+        {
+            idUser = id;
+            username = _username;
+        }
     
         public int idUser { get; set; }
         public string username { get; set; }

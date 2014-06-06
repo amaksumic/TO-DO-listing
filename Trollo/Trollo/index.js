@@ -525,7 +525,7 @@ routerApp.controller('scotchController', function ($scope) {
         })
 
 
-        .controller("NoviList", function ($scope, $stateParams, $http){
+        .controller("NoviList", function ($scope, $stateParams, $http, $window) {
 
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
@@ -540,6 +540,12 @@ routerApp.controller('scotchController', function ($scope) {
 
             responsePromise.success(function (data) {
                 $scope.task = data;
+            });
+
+            var responsePromise = $http.get('api/BoardMembersAPI/GetUsers?id='+ odabraniBoard, {});
+
+            responsePromise.success(function (data) {
+                $scope.user = data;
             });
             $scope.submitList = function () {
                 console.log("--> Submitting list");
@@ -581,9 +587,48 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.pregledLista = function (id) {
                 odabraniList = id;
             };
-            $scope.pregledTask = function (id) {
-                odabraniTask = id;
+            
+            $scope.obrisiKorisnika = function (id) {
+                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + id, {});
+
+                responsePromise.success(function (data) {
+                    alert("User has been deleted from your board!");
+                    $window.location.reload();
+
+                });
+                response.error(function (data, status, headers, config) {
+                    alert("Submitting user failed!");
+                    window.location = 'index.html#/pocetna/pregled';
+                });
+               
             };
+
+            $scope.obrisiKorisnikaTask = function (idU,idt) {
+                var responsePromise = $http.get('api/TaskmembersAPI/brisanjeUsera?idKor=' + idU + "&&idT=" + idt, {});
+
+                responsePromise.success(function (data) {
+                    alert("User has been deleted from your task!");
+                    $window.location.reload();
+
+                });
+                response.error(function (data, status, headers, config) {
+                    alert("Submitting user failed!");
+                    window.location = 'index.html#/pocetna/pregled';
+                });
+
+            };
+
+            $scope.pregledTask = function (task) {
+               
+                $scope.selectTask = task;
+                var responsePromise = $http.get('api/TaskmembersAPI/GetUsers?id=' + task.idTask, {});
+
+                responsePromise.success(function (data) {
+                    $scope.TaskUser = data;
+                });
+            };
+
+          
 
             $scope.submitTask = function () {
                 console.log("--> Submitting task");
@@ -618,7 +663,7 @@ routerApp.controller('scotchController', function ($scope) {
                 console.log(odabraniList);
                 console.log($stateParams.id);
                 if ($scope.NoviList.opis != null && $scope.NoviList.crveno!=null){
-                    var response = $http.get('api/TaskApi/UpdateTask?id=' + odabraniTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno);
+                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno);
                     response.success(function (data) {
 
                         var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
@@ -635,7 +680,7 @@ routerApp.controller('scotchController', function ($scope) {
                     })
                     }
                 if ($scope.NoviList.taskuser !=null){
-                    var responsePromise = $http.get('api/TaskApi/TaskToMember?username=' + $scope.NoviList.taskuser + '&idtask=' + odabraniTask, {});
+                    var responsePromise = $http.get('api/TaskApi/TaskToMember?username=' + $scope.NoviList.taskuser + '&idtask=' + $scope.selectTask.idTask , {});
 
                     responsePromise.success(function (data) {
                         var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
@@ -649,6 +694,7 @@ routerApp.controller('scotchController', function ($scope) {
                         responsePromise.success(function (data) {
                             $scope.task = data;
                         });
+                        alert('Task update!');
                     });
                 }
 

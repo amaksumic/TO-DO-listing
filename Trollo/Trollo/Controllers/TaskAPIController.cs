@@ -24,7 +24,7 @@ namespace Trollo.Controllers
 
             foreach (var t in task)
             {
-                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList, label = t.label });
+                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList, label = t.label, comment=t.comment, startTime=t.startTime, endTime=t.endTime });
             }
 
             return tasks;

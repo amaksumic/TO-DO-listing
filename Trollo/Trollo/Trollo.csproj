@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\TaskAPIController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\TaskmembersAPIController.cs" />
     <Compile Include="Controllers\UserAPIController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

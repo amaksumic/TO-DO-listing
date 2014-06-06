@@ -82,6 +82,32 @@ namespace Trollo.Controllers
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage brisanjeUsera(int idKor)
+        {
+            boardmembers memb = db.boardmembers.Where(bm => bm.idkorisnik == idKor).FirstOrDefault();
+            db.boardmembers.Remove(memb);
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        public List<user> GetUsers(int id) //Vraca usere jednog board-a
+        {
+
+            List<user> liste = new List<user>();
+            var kor = from korisnici in db.user
+                      join saBord in db.boardmembers on korisnici.idUser equals saBord.idkorisnik
+                      where saBord.idploca == id
+                      select korisnici ;
+           
+          
+            foreach (var u in kor)
+            {
+                liste.Add(new user { idUser = u.idUser, username = u.username });
+            }
+            return liste;
+        }
+
         // POST api/BoardMembersAPI
         public HttpResponseMessage Postboardmembers(boardmembers boardmembers)
         {
@@ -99,6 +125,8 @@ namespace Trollo.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
+
+       
 
         // DELETE api/BoardMembersAPI/5
         public HttpResponseMessage Deleteboardmembers(int id)

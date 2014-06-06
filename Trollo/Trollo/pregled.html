@@ -30,6 +30,24 @@
 
             </td>                     
         </tr>
+        <tr >
+            <td>Korisnici na boradu:</td>
+            </tr>
+        <tr>
+            <td style="text-align:left; vertical-align:text-top">
+                <div ng-repeat="u in user ">
+                    
+                        {{u.username }}
+                        
+                        
+                            <button class="btn btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
+                                           - Delete member
+                                          </button>
+                        
+                            </div>
+
+            </td>
+        </tr>
         <tr>
             <td>
                  <span style ="color:cadetblue; font-size:larger; font-weight:bold">Lists</span>
@@ -56,7 +74,7 @@
                                     <div ng-if= "d.ownerList == l.idList">
                                 <div class="btn-group">
                                     
-                                    <button class="btn btn-default btn-lg" data-toggle="modal" ng-click="pregledTask(d.idTask)" data-target="#myModal9" style="width:9cm; height:2cm; ">
+                                    <button class="btn btn-default btn-lg" data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9" style="width:9cm; height:2cm; ">
                                         <div ng-if= "d.label == 0" style="text-align:left"> {{d.title | uppercase}}</div>
                                         <div ng-if= "d.label == 1"> 
                                             <table><tr>
@@ -183,12 +201,23 @@
       <div class="modal-body">
           <table><tr><td style =" text-align : right">   
 
-                                  <!--KREIRANJE TASKA -->
+                                  <!--UPDATE     TASKA -->
                               <form role="form">
+                                  
+                            
+
                                 <div class="form-group">
+                                    <div ng-repeat="u in TaskUser ">
+                                        {{u.username }}
+                                        <button class="btn btn-small btn-default"  ng-click="obrisiKorisnikaTask(u.idUser,selectTask.idTask)" >
+                                           - Delete member
+                                          </button>
+                                        </div>
                                     <label for="noviTask">Add Description:</label>
-                                    <input type="text" class="form-control" id="Text2" ng-model="NoviList.opis" >
-                                    Priority <span style="color:red">RED</span>?<input type="checkbox" ng-model="NoviList.crveno"> <br/>
+                                   
+                                    <input type="text" value="" class="form-control" id="Text2" ng-model="NoviList.opis" placeholder="{{selectTask.comment}}">
+                                    Priority <span style="color:red">RED</span> ?<input type="checkbox" ng-model="NoviList.crveno" > <br/>
+                                  
                                     <label for="noviTask">Add User:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
                                 </div>
@@ -205,3 +234,5 @@
         </td>
     </tr>
 </table>
+
+
