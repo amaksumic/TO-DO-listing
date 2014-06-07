@@ -15,7 +15,7 @@ var odabraniBoard = 1;
 var odabraniList = 1;
 var odabraniTask = 1;
 var changed = 0;
-var username;
+var usernamezapretragu ;
 
 
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
@@ -347,10 +347,10 @@ routerApp.controller('scotchController', function ($scope) {
                    responsePromise.success(function (data) {
                        if (data != "null") {
                            $scope.user = data;
+                           usernamezapretragu = $scope.login.name;
                            $window.sessionStorage.token = data.username;
-                           window.location = 'index.html#/pocetna/boards';       
+                           window.location = 'index.html#/pocetna/boards';
                            AuthService.setUserAuthenticated(true);
-                           username = data.username;
                            //location.path = '/home';
                        }
                        else {
@@ -365,15 +365,15 @@ routerApp.controller('scotchController', function ($scope) {
                }
 
            }).controller("odjava", function ($scope, $window) {
-                       $scope.odjava = function () {
-                           $window.sessionStorage.token = "";
-                           $scope.username2 = "";
-                           $scope.username3 = "";
-                   
-                           window.location = 'index.html#/prijava';
-                       };
+               $scope.odjava = function () {
+                   $window.sessionStorage.token = "";
+                   $scope.username2 = "";
+                   $scope.username3 = "";
 
-                   }).controller("AddUser", function ($scope, $http) {
+                   window.location = 'index.html#/prijava';
+               };
+
+           }).controller("AddUser", function ($scope, $http) {
 
                $scope.addUser = {};
 
@@ -542,7 +542,7 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.task = data;
             });
 
-            var responsePromise = $http.get('api/BoardMembersAPI/GetUsers?id='+ odabraniBoard, {});
+            var responsePromise = $http.get('api/BoardMembersAPI/GetUsers?id=' + odabraniBoard, {});
 
             responsePromise.success(function (data) {
                 $scope.user = data;
@@ -587,7 +587,7 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.pregledLista = function (id) {
                 odabraniList = id;
             };
-            
+
             $scope.obrisiKorisnika = function (id) {
                 var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + id, {});
 
@@ -600,10 +600,10 @@ routerApp.controller('scotchController', function ($scope) {
                     alert("Submitting user failed!");
                     window.location = 'index.html#/pocetna/pregled';
                 });
-               
+
             };
 
-            $scope.obrisiKorisnikaTask = function (idU,idt) {
+            $scope.obrisiKorisnikaTask = function (idU, idt) {
                 var responsePromise = $http.get('api/TaskmembersAPI/brisanjeUsera?idKor=' + idU + "&&idT=" + idt, {});
 
                 responsePromise.success(function (data) {
@@ -619,7 +619,7 @@ routerApp.controller('scotchController', function ($scope) {
             };
 
             $scope.pregledTask = function (task) {
-               
+
                 $scope.selectTask = task;
                 var responsePromise = $http.get('api/TaskmembersAPI/GetUsers?id=' + task.idTask, {});
 
@@ -628,7 +628,7 @@ routerApp.controller('scotchController', function ($scope) {
                 });
             };
 
-          
+
 
             $scope.submitTask = function () {
                 console.log("--> Submitting task");
@@ -662,7 +662,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                 console.log(odabraniList);
                 console.log($stateParams.id);
-                if ($scope.NoviList.opis != null && $scope.NoviList.crveno!=null){
+                if ($scope.NoviList.opis != null && $scope.NoviList.crveno != null) {
                     var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno);
                     response.success(function (data) {
 
@@ -678,9 +678,9 @@ routerApp.controller('scotchController', function ($scope) {
                             $scope.task = data;
                         });
                     })
-                    }
-                if ($scope.NoviList.taskuser !=null){
-                    var responsePromise = $http.get('api/TaskApi/TaskToMember?username=' + $scope.NoviList.taskuser + '&idtask=' + $scope.selectTask.idTask , {});
+                }
+                if ($scope.NoviList.taskuser != null) {
+                    var responsePromise = $http.get('api/TaskApi/TaskToMember?username=' + $scope.NoviList.taskuser + '&idtask=' + $scope.selectTask.idTask, {});
 
                     responsePromise.success(function (data) {
                         var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
@@ -700,11 +700,12 @@ routerApp.controller('scotchController', function ($scope) {
 
 
 
-            }})
+            }
+        })
         .controller("obaveze", function ($scope, $http) {
-            
 
-            var responsePromise = $http.get('api/UserApi/GetId?username=' + username);
+            console.log(usernamezapretragu);
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
             responsePromise.success(function (data) {
                 iduser = data;
                 console.log(iduser);
@@ -720,21 +721,15 @@ routerApp.controller('scotchController', function ($scope) {
             };
 
         })
-        .controller("ImageUpload", function ($scope, $http) {
-
-            $scope.submitImage = function () {
-                console.log("--> Submitting tar voli kotolenka :D :D :D <3 <3");
-                /*
-                var response = $http.post('api/UserAPIController/UpdateAvatar', $scope.file);
-
-                response.success(function (data) {
-                    //ponovo ucitaj boardove sa novododanim
-                    $http.get('api/BoardApi/Getboard?id=4').
-                    success(function (data) {
-                        $scope.boardsList = data;
-                    });
-                });
-                */
-            }
-        });
-        
+.contoller ('uploader', ['$scope', 'http', function($scope, $http){
+    $scope.upload = function(){
+        $http.post('api/UserAPI/UpdateAvatar', $scope.files,
+            {
+                headers:{'Content-Type' :  'multipart/form-data'}
+            }).
+        success (function(d){
+	
+        console.log(d)})
+    }}
+    
+]);
