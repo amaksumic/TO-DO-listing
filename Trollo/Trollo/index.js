@@ -719,5 +719,22 @@ routerApp.controller('scotchController', function ($scope) {
                 window.location = "index.html#/pocetna/pregled/" + id;
             };
 
+        })
+        .controller("ImageUpload", function ($scope, $http) {
+
+            $scope.submitImage = function () {
+                console.log("--> Submitting tar voli kotolenka :D :D :D <3 <3");
+                /*
+                var response = $http.post('api/UserAPIController/UpdateAvatar', $scope.file);
+
+                response.success(function (data) {
+                    //ponovo ucitaj boardove sa novododanim
+                    $http.get('api/BoardApi/Getboard?id=4').
+                    success(function (data) {
+                        $scope.boardsList = data;
+                    });
+                });
+                */
+            }
         });
         

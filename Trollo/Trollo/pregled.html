@@ -124,7 +124,7 @@
             <input type="text" id="username" class="form-control" ng-model="addUser.username" />
                 <br/>
                 <br/> </div>
-            <button class="btn btn-default" ng-click="addUser.submitTheForm()">Add</button>
+            <button class="btn btn-default" data-dismiss ="modal" ng-click="addUser.submitTheForm()">Add</button>
            
             </td></tr></table></form></div>
       </div>
@@ -151,7 +151,7 @@
                                     <input type="text" class="form-control" id="noviList" ng-model="NoviList.name" >
 
                                 </div>
-                                   <button type="submit" class="btn btn-primary" ng-click="submitList()">Add</button>
+                                   <button type="submit" data-dismiss ="modal" class="btn btn-primary" ng-click="submitList()">Add</button>
                                </form> 
            
             </td></tr></table>
@@ -180,7 +180,7 @@
                                     <input type="text" class="form-control" id="Text1" ng-model="NoviList.tasktitle" >
 
                                 </div>
-                                   <button type="submit" class="btn btn-primary" ng-click="submitTask()">Add</button>
+                                   <button type="submit" data-dismiss ="modal"class="btn btn-primary" ng-click="submitTask()">Add</button>
                                </form> 
            
             </td></tr></table>
@@ -221,7 +221,7 @@
                                     <label for="noviTask">Add User:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
                                 </div>
-                                   <button type="submit" class="btn btn-primary" ng-click="submitTaskUpdate()">Update</button>
+                                   <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">Update</button>
                                </form> 
            
             </td></tr></table>

@@ -60,7 +60,7 @@
               <input type="text" class="form-control" ng-model="updateUsername.username">
             </div>
             <br>
-            <button type="submit" class="btn btn-default" ng-click="updateUsername.submitTheForm()">Save</button>
+            <button  data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updateUsername.submitTheForm()">Save</button>
             </td></tr></table></form></div>
       </div>
     </div><!-- /.modal-content -->
@@ -83,7 +83,7 @@
               <input type="text" class="form-control" ng-model="updateEmail.email">
             </div>
             <BR>
-            <button type="submit" class="btn btn-default" ng-click="updateEmail.submitTheForm()">Save</button>
+            <button data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updateEmail.submitTheForm()">Save</button>
             </td></tr></table></form>
                 </div>
       </div>
@@ -116,8 +116,8 @@
               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Repeate</span>
               <input type="password" class="form-control" ng-model="updatePassword.repeate">
             </div><BR>
-            <button type="submit" class="btn btn-default" ng-click="updatePassword.submitTheForm()">Save</button>
-            <button type="submit" class="btn btn-default" onclick="reject()">Reject</button>
+            <button  data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updatePassword.submitTheForm()">Save</button>
+            <button data-dismiss ="modal" type="submit" class="btn btn-default" onclick="reject()">Reject</button>
             </td></tr></table></form>
                 </div>
       </div>
@@ -135,7 +135,21 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body">
-       Under construction!
+       
+            <!-- CODE 1 -->
+          <div ng-controller="ImageUpload">
+
+             <form>
+              
+              <!--<input type="file" class="form-control" ng-file-select="files" ng-model="imageUpload.file"/> 
+              
+              -->
+
+              <button data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="imageUpload.submitTheForm()">Save</button>
+                 </form>
+            </div>
+
+
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -155,7 +169,7 @@
             <div ng-controller="UpdateUsername" >
             <form><table><tr><td style =" text-align : right">
                 Are you sure you want to delete your account. All your date will be permanently erased.
-        <button type="submit" class="btn btn-danger"  ng-click="brisanjeKorisnika.submitTheForm()"> Delete my account  </button>
+        <button data-dismiss ="modal" type="submit" class="btn btn-danger"  ng-click="brisanjeKorisnika.submitTheForm()"> Delete my account  </button>
     <!-- <span style ="height : 20px; font-size : smaller; top:-8px; position:relative; vertical-align : text-top "> I want to delete my Trollo account</span></button> -->
     
             </td></tr></table></form>

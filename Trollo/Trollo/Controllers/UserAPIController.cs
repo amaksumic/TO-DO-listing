@@ -8,12 +8,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.IO;
+
+using System.Threading.Tasks;
+using System.IO;
 
 namespace Trollo.Controllers
 {
     public class UserAPIController : ApiController
     {
         private mydbEntities db = new mydbEntities();
+
+        int id = 0;
 
         [Authorize]
         public class UsersController : ApiController
@@ -223,6 +229,27 @@ namespace Trollo.Controllers
 
         }
 
+        [HttpPost]
+        // GET api/UserApi/5
+        public void UpdateAvatar(HttpPostedFileBase file)
+        {
+                 // extract only the fielname
+                // var fileName = Path.GetFileName(file.FileName);
+                // store the file inside ~/App_Data/uploads folder
+                // var path = Path.Combine(Server.MapPath("../uploads"), fileName);
+                string relativePath = "~/uploads/" + Path.GetFileName(file.FileName);
+                string physicalPath = HttpContext.Current.Server.MapPath(relativePath);
+                file.SaveAs(physicalPath);
+
+                 user user = db.user.Find(id);
+                user.picture = relativePath;
+                db.Entry(user).State = EntityState.Modified;
+
+
+                db.SaveChanges();
+
+        }
+
 
         [HttpGet]
         // GET api/UserApi/5
@@ -256,6 +283,8 @@ namespace Trollo.Controllers
             user kor = new user();
             kor = db.user.Where(a => a.username.Equals(username) && a.password.Equals(pass)).FirstOrDefault();
 
+            id = kor.idUser;
+            
             if (kor != null)
             {
                 return kor;
