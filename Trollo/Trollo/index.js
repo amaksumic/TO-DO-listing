@@ -1,15 +1,18 @@
 ﻿var routerApp = angular.module('routerApp', ['ui.router']).
     service('AuthService', [function () {
-    var userIsAuthenticated = false;
+        var userIsAuthenticated = false;
 
-    this.setUserAuthenticated = function (value) {
-        userIsAuthenticated = value;
-    };
+        this.setUserAuthenticated = function (value) {
+            userIsAuthenticated = value;
+        };
 
-    this.getUserAuthenticated = function () {
-        return userIsAuthenticated;
-    };
-}]);
+        this.getUserAuthenticated = function () {
+            return userIsAuthenticated;
+        };
+
+
+    }]);
+
 
 var odabraniBoard = 1;
 var odabraniList = 1;
@@ -349,6 +352,7 @@ routerApp.controller('scotchController', function ($scope) {
                            $scope.user = data;
                            usernamezapretragu = $scope.login.name;
                            $window.sessionStorage.token = data.username;
+
                            window.location = 'index.html#/pocetna/boards';
                            AuthService.setUserAuthenticated(true);
                            //location.path = '/home';
@@ -434,10 +438,17 @@ routerApp.controller('scotchController', function ($scope) {
 
 
 
-           }).controller("Username", function ($scope, $window) {
+           }).controller("Username", function ($scope, $http ,$window) {
+               var responsePromise = $http.get("api/UserApi/GetPath?username=" + usernamezapretragu, {});
 
-               $scope.username2 = $window.sessionStorage.token;
-               $scope.username3 = $window.sessionStorage.token;
+               responsePromise.success(function (data) {
+                   console.log(data);
+                   $scope.image = "http://localhost:49338/Uploads/" + data;
+
+                   $scope.username2 = $window.sessionStorage.token;
+                   $scope.username3 = $window.sessionStorage.token;
+               });
+              
 
            }).controller("ViewBoard", function ($scope, $stateParams, $http) {
                console.log($stateParams.id);
@@ -456,10 +467,17 @@ routerApp.controller('scotchController', function ($scope) {
                });
 
            })
-    .controller("Username", function ($scope, $window) {
+    .controller("Username", function ($scope, $http, $window) {
 
-        $scope.username2 = $window.sessionStorage.token;
-        $scope.username3 = $window.sessionStorage.token;
+        var responsePromise = $http.get("api/UserApi/GetPath?username=" + usernamezapretragu, {});
+
+        responsePromise.success(function (data) {
+            console.log(data);
+            $scope.image = "http://localhost:49338/Uploads/" + data.picture;
+
+            $scope.username2 = $window.sessionStorage.token;
+            $scope.username3 = $window.sessionStorage.token;
+        });
 
     }).controller("ViewBoard", function ($scope, $stateParams, $http) {
         console.log($stateParams.id);
@@ -720,16 +738,53 @@ routerApp.controller('scotchController', function ($scope) {
                 window.location = "index.html#/pocetna/pregled/" + id;
             };
 
+        });
+
+
+  //-----------------//
+ //   u p l o a d    //
+//------------------//
+
+routerApp.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
+routerApp.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function (file, uploadUrl) {
+        var fd = new FormData();
+        fd.append('file', file);
+        fd.append('username', usernamezapretragu);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
         })
-.contoller ('uploader', ['$scope', 'http', function($scope, $http){
-    $scope.upload = function(){
-        $http.post('api/UserAPI/UpdateAvatar', $scope.files,
-            {
-                headers:{'Content-Type' :  'multipart/form-data'}
-            }).
-        success (function(d){
-	
-        console.log(d)})
-    }}
-    
-]);
+        .success(function () {
+        })
+        .error(function () {
+        });
+    }
+}]);
+
+routerApp.controller('myCtrl', ['$scope', 'fileUpload', function ($scope,  fileUpload) {
+
+    $scope.uploadFile = function () {
+        var file = $scope.myFile;
+        //console.log('file is ' + JSON.stringify(file));
+        //var uploadUrl = "api/UserAPI/UpdateAvatar";
+        console.log('file is ' + file.name);
+        fileUpload.uploadFileToUrl(file, '/User/UpdateAvatar');
+    };
+
+}]);

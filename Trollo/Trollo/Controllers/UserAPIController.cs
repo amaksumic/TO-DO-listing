@@ -12,6 +12,11 @@ using System.IO;
 
 using System.Threading.Tasks;
 using System.IO;
+using System.ComponentModel;
+using System.Drawing;
+using System.Web.Hosting;
+using System.Drawing.Imaging;
+using System.Net.Http.Headers;
 
 namespace Trollo.Controllers
 {
@@ -228,27 +233,50 @@ namespace Trollo.Controllers
             else return "Password se ne podudara!";
 
         }
-
+/*
         [HttpPost]
-        // GET api/UserApi/5
-        public void UpdateAvatar(HttpPostedFileBase file)
+        public async Task<HttpResponseMessage> UpdateAvatar()
         {
-                 // extract only the fielname
-                // var fileName = Path.GetFileName(file.FileName);
-                // store the file inside ~/App_Data/uploads folder
-                // var path = Path.Combine(Server.MapPath("../uploads"), fileName);
-                string relativePath = "~/uploads/" + Path.GetFileName(file.FileName);
-                string physicalPath = HttpContext.Current.Server.MapPath(relativePath);
-                file.SaveAs(physicalPath);
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
 
-                 user user = db.user.Find(id);
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            try
+            {
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                // Show all the key-value pairs.
+                foreach (var key in provider.FormData.AllKeys)
+                {
+                    foreach (var val in provider.FormData.GetValues(key))
+                    {
+                        System.Diagnostics.Trace.WriteLine(string.Format("{0}: {1}", key, val));
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
+
+            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "!");
+
+        }
+
+        /*
+                user user = db.user.Find(id);
                 user.picture = relativePath;
                 db.Entry(user).State = EntityState.Modified;
 
 
                 db.SaveChanges();
-
-        }
+*/
 
 
         [HttpGet]
@@ -274,6 +302,16 @@ namespace Trollo.Controllers
 
         }
 
+        [HttpGet]
+        // GET api/UserApi/5
+        public user GetPath(string username)
+        {
+            user kor = new user();
+            kor = db.user.Where(u => u.username.Equals(username)).FirstOrDefault();
+            user kor2 = new user(kor.picture);
+            return kor2;
+
+        }
 
         [HttpGet]
         // GET api/UserApi/5

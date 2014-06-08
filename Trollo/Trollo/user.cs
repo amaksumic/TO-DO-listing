@@ -18,6 +18,12 @@ namespace Trollo
         {
             //new user(0, username, pass, email);
         }
+
+        public user(string _pic)
+        {
+            picture = _pic;
+        }
+
         public user(int id, string _username, string _pass, string _email)
         {
             registered = id;

@@ -30,15 +30,20 @@
     </td><td style="width:15px"></td><td style="vertical-align:text-top">
 
         
-        <div class="media" style="border:dashed">
-            <img class="media-object" src="" alt="" height="60px" width="120px"/>
+        
+
+<!---             -->
+<!--- A v a t a r -->
+<!---             -->
+        
+ <div ng-controller="Username" >                
+     <div class="media" style="border:dashed">
+        <img class="media-object" ng-src={{image}} alt="" height="240px" width="240px"/>
           <div class="media-body">
             <h4 class="media-heading">Your avatar</h4>
           </div>
-        </div>
-
+        </div>   
         <br/>
- <div ng-controller="Username" >       
         <span style="font-weight : bold; font-size : larger">{{username3}}</span>
  </div>       
 
@@ -137,12 +142,11 @@
       <div class="modal-body">
        
             <!-- CODE 1 -->
-          
-           <form ng-controller ="uploader">      
-            <input type ="file" ng-model="files" />
-               <button ng-click ="upload()"> Upload </buttone>
-                    
-               </form>
+  
+<div ng-controller = "myCtrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>
          
       </div>
     </div><!-- /.modal-content -->

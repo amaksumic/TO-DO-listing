@@ -220,7 +220,39 @@ namespace Trollo.Controllers
             return View(user);
         }
 
+        //--------------------------------//
+        //           U P L O A D           //
+        //--------------------------------//
+
+        // [HttpGet]
+        // GET api/UserApi/5
+        public int GetId(string username)
+        {
+            user kor = new user();
+            kor = db.user.Where(u => u.username.Equals(username)).FirstOrDefault();
+
+            return kor.idUser;
+
+        }
+
         [HttpPost]
+        public void UpdateAvatar(HttpPostedFileBase file, string username)
+        {
+            string relativePath = "~/uploads/" + Path.GetFileName(file.FileName);
+            string physicalPath = Server.MapPath(relativePath);
+            file.SaveAs(physicalPath);
+
+            user user = db.user.Find(GetId(username));
+            user.picture = Path.GetFileName(file.FileName);
+            db.Entry(user).State = EntityState.Modified;
+
+
+            db.SaveChanges();
+        }
+        
+
+    
+       [HttpPost]
         public ActionResult GetDocument(HttpPostedFileBase file, int id)
         {
             // Verify that the user selected a file
