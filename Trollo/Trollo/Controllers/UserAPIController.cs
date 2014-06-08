@@ -321,10 +321,11 @@ namespace Trollo.Controllers
             user kor = new user();
             kor = db.user.Where(a => a.username.Equals(username) && a.password.Equals(pass)).FirstOrDefault();
 
-            id = kor.idUser;
+            
             
             if (kor != null)
             {
+                id = kor.idUser;
                 return kor;
             }
             return null;

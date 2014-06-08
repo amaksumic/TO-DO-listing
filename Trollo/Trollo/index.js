@@ -548,6 +548,16 @@ routerApp.controller('scotchController', function ($scope) {
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
             $scope.sortOrder = "title";
+
+            $scope.colors =
+                         [
+                          { id: 2, name: "Gray" },
+                          { id: 3, name: "Blue" },
+                          { id: 4, name: "Green" },
+                          { id: 5, name: "Orange" },
+                          { id: 6, name: "Red" }
+                         ];
+            $scope.selectedColor= 2;
             var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
 
             responsePromise.success(function (data) {
@@ -681,7 +691,7 @@ routerApp.controller('scotchController', function ($scope) {
                 console.log(odabraniList);
                 console.log($stateParams.id);
                 if ($scope.NoviList.opis != null && $scope.NoviList.crveno != null) {
-                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno);
+                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno+'&color='+$scope.selectedColor.id);
                     response.success(function (data) {
 
                         var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});

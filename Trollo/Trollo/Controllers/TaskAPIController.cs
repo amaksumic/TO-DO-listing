@@ -152,7 +152,7 @@ namespace Trollo.Controllers
 
         // POST api/TaskApi/5
         [HttpGet]
-        public void UpdateTask(int id, string comment, bool label)
+        public void UpdateTask(int id, string comment, bool label,int color)
         {
             /*var session = HttpContext.Current.Session;
             if (session != null)
@@ -167,6 +167,7 @@ namespace Trollo.Controllers
                 var task = db.task.Find(id);
                 
                     task.comment = comment;
+                    task.taskOwner = color;
                     if (label == true) task.label = 1;
                     else task.label = 0;
 

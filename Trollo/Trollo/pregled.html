@@ -40,7 +40,7 @@
                         {{u.username }}
                         
                         
-                            <button class="btn btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
+                            <button class="btn btn-xs btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
                                            - Delete member
                                           </button>
                         
@@ -204,12 +204,30 @@
                                   <!--UPDATE     TASKA -->
                               <form role="form">
                                   
-                            
-
+                            Add color:
+                                    <select ng-model="selectedColor" 
+                                             data-ng-options="col.name for col in colors">                
+                                      </select>
+                                  <div ng-if= "selectedColor.id == 2"> 
+                                      <label style = "display:block ; width :200px" class="label label-default" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 3"> 
+                                      <label style = "display:block ; width :200px" class="label label-primary" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 4"> 
+                                      <label style = "display:block ; width :200px" class="label label-success" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 5"> 
+                                      <label style = "display:block ; width :200px" class="label label-warning" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 6"> 
+                                      <label style = "display:block ; width :200px" class="label label-danger" > </label>
+                                 </div>
+            
                                 <div class="form-group">
                                     <div ng-repeat="u in TaskUser ">
                                         {{u.username }}
-                                        <button class="btn btn-small btn-default"  ng-click="obrisiKorisnikaTask(u.idUser,selectTask.idTask)" >
+                                        <button class="btn btn-xs btn-default"  ng-click="obrisiKorisnikaTask(u.idUser,selectTask.idTask)" >
                                            - Delete member
                                           </button>
                                         </div>
