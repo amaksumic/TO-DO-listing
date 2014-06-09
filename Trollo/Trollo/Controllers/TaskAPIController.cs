@@ -98,6 +98,26 @@ namespace Trollo.Controllers
             return obaveze;
         }
 
+        [HttpGet]
+        // GET api/TaskApi/5/5
+        public List<calendarTask> GetCalendarTasks(int id) //Vraca task-ove za task creatora
+        {
+
+            List<calendarTask> obaveze = new List<calendarTask>();
+
+
+
+            IEnumerable<calendarTask> assignment = db.Database.SqlQuery<calendarTask>("SELECT t.startTime as startDate, l.title as title, t.endTime as endDate, b.idBoard as id FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" +
+                           " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
+
+
+            foreach (var a in assignment)
+            {
+                obaveze.Add(new calendarTask { id = a.id, startDate = a.startDate, endDate = a.endDate, title = a.title });
+            }
+            return obaveze;
+        }
+
 
         [HttpGet]
         // GET api/TaskApi/5/5

@@ -1,7 +1,8 @@
 ﻿<div ng-controller="obaveze">
     <div class="jumbotron">
-      <h3>My Assignments</h3>    
-    <div ng-repeat="o in obaveze | orderBy: sortOrder"> 
+      <h3>My Assignments</h3>
+        <input type="text" placeholder="search tasks" ng-model="searchText"/> 
+    <div ng-repeat="o in obaveze | orderBy: sortOrder | filter:searchText"> 
     <br />
 
                    <div ng-if= "o.label == 0" > 

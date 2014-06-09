@@ -164,6 +164,7 @@
     <Compile Include="boardmembers.cs">
       <DependentUpon>model_trollo.tt</DependentUpon>
     </Compile>
+    <Compile Include="calendarTask.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BoardAPIController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
@@ -239,6 +240,23 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\google-code-prettify\prettify.js" />
     <Content Include="bootstrap\js\holder.js" />
+    <Content Include="calendar\dhtmlxscheduler.css" />
+    <Content Include="calendar\dhtmlxscheduler.js" />
+    <Content Include="calendar\imgs_dhx_terrace\arrow_left.png" />
+    <Content Include="calendar\imgs_dhx_terrace\arrow_right.png" />
+    <Content Include="calendar\imgs_dhx_terrace\but_repeat.gif" />
+    <Content Include="calendar\imgs_dhx_terrace\calendar.gif" />
+    <Content Include="calendar\imgs_dhx_terrace\clock_big.gif" />
+    <Content Include="calendar\imgs_dhx_terrace\clock_small.gif" />
+    <Content Include="calendar\imgs_dhx_terrace\close_icon.png" />
+    <Content Include="calendar\imgs_dhx_terrace\collapse_expand_icon.gif" />
+    <Content Include="calendar\imgs_dhx_terrace\controls.png" />
+    <Content Include="calendar\imgs_dhx_terrace\databg.png" />
+    <Content Include="calendar\imgs_dhx_terrace\databg_now.png" />
+    <Content Include="calendar\imgs_dhx_terrace\export_ical.png" />
+    <Content Include="calendar\imgs_dhx_terrace\export_pdf.png" />
+    <Content Include="calendar\imgs_dhx_terrace\resize_dots.png" />
+    <Content Include="calendar\imgs_dhx_terrace\resizing.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -329,6 +347,7 @@
     <Content Include="js\jquery.ui.touch-punch.min.js" />
     <Content Include="js\respond.min.js" />
     <Content Include="js\typeahead.js" />
+    <Content Include="kalendar.html" />
     <Content Include="korisnik.html" />
     <Content Include="login.html" />
     <Content Include="model_trollo.Context.tt">

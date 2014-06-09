@@ -14,6 +14,86 @@
     }]);
 
 
+// -----------------------------
+//
+// CUSTOM DIREKTIVE ZA PRIKAZ KALENDARA
+//
+//---------------------------------
+
+routerApp.directive('dhxScheduler', function () {
+    return {
+        restrict: 'A',
+        scope: false,
+        transclude: true,
+        template: '<div class="dhx_cal_navline" ng-transclude></div><div class="dhx_cal_header"></div><div class="dhx_cal_data"></div>',
+
+
+
+        link: function ($scope, $element, $attrs, $controller) {
+            //default state of the scheduler
+            if (!$scope.scheduler)
+                $scope.scheduler = {};
+            $scope.scheduler.mode = $scope.scheduler.mode || "month";
+            $scope.scheduler.date = $scope.scheduler.date || new Date();
+
+            //watch data collection, reload on changes
+            $scope.$watch($attrs.data, function (collection) {
+                scheduler.clearAll();
+                scheduler.parse(collection, "json");
+            }, true);
+
+            //mode or date
+            $scope.$watch(function () {
+                return $scope.scheduler.mode + $scope.scheduler.date.toString();
+            }, function (nv, ov) {
+                var mode = scheduler.getState();
+                if (nv.date != mode.date || nv.mode != mode.mode)
+                    scheduler.setCurrentView($scope.scheduler.date, $scope.scheduler.mode);
+            }, true);
+
+            //size of scheduler
+            $scope.$watch(function () {
+                return $element[0].offsetWidth + "." + $element[0].offsetHeight;
+            }, function () {
+                scheduler.setCurrentView();
+            });
+
+            //styling for dhtmlx scheduler
+            $element.addClass("dhx_cal_container");
+
+            //init scheduler
+            scheduler.init($element[0], $scope.scheduler.mode, $scope.scheduler.date);
+        }
+    }
+});
+
+routerApp.directive('dhxTemplate', ['$filter', function ($filter) {
+    scheduler.aFilter = $filter;
+
+    return {
+        restrict: 'AE',
+        terminal: true,
+
+        link: function ($scope, $element, $attrs, $controller) {
+            $element[0].style.display = 'none';
+
+            var template = $element[0].innerHTML;
+            template = template.replace(/[\r\n]/g, "").replace(/"/g, "\\\"").replace(/\{\{event\.([^\}]+)\}\}/g, function (match, prop) {
+                if (prop.indexOf("|") != -1) {
+                    var parts = prop.split("|");
+                    return "\"+scheduler.aFilter('" + (parts[1]).trim() + "')(event." + (parts[0]).trim() + ")+\"";
+                }
+                return '"+event.' + prop + '+"';
+            });
+            var templateFunc = Function('sd', 'ed', 'event', 'return "' + template + '"');
+            scheduler.templates[$attrs.dhxTemplate] = templateFunc;
+        }
+    };
+}]);
+
+
+// END..............DIREKTIVE
+
 var odabraniBoard = 1;
 var odabraniList = 1;
 var odabraniTask = 1;
@@ -503,7 +583,7 @@ routerApp.controller('scotchController', function ($scope) {
 
 
             $scope.sortOrder = "title";
-            $http.get('api/BoardApi/Getboard?id=4').
+            $http.get('api/BoardApi/Getboard?id=1').
             success(function (data) {
                 $scope.boardsList = data;
             });
@@ -540,6 +620,48 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.nesto = id;
                 // window.alert("ID odabranog board-a je: "+id);
             };
+        })
+
+        .controller("MainSchedulerCtrl", function ($scope, $http) {
+            
+
+            //dobavi username korisnika
+
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
+            responsePromise.success(function (data) {
+                iduser = data;
+                
+                var responsePromise = $http.get('api/TaskApi/GetCalendarTasks?id=' + iduser);
+
+                responsePromise.success(function (data) {
+                    $scope.obaveze = data;
+                    
+                   
+                });
+            });
+
+
+            
+           
+
+
+            $scope.events = [
+            { id:1, text:"Task 1",
+                start_date: new Date(2014, 05, 10),
+               end_date: new Date(2014, 05, 14) },
+           { id:2, text:"Task 2",
+              start_date: new Date(2014, 05, 11 ),
+                end_date: new Date(2014, 05, 15 ) }
+            ];
+
+
+
+           
+            
+            
+
+            $scope.scheduler = { date : new Date(2014,05,1) };
+
         })
 
 
@@ -733,6 +855,8 @@ routerApp.controller('scotchController', function ($scope) {
         .controller("obaveze", function ($scope, $http) {
 
             console.log(usernamezapretragu);
+            
+            
             var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
             responsePromise.success(function (data) {
                 iduser = data;
