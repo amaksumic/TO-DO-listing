@@ -616,43 +616,59 @@ routerApp.controller('scotchController', function ($scope) {
 
         .controller("MainSchedulerCtrl", function ($scope, $http) {
             
-
+            //
+            var idUsera;
             //dobavi username korisnika
 
+            //dobavi id korisnika
             var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
-            responsePromise.success(function (data) {
-                iduser = data;
-                
-                var responsePromise = $http.get('api/TaskApi/GetCalendarTasks?id=' + iduser);
 
-                responsePromise.success(function (data) {
+            responsePromise.success(function (data) {
+                idUsera = data;
+                
+         
+
+            //pomocne varijable
+            var title;
+            var date1;
+            var date2;
+            var id1;
+
+            //preuzmi evente koje je korisnik kreirao
+            var responsePromise2 = $http.get('api/TaskApi/GetCalendarTasks?id=' + idUsera);
+
+                responsePromise2.success(function (data) {
                     $scope.obaveze = data;
+
+                 
+                    $scope.dogadjaji = [{ id: 1, text: "", start_date: new Date(2012, 05, 10), end_date: new Date(2012, 05, 10) }];
+
+                    //iteriraj kroz listu dogadjaja i vezi je za kontrolu
+                    for (var i in $scope.obaveze) {
+                        title = $scope.obaveze[i].title;
+                        date1 = $scope.obaveze[i].startDate;
+                        date2 = $scope.obaveze[i].endDate;
+                        id1 = $scope.obaveze[i].id;
+                        //window.alert(title);
+                        $scope.dogadjaj = [{ id: title, text: title, start_date: date1, end_date: date2 }];
+                        $scope.dogadjaji = $scope.dogadjaji.concat($scope.dogadjaj);
+
+                    }
+
+
+                    //vezi dogadjaje za kontrolu 
+                    $scope.events = $scope.dogadjaji;
                     
                    
-                });
+                
             });
 
 
-            
-           
+            });
+            //postavi pocetni datum na kontrole koji se inicijalno prikazuje
+                $scope.scheduler = { date: new Date(2014, 05, 1) };
 
 
-            $scope.events = [
-            { id:1, text:"Task 1",
-                start_date: new Date(2014, 05, 10),
-               end_date: new Date(2014, 05, 14) },
-           { id:2, text:"Task 2",
-              start_date: new Date(2014, 05, 11 ),
-                end_date: new Date(2014, 05, 15 ) }
-            ];
-
-
-
-           
-            
-            
-
-            $scope.scheduler = { date : new Date(2014,05,1) };
 
         })
    

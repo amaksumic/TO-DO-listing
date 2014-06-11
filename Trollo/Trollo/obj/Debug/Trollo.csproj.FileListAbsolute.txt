@@ -62,7 +62,6 @@ C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.Razo
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.xml
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\System.Web.WebPages.Razor.xml
-C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
 C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\bs\Trollo.resources.dll
@@ -361,3 +360,4 @@ C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.c
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
