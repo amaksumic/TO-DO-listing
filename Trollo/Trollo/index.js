@@ -432,9 +432,10 @@ routerApp.controller('scotchController', function ($scope) {
                            $scope.user = data;
                            usernamezapretragu = $scope.login.name;
                            $window.sessionStorage.token = data.username;
-
+                           $window.sessionStorage.idu= data.idUser;
                            window.location = 'index.html#/pocetna/boards';
                            AuthService.setUserAuthenticated(true);
+                           usernamezapretragu = $scope.login.name;
                            //location.path = '/home';
                        }
                        else {
@@ -474,6 +475,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                    responsePromise.success(function (data) {
                        alert("New user has been added to your board!");
+                      
                    });
 
                    responsePromise.error(function (data, status, headers, config) {
@@ -559,31 +561,16 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.username3 = $window.sessionStorage.token;
         });
 
-    }).controller("ViewBoard", function ($scope, $stateParams, $http) {
-        console.log($stateParams.id);
-        username2 = $stateParams.id;
-        var responsePromise = $http.get("api/BoardApi/GetTitle?id=" + $stateParams.id, {});
-
-        responsePromise.success(function (data) {
-            window.location = 'index.html#/pocetna/pregled/' + $stateParams.id;
-            console.log(data);
-            $scope.board = data;
-        });
-
-        responsePromise.error(function (data, status, headers, config) {
-            alert("Submitting form failed!");
-            window.location = 'index.html#/prijava';
-        });
-
     })
 
 
 
-        .controller("NoviBoard", function ($scope, $http) {
+       .controller("NoviBoard", function ($scope, $http, $window) {
 
 
-            $scope.sortOrder = "title";
-            $http.get('api/BoardApi/Getboard?id=1').
+           $scope.sortOrder = "title";
+           idu = $window.sessionStorage.idu
+           $http.get('api/BoardApi/Getboard?id=' + idu).
             success(function (data) {
                 $scope.boardsList = data;
             });
@@ -591,17 +578,20 @@ routerApp.controller('scotchController', function ($scope) {
                 console.log("--> Submitting board");
 
                 var board = {
-                    idBoard: 6,
+                    //idBoarda
+                    idBoard: 0,
                     title: $scope.NoviBoard.name,
                     creationDate: new Date(),
-                    boardOwner: 4
+                    //kao Board owner ide Id logovanog usera, jer inace sve boardove sprema za nepostojeceg usera
+                    //sa id=4 !!
+                    boardOwner: idu
                 };
 
                 var response = $http.post('api/boardapi/postboard', board);
 
                 response.success(function (data) {
                     //ponovo ucitaj boardove sa novododanim
-                    $http.get('api/BoardApi/Getboard?id=4').
+                    $http.get('api/BoardApi/Getboard?id=' + idu).
                     success(function (data) {
                         $scope.boardsList = data;
                     });
@@ -621,6 +611,8 @@ routerApp.controller('scotchController', function ($scope) {
                 // window.alert("ID odabranog board-a je: "+id);
             };
         })
+
+        
 
         .controller("MainSchedulerCtrl", function ($scope, $http) {
             
@@ -663,7 +655,7 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.scheduler = { date : new Date(2014,05,1) };
 
         })
-
+   
 
         .controller("NoviList", function ($scope, $stateParams, $http, $window) {
 
@@ -743,7 +735,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                 responsePromise.success(function (data) {
                     alert("User has been deleted from your board!");
-                    $window.location.reload();
+                   // $window.location.reload();
 
                 });
                 response.error(function (data, status, headers, config) {
