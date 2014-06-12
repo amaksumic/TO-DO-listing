@@ -620,6 +620,9 @@ routerApp.controller('scotchController', function ($scope) {
             var idUsera;
             //dobavi username korisnika
 
+            
+
+
             //dobavi id korisnika
             var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
 
@@ -639,15 +642,56 @@ routerApp.controller('scotchController', function ($scope) {
 
                 responsePromise2.success(function (data) {
                     $scope.obaveze = data;
-
+                    console.log($scope.obaveze);
                  
                     $scope.dogadjaji = [{ id: 1, text: "", start_date: new Date(2012, 05, 10), end_date: new Date(2012, 05, 10) }];
 
                     //iteriraj kroz listu dogadjaja i vezi je za kontrolu
                     for (var i in $scope.obaveze) {
                         title = $scope.obaveze[i].title;
-                        date1 = $scope.obaveze[i].startDate;
-                        date2 = $scope.obaveze[i].endDate;
+
+                        //prvi datum
+                        var prviDatum = ""+ $scope.obaveze[i].startDate;
+                        var t = prviDatum.split(".");
+
+                        console.log(t[0]);
+                        console.log(t[1]);
+                        
+
+                        var godina = t[2].split(" ");
+                        console.log(godina[0]);
+                        var date1 = new Date(godina[0],t[1]-1,t[0]);
+                            
+
+                        //var dan1 = prviDatum.getDay();
+                        //var mjesec1 = prviDatum.getMonth();
+                        //var godine1 = prviDatum.getFullYear();
+                        console.log(date1);
+                        //console.log(dan1 + " " + mjesec1 + " " + godine1);
+                        //date1 = new Date(godine1, dan1, mjesec1);
+                        
+                        //Drugi datum format
+
+                        var drugiDatum = "" + $scope.obaveze[i].endDate
+                        var t2 = drugiDatum.split(".");
+                        
+                        var godina2 = t2[2].split(" ");
+
+                        var date2 = new Date(godina2[0], t2[1]-1, t2[0]);
+                        console.log(date2);
+                        //var drugiDatum = new Date($scope.obaveze[i].endDate);
+                        //var dan2 = drugiDatum.getDay();
+                        //var mjesec2 = drugiDatum.getMonth();
+                        //var godine2 = drugiDatum.getFullYear();
+
+                        //date2 = new Date(godine2, dan2, mjesec2);
+                        //console.log(dan2 + " " + mjesec2 + " " + godine2);
+                            
+
+
+                      //  window.alert("title: " + title + " start: " + date1 + " end: "+date2);
+                         //date1 = $scope.obaveze[i].startDate;
+                        //date2 = $scope.obaveze[i].endDate;
                         id1 = $scope.obaveze[i].id;
                         //window.alert(title);
                         $scope.dogadjaj = [{ id: title, text: title, start_date: date1, end_date: date2 }];
@@ -665,6 +709,25 @@ routerApp.controller('scotchController', function ($scope) {
 
 
             });
+
+            $scope.submitEvent = function () {
+                //var date = $scope.NoviEvent.start;
+                //window.alert(date.getDay());
+
+                console.log("--> Submitting task");
+                //window.alert($scope.NoviEvent.title);
+                var task = {
+                    title: $scope.NoviEvent.title,
+                    startTime: $scope.NoviEvent.start,
+                    endTime: $scope.NoviEvent.end,
+                    taskCreator: idUsera,
+                    label: 0
+                };
+
+                console.log(task);
+                var response = $http.post('api/TaskApi/CreateTask', task);
+
+            };
             //postavi pocetni datum na kontrole koji se inicijalno prikazuje
                 $scope.scheduler = { date: new Date(2014, 05, 1) };
 
@@ -799,6 +862,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                 console.log(odabraniList);
                 console.log($stateParams.id);
+                console.log(task);
                 var response = $http.post('api/TaskApi/CreateTask', task);
                 response.success(function (data) {
 

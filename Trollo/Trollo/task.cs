@@ -36,6 +36,16 @@ namespace Trollo
             label = _label;
         }
 
+        public task(int _id, string _title,  DateTime start, DateTime end, int _taskCreator, int _label)
+        {
+            idTask = _id;
+            title = _title;
+            startTime = start;
+            endTime = end;
+            taskCreator = _taskCreator;
+            label = _label;
+        }
+
         public int idTask { get; set; }
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }

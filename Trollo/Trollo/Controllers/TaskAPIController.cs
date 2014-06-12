@@ -107,8 +107,10 @@ namespace Trollo.Controllers
 
 
 
-            IEnumerable<calendarTask> assignment = db.Database.SqlQuery<calendarTask>("SELECT t.startTime as startDate, t.title as title, t.endTime as endDate, b.idBoard as id FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" +
-                           " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
+           // IEnumerable<calendarTask> assignment = db.Database.SqlQuery<calendarTask>("SELECT t.startTime as startDate, t.title as title, t.endTime as endDate, b.idBoard as id FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" +
+                     //      " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
+
+            IEnumerable<calendarTask> assignment = db.Database.SqlQuery<calendarTask>("SELECT t.startTime as startDate, t.endTime as endDate, t.title as title, t.idTask as id FROM task t WHERE t.taskCreator = {0}", id);
 
 
             foreach (var a in assignment)
