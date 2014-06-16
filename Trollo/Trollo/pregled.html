@@ -7,11 +7,10 @@
             <td style="width:12cm; vertical-align:text-top">
 
                   <div ng-controller="ViewBoard">
-                     <div class="panel" >               
-                        
-                     <span style ="color:cadetblue; font-size:larger; font-weight:bold">Overview</span>
+                     <div class="panel" >                 
+                     <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{Overview}}</span>
                            <div class="panel-body">
-                           <p>  Title: {{board.title}}</p>
+                           <p>  {{Title}}: {{board.title}}</p>
                            </div>
                          </div>
                   </div>                              
@@ -20,19 +19,19 @@
 
                 <div class="btn-group-vertical">
                     <button class="btn btn-default " data-toggle="modal" data-target="#myModal6">
-                      + Add user
+                      + {{Adduser}}
                     </button>
                 </div>
                  <div class="btn-group-vertical">
                     <button class="btn btn-default " data-toggle="modal" data-target="#myModal7">
-                      + Add list
+                      + {{Addlist}}
                     </button>
                 </div>
 
             </td>                     
         </tr>
         <tr >
-            <td>Korisnici na boradu:</td>
+            <td>{{Boardusers}}:</td>
             </tr>
         <tr>
             <td style="text-align:left; vertical-align:text-top">
@@ -42,7 +41,7 @@
                         
                         
                             <button class="btn btn-xs btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
-                                           - Delete member
+                                           - {{Deletemember}}
                                           </button>
                         
                             </div>
@@ -51,7 +50,7 @@
         </tr>
         <tr>
             <td>
-                 <span style ="color:cadetblue; font-size:larger; font-weight:bold">Lists</span>
+                 <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{Lists}}</span>
                   <div ng-repeat="l in list | orderBy: sortOrder"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
                  <br />
                       <div class="panel-group">
@@ -61,7 +60,7 @@
                             <td ><h3 class="panel-title">{{l.title | uppercase}}</h3></td>
                              <td style="text-align:right"> <div class="btn-group-vertical">
                                           <button class="btn btn-default " data-toggle="modal" ng-click="pregledLista(l.idList)" data-target="#myModal8">
-                                           + Add task
+                                           + {{Addtask}}
                                           </button>
                                            
                                       </div></td></tr> </table>
@@ -121,11 +120,11 @@
          <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
 
             <div class="input-group">
-            <span>Username</span>   
+            <span>{{Username}}</span>   
             <input type="text" id="username" class="form-control" ng-model="addUser.username" />
                 <br/>
                 <br/> </div>
-            <button class="btn btn-default" data-dismiss ="modal" ng-click="addUser.submitTheForm()">Add</button>
+            <button class="btn btn-default" data-dismiss ="modal" ng-click="addUser.submitTheForm()">{{Add}}</button>
            
             </td></tr></table></form></div>
       </div>
@@ -148,11 +147,11 @@
                                   <!--KREIRANJE LISTE -->
                               <form role="form">
                                 <div class="form-group">
-                                    <label for="noviBoard">New list name:</label>
+                                    <label for="noviBoard">{{Newlistname}}:</label>
                                     <input type="text" class="form-control" id="noviList" ng-model="NoviList.name" >
 
                                 </div>
-                                   <button type="submit" data-dismiss ="modal" class="btn btn-primary" ng-click="submitList()">Add</button>
+                                   <button type="submit" data-dismiss ="modal" class="btn btn-primary" ng-click="submitList()">{{Add}}</button>
                                </form> 
            
             </td></tr></table>
@@ -177,11 +176,11 @@
                                   <!--KREIRANJE TASKA -->
                               <form role="form">
                                 <div class="form-group">
-                                    <label for="noviTask">New task name:</label>
+                                    <label for="noviTask">{{Newtaskname}}:</label>
                                     <input type="text" class="form-control" id="Text1" ng-model="NoviList.tasktitle" >
 
                                 </div>
-                                   <button type="submit" data-dismiss ="modal"class="btn btn-primary" ng-click="submitTask()">Add</button>
+                                   <button type="submit" data-dismiss ="modal"class="btn btn-primary" ng-click="submitTask()">{{Add}}</button>
                                </form> 
            
             </td></tr></table>
@@ -205,7 +204,7 @@
                                   <!--UPDATE     TASKA -->
                               <form role="form">
                                   
-                            Add color:
+                            {{Addcolor}}:
                                     <select ng-model="selectedColor" 
                                              data-ng-options="col.name for col in colors">                
                                       </select>
@@ -229,18 +228,18 @@
                                     <div ng-repeat="u in TaskUser ">
                                         {{u.username }}
                                         <button class="btn btn-xs btn-default"  ng-click="obrisiKorisnikaTask(u.idUser,selectTask.idTask)" >
-                                           - Delete member
+                                           - {{Deletemember}}
                                           </button>
                                         </div>
-                                    <label for="noviTask">Add Description:</label>
+                                    <label for="noviTask">{{AddDescription}}:</label>
                                    
                                     <input type="text" value="" class="form-control" id="Text2" ng-model="NoviList.opis" placeholder="{{selectTask.comment}}">
-                                    Priority <span style="color:red">RED</span> ?<input type="checkbox" ng-model="NoviList.crveno" > <br/>
+                                    {{Priority}} <span style="color:red">{{RED}}</span> ?<input type="checkbox" ng-model="NoviList.crveno" > <br/>
                                   
-                                    <label for="noviTask">Add User:</label>
+                                    <label for="noviTask">{{Adduser}}:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
                                 </div>
-                                   <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">Update</button>
+                                   <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">{{Update}}</button>
                                </form> 
            
             </td></tr></table>

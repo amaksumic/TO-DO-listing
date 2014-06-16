@@ -4,7 +4,7 @@
                               
                           
   <table><tr><td>
-     <span style ="color:cadetblue; font-size:larger; font-weight:bold">My boards</span>
+     <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{myboards}}</span>
     
      <div ng-repeat="b in boardsList | orderBy: sortOrder"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
          <br />
@@ -19,7 +19,7 @@
 
 
 <button class="btn btn-default " data-toggle="modal" data-target="#myModal7">
-  + Add board
+  + {{newb}}
 </button>
 </div>
 
@@ -42,11 +42,11 @@
                                   <!--KREIRANJE BOARDA -->
                               <form role="form">
                                 <div class="form-group">
-                                    <label for="noviBoard">New board name:</label>
+                                    <label for="noviBoard">{{imeboard}}</label>
                                     <input type="text" class="form-control" id="noviBoard" ng-model="NoviBoard.name" placeholder="Unesi naziv boarda">
 
                                 </div>
-                                   <button type="submit" class="btn btn-primary" ng-click="submitBoard()">Add</button>
+                                   <button type="submit" class="btn btn-primary" ng-click="submitBoard()">{{dodaj}}</button>
                                </form> 
            
             </td></tr></table>
