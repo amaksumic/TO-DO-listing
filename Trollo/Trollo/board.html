@@ -6,12 +6,12 @@
   <table><tr><td>
      <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{myboards}}</span>
     
-     <div ng-repeat="b in boardsList | orderBy: sortOrder"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
+     <table><tr><td ng-repeat="b in boardsList | orderBy: sortOrder" style="width:4.5cm"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
          <br />
          <div class="btn-group">
             <button type="button" class="btn btn-info btn-lg" ng-click="pregled(b.idBoard)" style="width:4cm; height:2.5cm; "> {{b.title | uppercase}}</button>
     </div>     
-         </div>
+         </td></tr></table>
 
     </td><td style="text-align:right; vertical-align:text-top">
 

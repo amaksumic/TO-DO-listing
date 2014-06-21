@@ -451,7 +451,19 @@ routerApp.controller('scotchController', function ($scope) {
                };
               
 
-           }).controller("ViewBoard", function ($scope, $stateParams, $http) {
+           }).controller("ViewBoard", function ($scope, $stateParams, $http, $locale) {
+
+               if ($locale.id == "en-vg") {
+                   $scope.Title = "Projekat";
+                   $scope.Overview = "Pregled";
+               }
+
+               if ($locale.id == "en-us") {
+                   $scope.Title = "Board";
+                   $scope.Overview = "Overview";
+               }
+
+
                console.log($stateParams.id);
                username2 = $stateParams.id;
                var responsePromise = $http.get("api/BoardApi/GetTitle?id=" + $stateParams.id, {});
@@ -912,7 +924,7 @@ routerApp.controller('scotchController', function ($scope) {
 
             console.log(usernamezapretragu);
             if ($locale.id == "en-vg") {
-                $scope.assignments = 'Projekti';
+                $scope.assignments = 'Zadaci';
                 $scope.inlist = 'u listi';
                 $scope.taska = 'Zadatak';
                 $scope.withinboard = 'unutar projekta';

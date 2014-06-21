@@ -1,10 +1,10 @@
 ﻿
 
-<div ng-controller="NoviList">        
+<div ng-controller="NoviList" >        
     
     <table>
         <tr>
-            <td style="width:12cm; vertical-align:text-top">
+            <td style="width:880px; vertical-align:text-top">
 
                   <div ng-controller="ViewBoard">
                      <div class="panel" >                 
@@ -50,14 +50,24 @@
         </tr>
         <tr>
             <td>
+
+
+
+
+
                  <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{Lists}}</span>
-                  <div ng-repeat="l in list | orderBy: sortOrder"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
+<div class="outer">
+    <div class="inner">
+                  <table><tr><td ng-repeat="l in list " style="text-align:start; vertical-align:top"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
+                     <table style="width : 350px "><tr>
+                            <td style="text-align:start; vertical-align:top"> 
                  <br />
-                      <div class="panel-group">
+                      <div class="panel-group" style="width : 320px">
                         <div class="panel panel-info">
                           <div class="panel-heading">
-                              <table style="width : 420px"><tr>
-                            <td ><h3 class="panel-title">{{l.title | uppercase}}</h3></td>
+                            
+                              <table style="width : 300px"><tr>
+                            <td style="text-align:start; vertical-align:top"><h3 class="panel-title">{{l.title | uppercase}}</h3></td>
                              <td style="text-align:right"> <div class="btn-group-vertical">
                                           <button class="btn btn-default " data-toggle="modal" ng-click="pregledLista(l.idList)" data-target="#myModal8">
                                            + {{Addtask}}
@@ -74,11 +84,11 @@
                                     <div ng-if= "d.ownerList == l.idList">
                                 <div class="btn-group">
                                     
-                                    <button class="btn btn-default btn-lg" data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9" style="width:9cm; height:2cm; ">
-                                        <div ng-if= "d.label == 0" style="text-align:left"> {{d.title | uppercase}}</div>
-                                        <div ng-if= "d.label == 1"> 
+                                    <button class="btn btn-default btn-lg" data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9" style="width:300px; height:1.5cm; font-size:small">
+                                        <div ng-if= "d.label == 0" style="text-align:left;"> {{d.title | uppercase}}</div>
+                                        <div ng-if= "d.label == 1" > 
                                             <table><tr>
-                                            <td style="width:8cm; text-align:left">
+                                            <td style="width:250px; text-align:left">
                                             {{d.title | uppercase}}
                                             </td>
                                             <td style="text-align:right">
@@ -95,9 +105,8 @@
 
                         </div>
 
-                        </div>     
-                    </div>
-                  </div>
+                        </div>  </td></tr> </table>
+                    </tr></table></div></div>
             </td>             
             <td style="text-align:right; vertical-align:text-top">
 
@@ -249,8 +258,3 @@
 </div><!-- /.modal -->
 
             </div>
-        </td>
-    </tr>
-</table>
-
-
