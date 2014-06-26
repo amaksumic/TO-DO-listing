@@ -20,7 +20,7 @@ var odabraniBoard = 1;
 var odabraniList = 1;
 var odabraniTask = 1;
 var changed = 0;
-var usernamezapretragu ;
+var usernamezapretragu;
 
 
 routerApp.config(function ($stateProvider, $urlRouterProvider) {
@@ -67,7 +67,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/pregled/:id',
             templateUrl: 'pregled.html',
             controller: 'ViewBoard'
-        }) 
+        })
 
         .state('pocetna.boards', {
             url: '/boards',
@@ -96,10 +96,10 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
         });
 
-}).run(['$rootScope', 'AuthService', '$location', function($rootScope, AuthService, $location){
-    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+}).run(['$rootScope', 'AuthService', '$location', function ($rootScope, AuthService, $location) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
         // Everytime the route in our app changes check auth status
-        if (AuthService.getUserAuthenticated()==false) {
+        if (AuthService.getUserAuthenticated() == false) {
             // if you're logged out send to login page.
             $location.path('/registracija');
             event.preventDefault();
@@ -352,7 +352,6 @@ routerApp.controller('scotchController', function ($scope) {
                    responsePromise.success(function (data) {
                        if (data != "null") {
                            $scope.user = data;
-                           usernamezapretragu = $scope.login.name;
                            $window.sessionStorage.token = data.username;
 
                            if ($scope.login.language == "english") {
@@ -365,7 +364,7 @@ routerApp.controller('scotchController', function ($scope) {
                            }
 
 
-                           $window.sessionStorage.idu= data.idUser;
+                           $window.sessionStorage.idu = data.idUser;
                            window.location = 'index.html#/pocetna/boards';
 
                            usernamezapretragu = $scope.login.name;
@@ -409,7 +408,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                    responsePromise.success(function (data) {
                        alert("New user has been added to your board!");
-                      
+
                    });
 
                    responsePromise.error(function (data, status, headers, config) {
@@ -450,7 +449,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                    }
                };
-              
+
 
            }).controller("ViewBoard", function ($scope, $stateParams, $http, $locale) {
 
@@ -500,15 +499,15 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.myboards = "My Boards";
             $scope.Logout = "Logout";
         }
-	
-        var responsePromise = $http.get("api/UserApi/GetPath?username=" + usernamezapretragu, {});
+
+        var responsePromise = $http.get("api/UserApi/GetPath?username=" + $window.sessionStorage.token, {});
 
         responsePromise.success(function (data) {
-          console.log(data);
-            
+            console.log(data);
+
 
             $scope.username2 = $window.sessionStorage.token;
-            //$scope.image = "http://localhost:49338/Uploads/" + data.picture;
+            $scope.image = "http://localhost:49338/Uploads/" + data.picture;
             $scope.username3 = $window.sessionStorage.token;
         });
 
@@ -538,71 +537,71 @@ routerApp.controller('scotchController', function ($scope) {
             success(function (data) {
                 $scope.boardsList = data;
             });
-            $scope.submitBoard = function () {
-                console.log("--> Submitting board");
+           $scope.submitBoard = function () {
+               console.log("--> Submitting board");
 
-                var board = {
-                    //idBoarda
-                    idBoard: 0,
-                    title: $scope.NoviBoard.name,
-                    creationDate: new Date(),
-                    //kao Board owner ide Id logovanog usera, jer inace sve boardove sprema za nepostojeceg usera
-                    //sa id=4 !!
-                    boardOwner: idu
-                };
+               var board = {
+                   //idBoarda
+                   idBoard: 0,
+                   title: $scope.NoviBoard.name,
+                   creationDate: new Date(),
+                   //kao Board owner ide Id logovanog usera, jer inace sve boardove sprema za nepostojeceg usera
+                   //sa id=4 !!
+                   boardOwner: idu
+               };
 
-                var response = $http.post('api/boardapi/postboard', board);
+               var response = $http.post('api/boardapi/postboard', board);
 
-                response.success(function (data) {
-                    //ponovo ucitaj boardove sa novododanim
-                    $http.get('api/BoardApi/Getboard?id=' + idu).
-                    success(function (data) {
-                        $scope.boardsList = data;
-                    });
-                });
+               response.success(function (data) {
+                   //ponovo ucitaj boardove sa novododanim
+                   $http.get('api/BoardApi/Getboard?id=' + idu).
+                   success(function (data) {
+                       $scope.boardsList = data;
+                   });
+               });
 
-                response.error(function (data, status, headers, config) {
-                    alert("Submitting board failed!");
-                    window.location = 'index.html#/pocetna/board';
-                })
-            };
+               response.error(function (data, status, headers, config) {
+                   alert("Submitting board failed!");
+                   window.location = 'index.html#/pocetna/board';
+               })
+           };
 
 
 
-            $scope.pregled = function (id) {
-                window.location = "index.html#/pocetna/pregled/" + id;
-                $scope.nesto = id;
-                // window.alert("ID odabranog board-a je: "+id);
-            };
-        })
+           $scope.pregled = function (id) {
+               window.location = "index.html#/pocetna/pregled/" + id;
+               $scope.nesto = id;
+               // window.alert("ID odabranog board-a je: "+id);
+           };
+       })
 
-        
 
-        .controller("MainSchedulerCtrl", function ($scope, $http) {            
+
+        .controller("MainSchedulerCtrl", function ($scope, $http, $window) {
             //
             var idUsera;
             //dobavi username korisnika         
 
 
             //dobavi id korisnika
-            var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + $window.sessionStorage.token);
 
             responsePromise.success(function (data) {
-                idUsera = data;      
+                idUsera = data;
 
-            //pomocne varijable
-            var title;
-            var date1;
-            var date2;
-            var id1;
+                //pomocne varijable
+                var title;
+                var date1;
+                var date2;
+                var id1;
 
-            //preuzmi evente koje je korisnik kreirao
-            var responsePromise2 = $http.get('api/TaskApi/GetCalendarTasks?id=' + idUsera);
+                //preuzmi evente koje je korisnik kreirao
+                var responsePromise2 = $http.get('api/TaskApi/GetCalendarTasks?id=' + idUsera);
 
                 responsePromise2.success(function (data) {
                     $scope.obaveze = data;
                     console.log($scope.obaveze);
-                 
+
                     $scope.dogadjaji = [{ id: 1, text: "", start_date: new Date(2012, 05, 10), end_date: new Date(2012, 05, 10) }];
 
                     //iteriraj kroz listu dogadjaja i vezi je za kontrolu
@@ -610,17 +609,17 @@ routerApp.controller('scotchController', function ($scope) {
                         title = $scope.obaveze[i].title;
 
                         //prvi datum
-                        var prviDatum = ""+ $scope.obaveze[i].startDate;
+                        var prviDatum = "" + $scope.obaveze[i].startDate;
                         var t = prviDatum.split(".");
 
                         console.log(t[0]);
                         console.log(t[1]);
-                        
+
 
                         var godina = t[2].split(" ");
                         console.log(godina[0]);
-                        var date1 = new Date(godina[0],t[1]-1,t[0]);
-                            
+                        var date1 = new Date(godina[0], t[1] - 1, t[0]);
+
 
                         //var dan1 = prviDatum.getDay();
                         //var mjesec1 = prviDatum.getMonth();
@@ -628,15 +627,15 @@ routerApp.controller('scotchController', function ($scope) {
                         console.log(date1);
                         //console.log(dan1 + " " + mjesec1 + " " + godine1);
                         //date1 = new Date(godine1, dan1, mjesec1);
-                        
+
                         //Drugi datum format
 
                         var drugiDatum = "" + $scope.obaveze[i].endDate
                         var t2 = drugiDatum.split(".");
-                        
+
                         var godina2 = t2[2].split(" ");
 
-                        var date2 = new Date(godina2[0], t2[1]-1, t2[0]);
+                        var date2 = new Date(godina2[0], t2[1] - 1, t2[0]);
                         console.log(date2);
                         //var drugiDatum = new Date($scope.obaveze[i].endDate);
                         //var dan2 = drugiDatum.getDay();
@@ -645,11 +644,11 @@ routerApp.controller('scotchController', function ($scope) {
 
                         //date2 = new Date(godine2, dan2, mjesec2);
                         //console.log(dan2 + " " + mjesec2 + " " + godine2);
-                            
 
 
-                      //  window.alert("title: " + title + " start: " + date1 + " end: "+date2);
-                         //date1 = $scope.obaveze[i].startDate;
+
+                        //  window.alert("title: " + title + " start: " + date1 + " end: "+date2);
+                        //date1 = $scope.obaveze[i].startDate;
                         //date2 = $scope.obaveze[i].endDate;
                         id1 = $scope.obaveze[i].id;
                         //window.alert(title);
@@ -658,8 +657,8 @@ routerApp.controller('scotchController', function ($scope) {
 
                     }
                     //vezi dogadjaje za kontrolu 
-                    $scope.events = $scope.dogadjaji;        
-            });
+                    $scope.events = $scope.dogadjaji;
+                });
             });
             $scope.submitEvent = function () {
                 //var date = $scope.NoviEvent.start;
@@ -682,7 +681,7 @@ routerApp.controller('scotchController', function ($scope) {
             //postavi pocetni datum na kontrole koji se inicijalno prikazuje
             $scope.scheduler = { date: new Date(2014, 05, 1) };
         })
-   
+
 
         .controller("NoviList", function ($scope, $stateParams, $http, $window, $locale) {
 
@@ -748,7 +747,7 @@ routerApp.controller('scotchController', function ($scope) {
                               { id: 6, name: "Red" }
                              ];
             }
-            $scope.selectedColor= 2;
+            $scope.selectedColor = 2;
             var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
 
             responsePromise.success(function (data) {
@@ -812,7 +811,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                 responsePromise.success(function (data) {
                     alert("User has been deleted from your board!");
-                   // $window.location.reload();
+                    // $window.location.reload();
 
                 });
                 response.error(function (data, status, headers, config) {
@@ -883,7 +882,7 @@ routerApp.controller('scotchController', function ($scope) {
                 console.log(odabraniList);
                 console.log($stateParams.id);
                 if ($scope.NoviList.opis != null && $scope.NoviList.crveno != null) {
-                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno+'&color='+$scope.selectedColor.id);
+                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno + '&color=' + $scope.selectedColor.id + '&start=' + $scope.NoviList.start + '&end=' + $scope.NoviList.end, {});
                     response.success(function (data) {
 
                         var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
@@ -922,7 +921,7 @@ routerApp.controller('scotchController', function ($scope) {
 
             }
         })
-        .controller("obaveze", function ($scope, $http, $locale) {
+        .controller("obaveze", function ($scope, $http, $locale, $window) {
 
             console.log(usernamezapretragu);
             if ($locale.id == "en-vg") {
@@ -937,8 +936,8 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.taska = 'Task';
                 $scope.withinboard = 'within board';
             }
-            
-            var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
+
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + $window.sessionStorage.token);
             responsePromise.success(function (data) {
                 iduser = data;
                 console.log(iduser);
@@ -956,8 +955,8 @@ routerApp.controller('scotchController', function ($scope) {
         });
 
 
-  //-----------------//
- //   u p l o a d    //
+//-----------------//
+//   u p l o a d    //
 //------------------//
 
 routerApp.directive('fileModel', ['$parse', function ($parse) {
@@ -976,11 +975,11 @@ routerApp.directive('fileModel', ['$parse', function ($parse) {
     };
 }]);
 
-routerApp.service('fileUpload', ['$http', function ($http) {
+routerApp.service('fileUpload', ['$http', '$window', function ($http, $window) {
     this.uploadFileToUrl = function (file, uploadUrl) {
         var fd = new FormData();
         fd.append('file', file);
-        fd.append('username', usernamezapretragu);
+        fd.append('username', $window.sessionStorage.token);
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -992,7 +991,7 @@ routerApp.service('fileUpload', ['$http', function ($http) {
     }
 }]);
 
-routerApp.controller('myCtrl', ['$scope', 'fileUpload', function ($scope,  fileUpload) {
+routerApp.controller('myCtrl', ['$scope', 'fileUpload', function ($scope, fileUpload) {
 
     $scope.uploadFile = function () {
         var file = $scope.myFile;

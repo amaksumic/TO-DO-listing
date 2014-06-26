@@ -656,3 +656,7 @@ C:\Users\_amna_\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\ru\System.Spati
 C:\Users\_amna_\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\_amna_\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\_amna_\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Trollo.resources.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\AntiXssLibrary.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\HtmlSanitizationLibrary.dll
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\AntiXssLibrary.xml
+C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\HtmlSanitizationLibrary.xml

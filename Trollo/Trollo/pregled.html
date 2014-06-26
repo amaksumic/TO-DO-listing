@@ -243,10 +243,21 @@
                                           </button>
                                         </div>
                                     <label for="noviTask">{{AddDescription}}:</label>
-                                   
+
+                                  
                                     <input type="text" value="" class="form-control" id="Text2" ng-model="NoviList.opis" placeholder="{{selectTask.comment}}">
                                     {{Priority}} <span style="color:red">{{RED}}</span> ?<input type="checkbox" ng-model="NoviList.crveno" > <br/>
-                                  
+                                    
+                                     <!--  Start date and end date-->
+                                    <label for="start">Start date:</label>
+                                        <input type="date" class="form-control" id="start" ng-model="NoviList.start" >
+                                    </div>
+                               
+                                    <div class="form-group">
+                                        <label for="end">End date:</label>
+                                        <input type="date" class="form-control" id="end" ng-model="NoviList.end" >
+                                    </div>
+                                   
                                     <label for="noviTask">{{Adduser}}:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
                                 </div>
