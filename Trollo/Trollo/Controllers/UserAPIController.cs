@@ -17,15 +17,14 @@ using System.Drawing;
 using System.Web.Hosting;
 using System.Drawing.Imaging;
 using System.Net.Http.Headers;
+using Microsoft.Security.Application;
 
 namespace Trollo.Controllers
 {
     public class UserAPIController : ApiController
     {
         private mydbEntities db = new mydbEntities();
-
         int id = 0;
-
         [Authorize]
         public class UsersController : ApiController
         {
@@ -47,7 +46,7 @@ namespace Trollo.Controllers
             return user;
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public string LoginApi(string pass, string name)
         {
             //user user =  db.user.Where(a => a.username.Equals(name) && a.password.Equals(pass)).FirstOrDefault();
@@ -87,23 +86,28 @@ namespace Trollo.Controllers
         // POST api/UserAPI
         public HttpResponseMessage Postuser(user user)
         {
-            if (ModelState.IsValid)
-            {
-                db.user.Add(user);
+                string _username = Sanitizer.GetSafeHtmlFragment(user.username);
+                string _password = Sanitizer.GetSafeHtmlFragment(user.password);
+                string _mail = Sanitizer.GetSafeHtmlFragment(user.email);
+                if (_username != ""&&_password != ""&&_mail != "")
+                {
+                user novi = new user(_username,_password,_mail);
+                db.user.Add(novi);
                 db.SaveChanges();
-
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.idUser }));
                 return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+                }
+                else
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Forbidden);
+                    return response;
+                }
+            
         }
 
         // DELETE api/UserAPI/5
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage Deleteuser(int id)
         {
             user user = db.user.Find(id);
@@ -133,7 +137,7 @@ namespace Trollo.Controllers
         }
 
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public user GetUserByUsername(string username)
         {
@@ -153,7 +157,7 @@ namespace Trollo.Controllers
 
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public user GetUserByEmail(string email)
         {
@@ -173,9 +177,7 @@ namespace Trollo.Controllers
 
         }
 
-
-
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public string UpdateEmail(int id, string noviemail)
         {
@@ -193,7 +195,7 @@ namespace Trollo.Controllers
 
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public string UpdatePassword(int id, string novi, string repeate)
         {
@@ -211,7 +213,7 @@ namespace Trollo.Controllers
 
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public string UpdateUsername(int id, string novi)
         {
@@ -278,12 +280,14 @@ namespace Trollo.Controllers
                 db.SaveChanges();
 */
 
-
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public user Registration(string username, string pass, string email)
         {
-            user kor = new user(0, username, pass, email);
+            string _username = Sanitizer.GetSafeHtmlFragment(username);
+            string _password = Sanitizer.GetSafeHtmlFragment(pass);
+            string _mail = Sanitizer.GetSafeHtmlFragment(email);
+            user kor = new user(0, _username, _password, _mail);
             kor.picture = "~/uploads/anonim.jpg";
             db.user.Add(kor);
             db.SaveChanges();
@@ -291,7 +295,7 @@ namespace Trollo.Controllers
             return kor;
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public int GetId(string username)
         {
@@ -314,7 +318,7 @@ namespace Trollo.Controllers
 
         }*/
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/UserApi/5
         public user Login(string username, string pass)
         {
@@ -332,7 +336,7 @@ namespace Trollo.Controllers
             return null;
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public string Logout()
         {
             return null;

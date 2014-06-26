@@ -19,14 +19,15 @@ namespace Trollo
         {
             this.list = new HashSet<list>();
         }
+        public board(string _title)
+        {
+            title = _title;
+        }
 
-        
         public int idBoard { get; set; }
-        [AllowHtml]
         public string title { get; set; }
         public System.DateTime creationDate { get; set; }
         public int boardOwner { get; set; }
-    
         public virtual user user { get; set; }
         public virtual ICollection<list> list { get; set; }
     }

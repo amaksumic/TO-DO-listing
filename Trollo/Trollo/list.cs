@@ -19,12 +19,13 @@ namespace Trollo
         {
             this.task = new HashSet<task>();
         }
-    
+        public list(string _title)
+        {
+            title = _title;
+        }
         public int idList { get; set; }
-        [AllowHtml]
         public string title { get; set; }
         public int ownerBoard { get; set; }
-    
         public virtual board board { get; set; }
         public virtual ICollection<task> task { get; set; }
     }

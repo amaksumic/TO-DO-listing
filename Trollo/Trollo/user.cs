@@ -32,6 +32,12 @@ namespace Trollo
             password = _pass;
             email = _email;
         }
+        public user(string _username, string _pass, string _email)
+        {
+            username = _username;
+            password = _pass;
+            email = _email;
+        }
         public user(int id, string _username)
         {
             idUser = id;
@@ -39,12 +45,9 @@ namespace Trollo
         }
     
         public int idUser { get; set; }
-        [AllowHtml]
         public string username { get; set; }
-        [AllowHtml]
         public string password { get; set; }
         public System.DateTime creationDate { get; set; }
-        [AllowHtml]
         public string email { get; set; }
         public Nullable<int> registered { get; set; }
         public string picture { get; set; }

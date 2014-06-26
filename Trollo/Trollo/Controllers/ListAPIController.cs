@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Security.Application;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Trollo.Controllers
 {
@@ -74,23 +76,23 @@ namespace Trollo.Controllers
         }
 
         // POST api/ListApi
+        [System.Web.Http.HttpPost]
+        [ValidateInput(true)]
         public HttpResponseMessage Postlist(list list)
         {
-            if (ModelState.IsValid)
-            {
-                db.list.Add(list);
-                db.SaveChanges();
-
-                
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, list);
-                response.Headers.Location = new Uri(Url.Link("RutaList", new { id = list.idList }));
-                return response;
-                 
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+                list.title = Sanitizer.GetSafeHtmlFragment(list.title);
+                if (list.title != "")
+                {
+                    db.list.Add(list);
+                    db.SaveChanges();
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, list);
+                    response.Headers.Location = new Uri(Url.Link("RutaList", new { id = list.idList }));
+                    return response;
+                }
+                else {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Forbidden);
+                    return response;
+                }
         }
 
         // DELETE api/ListApi/5

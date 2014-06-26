@@ -20,6 +20,11 @@ namespace Trollo
 
         }
 
+        public task(string _title)
+        {
+            title = _title;
+        }
+
         public task(int _id, string _title, int _ownerList, int _label)
         {
             idTask = _id;
@@ -47,12 +52,10 @@ namespace Trollo
             label = _label;
         }
 
-        public int idTask { get; set; }
-        [AllowHtml]
+        public int idTask { get; set; }      
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }
         public Nullable<System.DateTime> endTime { get; set; }
-        [AllowHtml]
         public string comment { get; set; }
         public Nullable<int> label { get; set; }
         public byte[] file { get; set; }

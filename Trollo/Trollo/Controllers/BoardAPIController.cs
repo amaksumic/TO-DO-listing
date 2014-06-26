@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Security.Application;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Trollo.Controllers
 {
@@ -30,7 +32,7 @@ namespace Trollo.Controllers
             }
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/BoardApi/5
         public List<board> Getboard(int id)
         {
@@ -63,7 +65,7 @@ namespace Trollo.Controllers
         }
 
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/BoardApi/5
         public board GetTitle(int id)
         {
@@ -71,6 +73,7 @@ namespace Trollo.Controllers
             return board;
         }
 
+        
         // PUT api/BoardApi/5
         public HttpResponseMessage Putboard(int id, board board)
         {
@@ -95,26 +98,25 @@ namespace Trollo.Controllers
             }
         }
 
-        // GET api/BoardApi/5
-
-
+        
+        [System.Web.Http.HttpPost]
         // POST api/BoardApi
+        [ValidateInput(true)]
         public HttpResponseMessage Postboard(board board)
         {
-            if (ModelState.IsValid)
+            if (board.title != "")
             {
+                board.title = Sanitizer.GetSafeHtmlFragment(board.title);
                 db.board.Add(board);
                 db.SaveChanges();
-
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, board);
                 response.Headers.Location = new Uri(Url.Link("RutaBoard", new { id = board.idBoard }));
-
-
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Forbidden);
+                return response;
             }
         }
 

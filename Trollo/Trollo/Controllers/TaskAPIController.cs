@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Security.Application;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Trollo.Controllers
 {
@@ -51,7 +53,7 @@ namespace Trollo.Controllers
         //** L I S T A  I  NJENI TASKOVI
      
         // GET api/TaskApi/5/5
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public List<task> GetListsTasks(int id)
         {
             var session = HttpContext.Current.Session;
@@ -78,19 +80,13 @@ namespace Trollo.Controllers
 
 
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/TaskApi/5/5
         public  List<obaveze> GetTasksByOwner(int id) //Vraca task-ove za task creatora
         {
-
             List<obaveze> obaveze = new List<obaveze>();
-
-
-
-             IEnumerable<obaveze> assignment = db.Database.SqlQuery<obaveze>("SELECT t.title as task, l.title as list, b.title as board, b.idBoard as id, t.label as label FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" + 
+            IEnumerable<obaveze> assignment = db.Database.SqlQuery<obaveze>("SELECT t.title as task, l.title as list, b.title as board, b.idBoard as id, t.label as label FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" + 
                             " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
-
-
             foreach (var a in assignment)
             {
                 obaveze.Add(new obaveze { task = a.task, list = a.list, board=a.board, id = a.id, label = a.label});
@@ -98,20 +94,16 @@ namespace Trollo.Controllers
             return obaveze;
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/TaskApi/5/5
         public List<calendarTask> GetCalendarTasks(int id) //Vraca task-ove za task creatora
         {
-
             List<calendarTask> obaveze = new List<calendarTask>();
-
-
 
            // IEnumerable<calendarTask> assignment = db.Database.SqlQuery<calendarTask>("SELECT t.startTime as startDate, t.title as title, t.endTime as endDate, b.idBoard as id FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" +
                      //      " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
 
             IEnumerable<calendarTask> assignment = db.Database.SqlQuery<calendarTask>("SELECT t.startTime as startDate, t.endTime as endDate, t.title as title, t.idTask as id FROM task t WHERE t.taskCreator = {0}", id);
-
 
             foreach (var a in assignment)
             {
@@ -121,24 +113,19 @@ namespace Trollo.Controllers
         }
 
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         // GET api/TaskApi/5/5
         public void TaskToMember(string username, int idtask) //Vraca task-ove za task creatora
         {
-
-              
                 user kor = new user();
                 kor = db.user.Where(a => a.username.Equals(username)).FirstOrDefault();
-
-                    taskmembers taskmember = new taskmembers { idtask = idtask, iduser = kor.idUser };
-
-                    db.taskmembers.Add(taskmember);
-                    db.SaveChanges();
-
+                taskmembers taskmember = new taskmembers { idtask = idtask, iduser = kor.idUser };
+                db.taskmembers.Add(taskmember);
+                db.SaveChanges();
         }
 
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public String GetAllProducts()
         {
             var session = HttpContext.Current.Session;
@@ -173,7 +160,7 @@ namespace Trollo.Controllers
         // {"idTask" : 9, "title" : "21BOO", "comment" : "23HALLO!", "label" : 1, "ownerList" : 1, "taskCreator" : 1}
 
         // POST api/TaskApi/5
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public void UpdateTask(int id, string comment, bool label,int color)
         {
             /*var session = HttpContext.Current.Session;
@@ -211,7 +198,9 @@ namespace Trollo.Controllers
         //{"title" : "21BOO", "comment" : "23HALLO!", "label" : 1, "ownerList" : 1, "taskCreator" : 1}
 
         // POST api/TaskApi
-        [HttpPost]
+
+        [System.Web.Http.HttpPost]
+        [ValidateInput(true)]
         public HttpResponseMessage CreateTask(task task)
         {
             var session = HttpContext.Current.Session;
@@ -219,19 +208,21 @@ namespace Trollo.Controllers
             {
                 string Admin = session["Admin"].ToString();
             }
-            if (ModelState.IsValid)
+            if (task.title != "")
             {
+                task.title = Sanitizer.GetSafeHtmlFragment(task.title);
                 db.task.Add(task);
                 db.SaveChanges();
-
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, task);
                 response.Headers.Location = new Uri(Url.Link("Ruta4Api", new { id = task.idTask }));
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Forbidden);
+                return response;
             }
+
         }
 
         //idTask, title, comment, label, ownerList, taskCreator
@@ -239,7 +230,7 @@ namespace Trollo.Controllers
         //** B R I S A NJ E
 
         // DELETE api/TaskApi/5
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public HttpResponseMessage Deletetask(int id)
         {
             var session = HttpContext.Current.Session;
