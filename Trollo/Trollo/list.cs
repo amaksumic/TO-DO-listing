@@ -11,6 +11,7 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.Mvc;
     
     public partial class list
     {
@@ -20,6 +21,7 @@ namespace Trollo
         }
     
         public int idList { get; set; }
+        [AllowHtml]
         public string title { get; set; }
         public int ownerBoard { get; set; }
     

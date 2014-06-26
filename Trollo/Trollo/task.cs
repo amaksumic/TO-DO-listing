@@ -11,6 +11,7 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.Mvc;
     
     public partial class task
     {
@@ -47,9 +48,11 @@ namespace Trollo
         }
 
         public int idTask { get; set; }
+        [AllowHtml]
         public string title { get; set; }
         public Nullable<System.DateTime> startTime { get; set; }
         public Nullable<System.DateTime> endTime { get; set; }
+        [AllowHtml]
         public string comment { get; set; }
         public Nullable<int> label { get; set; }
         public byte[] file { get; set; }

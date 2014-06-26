@@ -11,6 +11,7 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.Mvc;
     
     public partial class board
     {
@@ -18,8 +19,10 @@ namespace Trollo
         {
             this.list = new HashSet<list>();
         }
-    
+
+        
         public int idBoard { get; set; }
+        [AllowHtml]
         public string title { get; set; }
         public System.DateTime creationDate { get; set; }
         public int boardOwner { get; set; }

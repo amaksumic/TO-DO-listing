@@ -11,6 +11,7 @@ namespace Trollo
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.Mvc;
     
     public partial class user
     {
@@ -38,9 +39,12 @@ namespace Trollo
         }
     
         public int idUser { get; set; }
+        [AllowHtml]
         public string username { get; set; }
+        [AllowHtml]
         public string password { get; set; }
         public System.DateTime creationDate { get; set; }
+        [AllowHtml]
         public string email { get; set; }
         public Nullable<int> registered { get; set; }
         public string picture { get; set; }
