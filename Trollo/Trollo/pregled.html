@@ -21,32 +21,18 @@
                     </table>
          
                 </td>
-                <td style ="width:20% ;">
-                {{Boardusers}}:
-                    <div ng-repeat="u in user ">
-                    
-                            {{u.username }}
-                        
-                        
-                                <button class="btn btn-xs btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
-                                               - {{Deletemember}}
-                                </button>
-                        
-                     </div>
+                <td style ="width:auto ;">
+                </td>
                 <td style ="width:30% ;">
                     
                         <table style="width:100%">
                                 <tr>
-                                    <td style ="width:80%; text-align:right">
+                                    <td style ="width:100%; text-align:right">
 
-                                        <div class="btn-group">
-                                            <button class="btn btn-default " data-toggle="modal" data-target="#myModal6">
-                                              + {{Adduser}}
-                                            </button>
-                                        </div>
+
 
                                     </td>
-                                    <td style ="width:20%; text-align:right">
+                                    <td style ="width:100%; text-align:right">
 
                                         <div class="btn-group">
                                             <button class="btn btn-default " data-toggle="modal" data-target="#myModal7">
@@ -65,8 +51,41 @@
 
 
 
+<table><tr>
+    <td style="border-right-color:black">
+        <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; border-right-color:#black; height:100%; width:3.5cm; vertical-align:central; margin-top:120px" role="navigation">
+            <table>
+            <tr>
+                <td style ="width:20%;">
+                    <span style="font-weight:bold"> 
+                    <br><br>
+                    {{Boardusers}}
+                    <br><br>
+                    </span>
+                    <div ng-repeat="u in user "> 
+                                          
+                            {{u.username }}    
+                                                
+                            <br>
+                            <button class="btn btn-xs btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
+                                      - {{Deletemember}}
+                            </button><br><br>                        
+                     </div>
+                     <div class="btn-group">
+                            <button class="btn btn-default " data-toggle="modal" data-target="#myModal6">
+                                 + {{Adduser}}
+                            </button>
+                     </div>
+                </td>
+            </tr>    
+         </table>
+    </nav> 
 
-                  <table style="vertical-align:top; margin-left:-100px;" ><tr><td ng-repeat="l in list " > <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
+            </td>
+            <td>
+
+        
+                  <table style="vertical-align:top; margin-left:20px;" ><tr><td ng-repeat="l in list " > <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
                      <table style="width : 350px "><tr>
                             <td style="text-align:start; vertical-align:top"> 
                  <br />
@@ -109,11 +128,10 @@
                                     </td></tr></table>
                                
                                 </div></div>
-                                </div></div></div>
-                                </div></div></div>
+                                </div></div></div></td></tr></table></td></tr></table>
+                                </td></tr></table>
                             
-</td></tr></table>
-</td></tr></table>
+ 
 
     <!---------------->
     <!-- DODAJ USER -->
@@ -260,9 +278,10 @@
                                    
                                     <label for="noviTask">{{Adduser}}:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
-                                </div>
+                                
                                    <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">{{Update}}</button>
-                               </form> 
+                               </form>
+              </td></tr></table> 
            
             
       </div>
@@ -270,5 +289,5 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-           
-</div>
+ </div>      
+
