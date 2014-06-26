@@ -92,7 +92,7 @@
                                        <div class="panel-body">             
                                 <table><tr ng-repeat="d in task | orderBy: sortOrder" ><td >   
                                  
-                      
+                                        <div ng-if="d.ownerList==l.idList">
                                     <a class="list-group-item" style="color:#000;" data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9">
                                      <div ng-if= "d.label == 0" style="text-align:left;"> {{d.title | uppercase}}</div>
                                         <div ng-if= "d.label == 1" > 
@@ -105,6 +105,7 @@
                                             </td></tr></table>
                                         </div>
                                     </a>
+                                            </div>
                                     </td></tr></table>
                                
                                 </div></div>
@@ -247,6 +248,16 @@
                                     <input type="text" value="" class="form-control" id="Text2" ng-model="NoviList.opis" placeholder="{{selectTask.comment}}">
                                     {{Priority}} <span style="color:red">{{RED}}</span> ?<input type="checkbox" ng-model="NoviList.crveno" > <br/>
                                   
+                                      <!--  Start date and end date-->
+                                    <label for="start">Start date:</label>
+                                        <input type="date" class="form-control" id="start" ng-model="NoviList.start" >
+                                    </div>
+                               
+                                    <div class="form-group">
+                                        <label for="end">End date:</label>
+                                        <input type="date" class="form-control" id="end" ng-model="NoviList.end" >
+                                    </div>
+                                   
                                     <label for="noviTask">{{Adduser}}:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
                                 </div>

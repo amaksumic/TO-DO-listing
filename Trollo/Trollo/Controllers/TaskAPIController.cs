@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace Trollo.Controllers
 {
@@ -161,7 +162,7 @@ namespace Trollo.Controllers
 
         // POST api/TaskApi/5
         [System.Web.Http.HttpGet]
-        public void UpdateTask(int id, string comment, bool label,int color)
+        public void UpdateTask(int id, string comment, bool label,int color, String start, String end)
         {
             /*var session = HttpContext.Current.Session;
             if (session != null)
@@ -172,9 +173,17 @@ namespace Trollo.Controllers
             //if (ModelState.IsValid && id == task.idTask)
             //{
                 //Ovdje se mijenjam->
+            string pattern = "yyyy-MM-dd";
+            DateTime startD, endD;
+
+            DateTime.TryParseExact(start, pattern, null,
+                                         DateTimeStyles.None, out startD);
+            DateTime.TryParseExact(end, pattern, null,
+                                         DateTimeStyles.None, out endD);
 
                 var task = db.task.Find(id);
-                
+                task.startTime = startD;
+                task.endTime = endD;
                     task.comment = comment;
                     task.taskOwner = color;
                     if (label == true) task.label = 1;

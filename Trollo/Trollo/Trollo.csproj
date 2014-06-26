@@ -333,6 +333,8 @@
     <Content Include="index_slicice\library_wiz.png" />
     <Content Include="index_slicice\library_wiz1.png" />
     <Content Include="index_slicice\logininput.gif" />
+    <Content Include="index_slicice\logo.png" />
+    <Content Include="index_slicice\logo2.jpg" />
     <Content Include="index_slicice\right.gif" />
     <Content Include="index_slicice\task.png" />
     <Content Include="index_slicice\up.gif" />

@@ -501,14 +501,14 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.Logout = "Logout";
         }
 	
-        var responsePromise = $http.get("api/UserApi/GetPath?username=" + usernamezapretragu, {});
+        var responsePromise = $http.get("api/UserApi/GetPath?username=" + $window.sessionStorage.token, {});
 
         responsePromise.success(function (data) {
           console.log(data);
             
 
             $scope.username2 = $window.sessionStorage.token;
-            //$scope.image = "http://localhost:49338/Uploads/" + data.picture;
+            $scope.image = "http://localhost:49338/Uploads/" + data.picture;
             $scope.username3 = $window.sessionStorage.token;
         });
 
@@ -578,14 +578,14 @@ routerApp.controller('scotchController', function ($scope) {
 
         
 
-        .controller("MainSchedulerCtrl", function ($scope, $http) {            
+        .controller("MainSchedulerCtrl", function ($scope, $http,$window) {            
             //
             var idUsera;
             //dobavi username korisnika         
 
 
             //dobavi id korisnika
-            var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + $window.sessionStorage.token);
 
             responsePromise.success(function (data) {
                 idUsera = data;      
@@ -883,7 +883,7 @@ routerApp.controller('scotchController', function ($scope) {
                 console.log(odabraniList);
                 console.log($stateParams.id);
                 if ($scope.NoviList.opis != null && $scope.NoviList.crveno != null) {
-                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno+'&color='+$scope.selectedColor.id);
+                    var response = $http.get('api/TaskApi/UpdateTask?id=' + $scope.selectTask.idTask + '&comment=' + $scope.NoviList.opis + '&label=' + $scope.NoviList.crveno + '&color=' + $scope.selectedColor.id + '&start=' + $scope.NoviList.start + '&end=' + $scope.NoviList.end, {});
                     response.success(function (data) {
 
                         var responsePromise = $http.get('api/ListApi/GetLists?id=' + odabraniBoard, {});
@@ -922,7 +922,7 @@ routerApp.controller('scotchController', function ($scope) {
 
             }
         })
-        .controller("obaveze", function ($scope, $http, $locale) {
+        .controller("obaveze", function ($scope, $http, $locale, $window) {
 
             console.log(usernamezapretragu);
             if ($locale.id == "en-vg") {
@@ -938,7 +938,7 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.withinboard = 'within board';
             }
             
-            var responsePromise = $http.get('api/UserApi/GetId?username=' + usernamezapretragu);
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + $window.sessionStorage.token);
             responsePromise.success(function (data) {
                 iduser = data;
                 console.log(iduser);
@@ -976,11 +976,11 @@ routerApp.directive('fileModel', ['$parse', function ($parse) {
     };
 }]);
 
-routerApp.service('fileUpload', ['$http', function ($http) {
+routerApp.service('fileUpload', ['$http','$window', function ($http, $window) {
     this.uploadFileToUrl = function (file, uploadUrl) {
         var fd = new FormData();
         fd.append('file', file);
-        fd.append('username', usernamezapretragu);
+        fd.append('username', $window.sessionStorage.token);
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }

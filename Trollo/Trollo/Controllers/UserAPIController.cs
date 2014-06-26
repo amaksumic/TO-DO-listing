@@ -306,7 +306,7 @@ namespace Trollo.Controllers
 
         }
 
-        /*[HttpGet]
+        [HttpGet]
         // GET api/UserApi/5
         
         public user GetPath(string username)
@@ -316,7 +316,7 @@ namespace Trollo.Controllers
             user kor2 = new user(kor.picture);
             return kor2;
 
-        }*/
+        }
 
         [System.Web.Http.HttpGet]
         // GET api/UserApi/5

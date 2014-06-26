@@ -8,7 +8,7 @@
         <table>
             <tr>
                 <td style ="width:15cm">
-                
+                     <img src="index_slicice/logo.png" />
                 </td>
                 <td style ="width:10cm">
                 </td>
@@ -66,7 +66,7 @@
         <tr>
         
             <td style="width:15cm; border-right:solid; border-right-color:black">
-                Organize yourself!
+                <img src="index_slicice/tB1CAMv.png" />
             </td>
             <td style="width:2cm;"></td>
             <td>
@@ -86,7 +86,7 @@
                       <!--  PASSWORD -->
                         <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
                             
-                            <input type="password" style="height:1cm; width:8cm" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8" placeholder="Password">
+                            <input type="password" style="height:1.3cm; width:9.1cm" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8" placeholder="Password">
                             <p ng-show="userForm.username.$error.minlength" class="help-block">Password is too short.</p>
                             <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
                         </div>
@@ -94,11 +94,11 @@
                         <!-- EMAIL -->
                         <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
                            
-                            <input type="email" style="height:1cm; width:8cm" name="email" class="form-control" ng-model="user.email" placeholder="Email">
+                            <input type="email" style="height:1.3cm; width:9.1cm" name="email" class="form-control" ng-model="user.email" placeholder="Email">
                             <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
                         </div>
         
-                        <button type="submit" style="height:0.7cm; width:8cm; padding:0px" class="btn btn-success" ng-disabled="userForm.$invalid">Sign Up</button>
+                        <button type="submit" style="height:0.9cm; width:9.1cm; padding:0px" class="btn btn-success" ng-disabled="userForm.$invalid">Sign Up</button>
         
                     </form>
                 </div>
