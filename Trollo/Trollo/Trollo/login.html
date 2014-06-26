@@ -1,0 +1,29 @@
+﻿<div ng-controller="Login" >
+    
+      <script src="{{login.jezik}}"></script>
+    <BR>      
+      
+    <form>
+
+        Please select the language you want your site to be:
+        <BR/>
+
+        <select id="lang" ng-model="login.language">
+            <option value="english">English</option>
+            <option value="arabic">中國的</option>
+            <option value="bosanski">Bosanski</option>
+        </select>
+
+        <BR/>
+      
+  
+        <input type="text" id="name" ng-model="login.name" /> Username <br>      
+        <input type="password" id="pass" ng-model="login.pass" /> Password <br><br>
+
+        <button ng-click="login.submitTheForm()">Prijavi</button>
+    </form>
+
+    <BR>
+    Niste registrovani? Registrujte se <a href='index.html#/registracija';> sada</a>!
+
+</div>

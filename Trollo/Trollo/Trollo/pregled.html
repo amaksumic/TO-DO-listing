@@ -1,0 +1,293 @@
+﻿
+
+<div ng-controller="NoviList" >        
+    
+    <table>
+        <tr>
+            <td style="width:880px; vertical-align:text-top">
+
+                  <div ng-controller="ViewBoard">
+                     <div class="panel" >                 
+                     <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{Overview}}</span>
+                           <div class="panel-body">
+                           <p>  {{Title}}: {{board.title}}</p>
+                           </div>
+                         </div>
+                  </div>                              
+            </td>  
+            <td style="text-align:right; vertical-align:text-top">
+
+                <div class="btn-group-vertical">
+                    <button class="btn btn-default " data-toggle="modal" data-target="#myModal6">
+                      + {{Adduser}}
+                    </button>
+                </div>
+                 <div class="btn-group-vertical">
+                    <button class="btn btn-default " data-toggle="modal" data-target="#myModal7">
+                      + {{Addlist}}
+                    </button>
+                </div>
+
+            </td>                     
+        </tr>
+        <tr >
+            <td>{{Boardusers}}:</td>
+            </tr>
+        <tr>
+            <td style="text-align:left; vertical-align:text-top">
+                <div ng-repeat="u in user ">
+                    
+                        {{u.username }}
+                        
+                        
+                            <button class="btn btn-xs btn-default "  ng-click="obrisiKorisnika(u.idUser)" >
+                                           - {{Deletemember}}
+                                          </button>
+                        
+                            </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+
+
+
+
+                 <span style ="color:cadetblue; font-size:larger; font-weight:bold">{{Lists}}</span>
+<div class="outer">
+    <div class="inner">
+                  <table><tr><td ng-repeat="l in list " style="text-align:start; vertical-align:top"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
+                     <table style="width : 350px "><tr>
+                            <td style="text-align:start; vertical-align:top"> 
+                 <br />
+                      <div class="panel-group" style="width : 320px">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            
+                              <table style="width : 300px"><tr>
+                            <td style="text-align:start; vertical-align:top"><h3 class="panel-title">{{l.title | uppercase}}</h3></td>
+                             <td style="text-align:right"> <div class="btn-group-vertical">
+                                          <button class="btn btn-default " data-toggle="modal" ng-click="pregledLista(l.idList)" data-target="#myModal8">
+                                           + {{Addtask}}
+                                          </button>
+                                           
+                                      </div></td></tr> </table>
+                          </div>
+                           
+                           
+                          <div class="panel-body">
+                            
+                                <div ng-repeat="d in task | orderBy: sortOrder" draggable="true" dropable="true" on-Drop="onDrop($event,$data,d)" drag="d" on-drop-success="dropSuccessHandler($event,$index,d)" on-Drop="onDrop($event,$data,d)" on-drop-success="dropSuccessHandler($event,$index,d)">   
+                                <br />
+                                    <div ng-if= "d.ownerList == l.idList">
+                                <div class="btn-group">
+                                    
+                                    <button class="btn btn-default btn-lg"    data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9" style="width:300px; height:1.5cm; font-size:small">
+                                        <div ng-if= "d.label == 0" style="text-align:left;"> {{d.title | uppercase}}</div>
+                                        <div ng-if= "d.label == 1" > 
+                                            <table><tr>
+                                            <td style="width:250px; text-align:left">
+                                            {{d.title | uppercase}}
+                                            </td>
+                                            <td style="text-align:right">
+                                            <img src="index_slicice/task.png"/>
+                                            </td></tr></table>
+                                        </div>
+                                     </button>
+                                    
+                                </div> 
+                                </div>
+                            </div>                            
+                            </div> 
+
+
+                        </div>
+
+                        </div>  </td></tr> </table>
+                    </tr></table></div></div>
+            </td>             
+            <td style="text-align:right; vertical-align:text-top">
+
+
+
+    <!---------------->
+    <!-- DODAJ USER -->
+    <!---------------->
+<div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+            <div ng-controller="AddUser" >
+            <form><table><tr><td style =" text-align : right">
+
+
+         <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
+
+            <div class="input-group">
+            <span>{{Username}}</span>   
+            <input type="text" id="username" class="form-control" ng-model="addUser.username" />
+                <br/>
+                <br/> </div>
+            <button class="btn btn-default" data-dismiss ="modal" ng-click="addUser.submitTheForm()">{{Add}}</button>
+           
+            </td></tr></table></form></div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <!---------------->
+    <!-- DODAJ LIST -->
+    <!---------------->
+<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+          <table><tr><td style =" text-align : right">   
+
+                                  <!--KREIRANJE LISTE -->
+                              <form role="form">
+                                <div class="form-group">
+                                    <label for="noviBoard">{{Newlistname}}:</label>
+                                    <input type="text" class="form-control" id="noviList" ng-model="NoviList.name" >
+
+                                </div>
+                                   <button type="submit" data-dismiss ="modal" class="btn btn-primary" ng-click="submitList()">{{Add}}</button>
+                               </form> 
+           
+            </td></tr></table>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+    <!---------------->
+    <!-- DODAJ TASK -->
+    <!---------------->
+<div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+          <table><tr><td style =" text-align : right">   
+
+                                  <!--KREIRANJE TASKA -->
+                              <form role="form">
+                                <div class="form-group">
+                                    <label for="noviTask">{{Newtaskname}}:</label>
+                                    <input type="text" class="form-control" id="Text1" ng-model="NoviList.tasktitle" >
+
+                                </div>
+                                   <button type="submit" data-dismiss ="modal"class="btn btn-primary" ng-click="submitTask()">{{Add}}</button>
+                               </form> 
+           
+            </td></tr></table>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <!---------------->
+    <!-- UPDATE TASK-->
+    <!---------------->
+<div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+          <table><tr><td style =" text-align : right">   
+
+                                  <!--UPDATE     TASKA -->
+                              <form role="form">
+                                  
+                            {{Addcolor}}:
+                                    <select ng-model="selectedColor" 
+                                             data-ng-options="col.name for col in colors">                
+                                      </select>
+                                  <div ng-if= "selectedColor.id == 2"> 
+                                      <label style = "display:block ; width :200px" class="label label-default" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 3"> 
+                                      <label style = "display:block ; width :200px" class="label label-primary" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 4"> 
+                                      <label style = "display:block ; width :200px" class="label label-success" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 5"> 
+                                      <label style = "display:block ; width :200px" class="label label-warning" > </label>
+                                 </div>
+                                 <div ng-if= "selectedColor.id == 6"> 
+                                      <label style = "display:block ; width :200px" class="label label-danger" > </label>
+                                 </div>
+            
+                                <div class="form-group">
+                                    <div ng-repeat="u in TaskUser ">
+                                        {{u.username }}
+                                        <button class="btn btn-xs btn-default"  ng-click="obrisiKorisnikaTask(u.idUser,selectTask.idTask)" >
+                                           - {{Deletemember}}
+                                          </button>
+                                        </div>
+                                    <label for="noviTask">{{AddDescription}}:</label>
+                                   
+                                    <input type="text" value="" class="form-control" id="Text2" ng-model="NoviList.opis" placeholder="{{selectTask.comment}}">
+                                    {{Priority}} <span style="color:red">{{RED}}</span> ?<input type="checkbox" ng-model="NoviList.crveno" > <br/>
+                                  
+                                    <label for="noviTask">{{Adduser}}:</label>
+                                    <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
+                                </div>
+                                   <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">{{Update}}</button>
+                                    <div ng-controller="DatepickerDemoCtrl">
+<pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+
+    <h4>Inline</h4>
+    <div style="display:inline-block; min-height:290px;">
+        <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+    </div>
+
+    <h4>Popup</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Format:</label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
+        </div>
+    </div>
+
+    <hr />
+    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
+    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
+
+</div>                       
+                                  
+                                   </form> 
+           
+            </td></tr></table>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+            </div>

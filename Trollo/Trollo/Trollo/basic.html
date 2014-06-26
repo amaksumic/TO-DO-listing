@@ -1,0 +1,108 @@
+﻿
+					
+<!doctype html>
+
+<html >
+
+	<head>
+		<title> Ucimo angular</title>
+           <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+           <script src="basic.js"></script>
+	</head>
+
+
+	<body ng-app="myapp">
+
+ <div ng-controller="MyController" >
+  <form>
+      
+      <input type="text" id="name" ng-model="myForm.name" /> Unesi id taska </br>
+    <button ng-click="myForm.submitTheForm()">Submit Form</button>
+  </form>
+
+ 
+     <div>
+       Task=  {{task}}
+     </div>
+</div>
+
+
+        <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
+
+         <div ng-controller="Pretraga" >
+
+          <form>      
+            <input type="text" id="username" ng-model="pretragaKorisnika.username" /> Username korisnika </br>
+            <button ng-click="pretragaKorisnika.submitTheForm()">Pretrazi</button>
+          </form>          
+          
+                <p>{{user.username}} </p>
+                   
+        </div>
+
+         <!-- PRETRAGA KORISNIKA PO EMAIL-U -->
+
+         <div ng-controller="PretragaEmail" >
+
+          <form>      
+            <input type="text" id="Text1" ng-model="pretragaKorisnika2.email" /> Email korisnika </br>
+            <button ng-click="pretragaKorisnika2.submitTheForm()">Pretrazi</button>
+          </form>          
+          
+                <p>{{user.username}} </p>
+                   
+        </div>
+
+
+         <!-- IZMJENA USERNAME-A I PASSWORD-A -->
+
+         <div ng-controller="IzmjenaKorisnika" >
+
+          <form>
+              <input type="text" id="id" ng-model="izmjenaKorisnika.id" /> ID korisnika </br>      
+            <input type="text" id="stari" ng-model="izmjenaKorisnika.stari" /> Stari password </br>
+              <input type="text" id="novi" ng-model="izmjenaKorisnika.novi" /> Novi password </br>
+              <input type="text" id="noviemail" ng-model="izmjenaKorisnika.noviemail" /> Novi email </br>
+            <button ng-click="izmjenaKorisnika.submitTheForm()">Izmijeni</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+        <br />
+        <hr> Brisanje korisnika</hr>
+        <div ng-controller="BrisanjeKorisnika" >
+
+          <form>
+              <input type="text" id="Text2" ng-model="brisanjeKorisnika.id" /> ID korisnika za brisanje </br>      
+           
+            <button ng-click="brisanjeKorisnika.submitTheForm()">Obrisi korisnika</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+
+          <div ng-controller="UpdateUsername" >
+
+          <form>
+              <input type="text" id="Text3" ng-model="updateUsername.id" /> ID korisnika </br>      
+            <input type="password" id="Text4" ng-model="updateUsername.pass" /> Vaš password </br>
+              <input type="text" id="Text5" ng-model="updateUsername.novi" /> Novi username </br>
+            <button ng-click="updateUsername.submitTheForm()">Izmijeni</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+
+         <div ng-controller="Boards">
+                        Korisnik sa ID=1 ima sljedece Boardove
+                        <div ng-repeat="b in boardsList">
+                            <p>{{b.title}}</p>
+                        </div>
+
+	</body>
+
+
+</html>

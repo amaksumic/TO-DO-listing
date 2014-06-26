@@ -1,0 +1,45 @@
+﻿<div ng-controller="Username" >
+            
+   
+    <!----------------------------------------------------------------------------------------- --> 
+    <!--                             PROFIL KORISNIKA I ODJAVA!                                   -->
+    <!----------------------------------------------------------------------------------------- -->
+
+    <table style="width : 1067px"><tr><td  style =" text-align :right">
+      <div class="btn-group" style =" text-align :left">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" style="width :90px; bottom:0px; margin-bottom:0px">
+          {{username2}}
+          <span class="caret"></span>
+        </button> &nbsp;
+        <ul class="dropdown-menu" >
+          <li ><a ui-sref=".profil"> {{profile}}</a></li>
+          <li><a ui-sref=".boards">{{home}}</a></li>
+        </ul>
+        
+      </div><button ng-controller="odjava" type="button" class="btn btn-default" ng-click="odjava()" style="margin-bottom:0px; bottom:0px;">{{Logout}}</button>
+
+    </td></tr></table>
+
+
+
+    <!----------------------------------------------------------------------------------------- --> 
+    <!--                             PRIKAZ BOARD-OVA ZA KORISNIKA                                -->
+    <!----------------------------------------------------------------------------------------- -->
+<table><tr>
+    <td style="width: 8cm; vertical-align: text-top; text-align: start">
+            <ul class="nav nav-pills">
+              <li class="active"><a ui-sref=".boards" class="list-group-item active"> {{myboards}} </a></li>
+              <li><a ui-sref=".assignments" class="list-group-item"> {{assignments}} </a></li>
+              <li><a ui-sref=".calendar" class="list-group-item"> {{calendar}} </a></li>
+            </ul>
+    </td> 
+    
+    </tr><tr>
+    <td style="vertical-align:text-top; text-align: start; width:auto">
+
+        <div ui-view></div>
+
+    </td></tr>
+
+</table>
+</div>

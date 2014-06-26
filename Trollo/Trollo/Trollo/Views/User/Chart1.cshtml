@@ -1,0 +1,63 @@
+﻿
+<script src="~/Scripts/jquery-1.5.1.min.js"></script>
+<script src="~/Scripts/Highcharts-3.0.1/js/highcharts.js"></script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @model Trollo.user
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")   
+</head>
+<body>
+     <table><tr>
+        <td style= "vertical-align: top">
+            <div class="container-fluid">
+                <div class = "row-fluid">
+                    <div class = "span3">
+                        <div class = "well sidebar-nav">
+                            <ul class="list-group"> 
+                              <li class="list-group-item">@Html.ActionLink("User", "../User/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Board", "../Board/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("List", "../List/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Task", "../Task/Create", null, new { })</li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+          </td>
+         <td></td>
+        
+         <td style= "vertical-align: top">
+            <ul class="nav nav-tabs">                
+                <li>@Html.ActionLink("Create", "../User/Create", null, new { })</li>
+                <li>@Html.ActionLink("Manipulation", "../User/Index", null, new { })</li>
+                <li>@Html.ActionLink("Chart1", "../User/Chart1", null, new { })</li>
+                <li>@Html.ActionLink("Chart2", "../User/Chart2", null, new { })</li>
+            </ul>
+
+         <table><tr>
+             <td><BR>
+
+
+@((DotNet.Highcharts.Highcharts)ViewBag.Chart1Model)
+
+@(Model)
+
+                  </td></tr></table>
+    
+    </td>
+    
+    </tr>
+    </table>
+    
+    
+    
+    </body>
+    </html>

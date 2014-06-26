@@ -1,0 +1,34 @@
+﻿
+        <div ng-controller="obaveze">
+    <div class="jumbotron">
+      <h3> {{assignments}} </h3>    
+        <input type="text" placeholder="search tasks" ng-model="searchText"/> 
+    <div ng-repeat="o in obaveze | orderBy: sortOrder"| filter:searchText"> 
+    <br />
+
+                   <div ng-if= "o.label == 0" > 
+                        <div class="alert alert-success">
+
+                            {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
+
+                        </div>
+                   </div>
+                   <div ng-if= "o.label == 1"> 
+                        <div class="alert alert-danger">...
+
+                            {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
+
+                        </div>
+                   </div>  
+
+
+
+
+
+
+        
+    
+    </div>
+             
+    </div>
+</div>    

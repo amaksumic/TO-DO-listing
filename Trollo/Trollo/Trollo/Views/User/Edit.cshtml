@@ -1,0 +1,113 @@
+﻿@model Trollo.user
+
+@{
+    ViewBag.Title = "Edit";
+      @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
+}
+
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        
+        <div class="well">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+        <li><a href="#profile" data-toggle="tab">Picture</a></li>
+    
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane active in" id="home">
+        <form id="tab">
+         <div hidden>
+            @Html.LabelFor(model => model.idUser)
+        </div>
+        <div hidden>
+            @Html.EditorFor(model => model.idUser)
+            @Html.ValidationMessageFor(model => model.idUser)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.username)
+            @Html.ValidationMessageFor(model => model.username)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.password)
+            @Html.ValidationMessageFor(model => model.password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.creationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.creationDate)
+            @Html.ValidationMessageFor(model => model.creationDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div hidden>
+            @Html.LabelFor(model => model.registered)
+        </div>
+        <div hidden>
+            @Html.EditorFor(model => model.registered)
+         
+        </div>
+
+        <div hidden>
+            @Html.LabelFor(model => model.picture)
+        </div>
+        <div hidden>
+            @Html.EditorFor(model => model.picture)
+        </div>
+    
+        	    <p>
+            <input type="submit" value="Save" />
+        </p>
+        	
+        </form>
+          </div>
+
+          <div class="tab-pane fade" id="profile">
+    	
+        	          @using (Html.BeginForm("GetDocument", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = Model.idUser }))
+{
+    <input type="file" name="file" />
+    <input type="hidden" name="id" value="@Model.idUser" />
+    <input type="submit" value="OK" />
+  
+}
+    	
+      </div>
+
+      
+      
+  </div>
+        
+
+        
+    </fieldset>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrapjs")
+}

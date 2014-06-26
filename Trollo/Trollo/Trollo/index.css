@@ -1,0 +1,197 @@
+﻿html, body { 
+    margin : 0;
+    padding : 0;
+} 
+body { 
+    font : 73% "Trebuchet MS", Arial, Helvetica, Tahoma, sans-serif;
+    background : #white url(index_slicice/bg.gif) repeat-y top center;
+} 
+			/*WRAP*/ 
+#container { 
+    width : 80%;
+    margin :  auto;
+    border : 10px solid white;
+    line-height : 2em;
+    background : #black;
+    color : black;
+} 
+			/*TOP BANNER*/ 
+#top { 
+    padding : 0;
+    height : 100px;
+    background : #8fb8cc url(index_slicice/head.jpg) no-repeat;
+    color : #silver;
+} 
+#top h1 { 
+    padding : 5px 0 0 25px;
+    margin : 0;
+    font-size : 140%;
+    letter-spacing : 5px;
+}
+			/*TOP NAVIGATION*/ 
+#navcontainer { 
+    border-bottom : 10px solid #fff;
+} 
+#navcontainer ul { 
+    text-align : right;
+    padding-bottom : 5px;
+    padding-top : 5px;
+    padding-left : 0;
+    margin-top : 0;
+    margin-bottom : 0;
+    margin-left : 0;
+    background : rgb(0,56,83);
+    color : white;
+    width : 100%;
+    font-family : Arial, Helvetica, sans-serif;
+    line-height : 20px;
+} 
+#navcontainer ul li { 
+    display : inline;
+    padding-left : 0;
+    padding-right : 0;
+    padding-bottom : 5px;
+    padding-top : 5px;
+} 
+#navcontainer ul li a { 
+    padding-left : 10px;
+    padding-right : 10px;
+    padding-bottom : 5px;
+    padding-top : 5px;
+    color : white;
+    text-decoration : none;
+    border-right : 1px solid #fff;
+} 
+#navcontainer ul li a:hover { 
+    background : #369;
+    color : white;
+} 
+#navcontainer #active { 
+    border-left : 1px solid #fff;
+}  
+			/*LEFT SIDEBAR*/ 
+#leftnav { 
+float : left;
+width : 200px;
+margin : 0;
+padding : 1em;
+} 
+#leftnav p { 
+margin : 0 0 1em 0;
+} 
+#leftnavmenu { 
+list-style : none;
+float : left;
+width : 200px;
+margin : 30px 0 30px 0;
+padding : 0;
+font-size : 0.9em;
+} 
+#leftnavmenu ul { 
+list-style : none;
+width : 150px;
+margin : 0 0 0 0;
+padding : 0;
+font-size : 0.9em;
+} 
+#leftnavmenu li { 
+margin-bottom : 3px;
+} 
+#leftnavmenu li a { 
+font-weight : bold;
+height : 20px;
+text-decoration : none;
+color : #505050;
+background : #eaeaea url(index_slicice/up.gif) repeat left center;
+display : block;
+padding : 0px 0 0 30px;
+border-left : 0 solid #8fb8cc;
+} 
+#leftnavmenu li a:hover { 
+background : #8fb8cc url(index_slicice.gif) no-repeat left center;
+color : #fff;
+border-left : 0 solid #003366;
+} 
+			/*MAIN CONTENT*/ 
+#content { 
+margin-left : 20%;
+border-left : 10px solid #fff;
+padding : 1em;
+} 
+#content p { 
+padding : 0 2em 0 2em;
+} 
+			/*FOOTER*/ 
+#footer { 
+clear : both;
+margin : auto;
+padding : 0;
+font-size : 0.9em;
+border-top : 10px solid #fff;
+color : #fff;
+background : #8fb8cc;
+}
+
+.outer {
+    //border: 2px solid red;
+    float:left;
+    top:7cm;
+    bottom:0;
+    position:absolute;
+    width:1150px;
+}
+.inner {
+    max-height:100%cm;
+    overflow-x:auto;
+    //border: 2px solid blue;
+    width:93%;
+    margin-right:2%;
+    float:left;
+}
+
+* > html #footer img { 
+margin : 0;
+} 
+#footer p { 
+padding : absolute;
+} 
+			/*TYPOGRAPHY*/ 
+h2 { 
+margin : 1em 0 0.5em 0;
+font-size : 130%;
+letter-spacing : 5px;
+}
+blockquote {
+padding : 5px;
+font-weight : bold;
+font-style : italic;
+color : #b29b35;
+} 
+ 
+.quote { 
+border-top : 1px solid #8fb8cc;
+padding : 10px;
+color : #036;
+} 
+			
+ 			/*LINKS*/
+a:link, a:visited { 
+color : #2480ad;
+background : transparent;
+text-decoration : none;
+} 
+a:hover { 
+color : #036;
+background : #8fb8cc;
+text-decoration : none;
+} 
+a img { 
+border : none;
+} 
+			/*IMAGESS*/
+.imgleft { 
+float : left;
+padding : 5px;
+margin-right : 10px;
+}
+	

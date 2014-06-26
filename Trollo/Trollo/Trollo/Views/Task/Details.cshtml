@@ -1,0 +1,79 @@
+﻿@model Trollo.task
+
+@{
+    ViewBag.Title = "Details";
+}
+ @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
+<h2>Details</h2>
+
+<fieldset>
+    <legend>task</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idTask)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idTask)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.startTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.startTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.endTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.endTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.label)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.label)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.list.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.list.title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.taskCreator)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.taskCreator)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.taskOwner)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.taskOwner)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

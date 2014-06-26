@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Trollo.user>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")   
+</head>
+<body>
+     <table><tr>
+        <td style= "vertical-align: top">
+            <div class="container-fluid">
+                <div class = "row-fluid">
+                    <div class = "span3">
+                        <div class = "well sidebar-nav">
+                            <ul class="list-group"> 
+                              <li class="list-group-item">@Html.ActionLink("User", "../User/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Board", "../Board/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("List", "../List/Create", null, new { })</li>
+                              <li class="list-group-item">@Html.ActionLink("Task", "../Task/Create", null, new { })</li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+          </td>
+         <td></td>
+        
+         <td style= "vertical-align: top">
+            <ul class="nav nav-tabs">                
+                <li>@Html.ActionLink("Create", "../User/Create", null, new { })</li>
+                <li>@Html.ActionLink("Manipulation", "../User/Index", null, new { })</li>
+                 <li>@Html.ActionLink("Chart1", "../User/Chart1", null, new { })</li>
+                <li>@Html.ActionLink("Chart2", "../User/Chart2", null, new { })</li>
+            </ul>
+
+         <table><tr>
+             <td><BR>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+
+</td></tr></table>
+    
+    </td>
+    
+    </tr>
+    </table>
+
+</body>
+</html>
+
+

@@ -1,0 +1,112 @@
+﻿@model Trollo.user
+
+@{
+    ViewBag.Title = "AfterLogin";
+    @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/modernizr")
+    var br= TempData["borad"];
+}
+
+<h2>Dobro došli, @Model.username</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+    <navbar>
+
+
+        <ul class="nav pull-right">
+            <li>
+
+                 <img src="@Url.Content(Model.picture)"  width="75 px" height="75 px" alt=""> 
+                </li>
+  
+             <div class="btn-group dropup">
+ 
+
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    Logout
+      <span class="caret"></span>
+    <span class="sr-only"></span>
+  </button>
+  <ul class="dropdown-menu">
+   <li><a href="../Home/Logout">Logout</a></li>
+  </ul>
+</div>
+
+       </ul>
+
+   
+
+</navbar>
+
+        <table>
+            <tr>
+
+                <td >
+                    <div class="container" style="width: 200px">  
+        <div class="row">  
+        <div class="span2">  
+        <ul class="nav nav-pills nav-stacked">  
+
+             <li class="active"><a href="#">Home</a></li>
+            <li><a href="../Board/Index">Boards <span class="badge">@br</span></a></li>
+            <li><a href="../List/Index">Lists</a></li>
+            <li><a href="../Task/Index">Tasks</a></li>
+        </ul>
+            </div>
+            </div>
+            </div>
+                </td>
+            
+                <td style="width: 100px" >
+
+                </td>
+            
+                <td style="width: 400px">
+                    <div class="container-fluid well span6">
+	<div class="row-fluid">
+        <div class="span2" >
+		    <img src="@Url.Content(Model.picture)"  width="75 px" height="75 px" class="img-circle">
+        </div>
+        
+        <div class="span8">
+            <h3>@Model.username</h3>
+            <h6>Email: @Model.email</h6>
+            <h6>Creation date: @Model.creationDate</h6>
+           
+        </div>
+        
+        <div class="span2">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                    Action 
+                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="../User/Edit/ @Model.idUser"><span class="icon-wrench"></span> Modify</a></li>
+                    <li><a href="../User/Delete/ @Model.idUser"><span class="icon-trash"></span> Delete</a></li>
+                </ul>
+            </div>
+        </div>
+</div>
+                </td>
+        </tr>
+
+
+        </table>
+    
+    </fieldset>
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   @Scripts.Render("~/bundles/jquery")
+    
+        @Scripts.Render("~/bundles/bootstrapjs")
+}

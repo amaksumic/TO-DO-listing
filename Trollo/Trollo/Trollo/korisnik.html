@@ -1,0 +1,46 @@
+﻿
+
+         <!-- IZMJENA USERNAME-A I PASSWORD-A -->
+
+IZMJENA passworda i maila
+         <div ng-controller="IzmjenaKorisnika" >
+
+          <form>
+              <input type="hidden" id="id" ng-model="izmjenaKorisnika.id" value=1 />     
+            <input type="text" id="stari" ng-model="izmjenaKorisnika.stari" /> Stari password </br>
+              <input type="text" id="novi" ng-model="izmjenaKorisnika.novi" /> Novi password </br>
+              <input type="text" id="noviemail" ng-model="izmjenaKorisnika.noviemail" /> Novi email </br>
+            <button ng-click="izmjenaKorisnika.submitTheForm()"class="btn btn-primary">Izmijeni</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+
+           IZMJENA username-a
+          <div ng-controller="UpdateUsername" >
+
+          <form>
+              <input type="hidden" id="Text3" ng-model="updateUsername.id" value="1"/>     
+            <input type="password" id="Text4" ng-model="updateUsername.pass" /> Vaš password </br>
+              <input type="text" id="Text5" ng-model="updateUsername.novi" /> Novi username </br>
+            <button ng-click="updateUsername.submitTheForm()"class="btn btn-primary">Izmijeni</button>
+          </form>          
+          
+                <p>{{user}} </p>
+                   
+        </div>
+
+
+        <br />
+        <div ng-controller="BrisanjeKorisnika" >
+
+          <form>
+              <input type="hidden" id="Text2" ng-model="brisanjeKorisnika.id"/>    
+           
+            <button ng-click="brisanjeKorisnika.submitTheForm()" class="btn btn-danger">BRISI ME!</button>
+          </form>          
+                             
+        </div>
+
+

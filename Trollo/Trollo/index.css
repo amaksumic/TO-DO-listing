@@ -1,19 +1,17 @@
 ﻿html, body { 
     margin : 0;
     padding : 0;
-} 
+}
+
 body { 
     font : 73% "Trebuchet MS", Arial, Helvetica, Tahoma, sans-serif;
-    background : #white url(index_slicice/bg.gif) repeat-y top center;
-} 
+} /*#660066*/
 			/*WRAP*/ 
 #container { 
-    width : 80%;
-    margin :  auto;
-    border : 10px solid white;
-    line-height : 2em;
-    background : #black;
-    color : black;
+    
+    
+    background : #F5EAFF;
+    color : #F5EAFF;
 } 
 			/*TOP BANNER*/ 
 #top { 
@@ -30,7 +28,7 @@ body {
 }
 			/*TOP NAVIGATION*/ 
 #navcontainer { 
-    border-bottom : 10px solid #fff;
+    border-bottom : 10px solid #003366;
 } 
 #navcontainer ul { 
     text-align : right;
@@ -40,7 +38,7 @@ body {
     margin-top : 0;
     margin-bottom : 0;
     margin-left : 0;
-    background : rgb(0,56,83);
+    background : #CC99FF;
     color : white;
     width : 100%;
     font-family : Arial, Helvetica, sans-serif;
@@ -114,7 +112,6 @@ border-left : 0 solid #003366;
 } 
 			/*MAIN CONTENT*/ 
 #content { 
-margin-left : 20%;
 border-left : 10px solid #fff;
 padding : 1em;
 } 
@@ -133,19 +130,16 @@ background : #8fb8cc;
 }
 
 .outer {
-    //border: 2px solid red;
     float:left;
-    top:7cm;
     bottom:0;
     position:absolute;
-    width:1150px;
+    height:75%;
 }
 .inner {
-    max-height:100%cm;
-    overflow-x:auto;
-    //border: 2px solid blue;
-    width:93%;
-    margin-right:2%;
+    margin-top:-25px;
+    max-height:100%;
+    overflow-y:auto;
+    height:100%;
     float:left;
 }
 

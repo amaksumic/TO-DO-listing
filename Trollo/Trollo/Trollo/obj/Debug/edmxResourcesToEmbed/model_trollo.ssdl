@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mydbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="mydbModelStoreContainer">
+    <EntitySet Name="board" EntityType="mydbModel.Store.board" store:Type="Tables" Schema="mydb" />
+    <EntitySet Name="boardmembers" EntityType="mydbModel.Store.boardmembers" store:Type="Tables" Schema="mydb" />
+    <EntitySet Name="list" EntityType="mydbModel.Store.list" store:Type="Tables" Schema="mydb" />
+    <EntitySet Name="task" EntityType="mydbModel.Store.task" store:Type="Tables" Schema="mydb" />
+    <EntitySet Name="taskmembers" EntityType="mydbModel.Store.taskmembers" store:Type="Tables" Schema="mydb" />
+    <EntitySet Name="user" EntityType="mydbModel.Store.user" store:Type="Tables" Schema="mydb" />
+    <AssociationSet Name="boardOwner" Association="mydbModel.Store.boardOwner">
+      <End Role="user" EntitySet="user" />
+      <End Role="board" EntitySet="board" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="board">
+    <Key>
+      <PropertyRef Name="idBoard" />
+    </Key>
+    <Property Name="idBoard" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="boardOwner" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="boardmembers">
+    <Key>
+      <PropertyRef Name="idboardmembers" />
+    </Key>
+    <Property Name="idboardmembers" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idkorisnik" Type="int" />
+    <Property Name="idploca" Type="int" />
+  </EntityType>
+  <EntityType Name="list">
+    <Key>
+      <PropertyRef Name="idList" />
+    </Key>
+    <Property Name="idList" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ownerBoard" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="task">
+    <Key>
+      <PropertyRef Name="idTask" />
+    </Key>
+    <Property Name="idTask" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="startTime" Type="datetime" />
+    <Property Name="endTime" Type="datetime" />
+    <Property Name="comment" Type="varchar" MaxLength="200" />
+    <Property Name="label" Type="int" />
+    <Property Name="file" Type="blob" />
+    <Property Name="ownerList" Type="int" Nullable="false" />
+    <Property Name="taskCreator" Type="int" Nullable="false" />
+    <Property Name="taskOwner" Type="int" />
+  </EntityType>
+  <EntityType Name="taskmembers">
+    <Key>
+      <PropertyRef Name="idtaskmembers" />
+    </Key>
+    <Property Name="idtaskmembers" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idtask" Type="int" />
+    <Property Name="iduser" Type="int" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="45" />
+    <Property Name="registered" Type="int" />
+    <Property Name="picture" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <Association Name="boardOwner">
+    <End Role="user" Type="mydbModel.Store.user" Multiplicity="1" />
+    <End Role="board" Type="mydbModel.Store.board" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="board">
+        <PropertyRef Name="boardOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

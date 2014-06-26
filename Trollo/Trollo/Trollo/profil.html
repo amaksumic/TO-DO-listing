@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Profile</title>
+</head>
+<body>
+
+
+<table><tr><td>
+
+<div class="btn-group-vertical">
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal">
+  Change username
+</button>
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal1">
+  Change email
+</button>
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal2">
+  Change password
+</button>
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal3">
+  Change avatar
+</button>
+<button class="btn btn-default " data-toggle="modal" data-target="#myModal4">
+  Delete account
+</button>
+</div>
+
+
+    </td><td style="width:15px"></td><td style="vertical-align:text-top">
+
+        
+        
+
+<!---             -->
+<!--- A v a t a r -->
+<!---             -->
+        
+ <div ng-controller="Username" >                
+     <div class="media" style="border:dashed">
+        <img class="media-object" ng-src={{image}} alt="" height="240px" width="240px"/>
+          <div class="media-body">
+            <h4 class="media-heading">Your avatar</h4>
+          </div>
+        </div>   
+        <br/>
+        <span style="font-weight : bold; font-size : larger">{{username3}}</span>
+ </div>       
+
+    </td></tr></table>
+
+<!-- IZMJENA USERNAME-A -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+            <div ng-controller="UpdateUsername" >
+            <form><table><tr><td style =" text-align : right">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> Username</span>
+              <input type="text" class="form-control" ng-model="updateUsername.username">
+            </div>
+            <br>
+            <button  data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updateUsername.submitTheForm()">Save</button>
+            </td></tr></table></form></div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- IZMJENA EMAIL-A -->
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+            <div ng-controller="UpdateEmail" >
+            <form><table><tr><td style =" text-align : right">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> E-mail</span>
+              <input type="text" class="form-control" ng-model="updateEmail.email">
+            </div>
+            <BR>
+            <button data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updateEmail.submitTheForm()">Save</button>
+            </td></tr></table></form>
+                </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- IZMJENA PASSWORD-A -->
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+            <div ng-controller="UpdatePassword" >
+            <form><table><tr><td style =" text-align : right">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Old</span>
+              <input type="password" class="form-control" ng-model="updatePassword.stari">
+            </div>
+            <BR>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> New</span>
+              <input type="password" class="form-control" ng-model="updatePassword.novi">
+            </div><BR>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Repeate</span>
+              <input type="password" class="form-control" ng-model="updatePassword.repeate">
+            </div><BR>
+            <button  data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updatePassword.submitTheForm()">Save</button>
+            <button data-dismiss ="modal" type="submit" class="btn btn-default" onclick="reject()">Reject</button>
+            </td></tr></table></form>
+                </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+ <!-- IZMJENA AVATAR-A -->
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+       
+            <!-- CODE 1 -->
+  
+<div ng-controller = "myCtrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>
+         
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+   
+    
+    
+<!-- BRISANJE -->
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style ="width : 350px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+            <div ng-controller="UpdateUsername" >
+            <form><table><tr><td style =" text-align : right">
+                Are you sure you want to delete your account. All your date will be permanently erased.
+        <button data-dismiss ="modal" type="submit" class="btn btn-danger"  ng-click="brisanjeKorisnika.submitTheForm()"> Delete my account  </button>
+    <!-- <span style ="height : 20px; font-size : smaller; top:-8px; position:relative; vertical-align : text-top "> I want to delete my Trollo account</span></button> -->
+    
+            </td></tr></table></form>
+                </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal --> 
+    
+   
+
+
+</body>
+</html>

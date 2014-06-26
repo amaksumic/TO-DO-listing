@@ -367,8 +367,9 @@ routerApp.controller('scotchController', function ($scope) {
 
                            $window.sessionStorage.idu= data.idUser;
                            window.location = 'index.html#/pocetna/boards';
-                           AuthService.setUserAuthenticated(true);
+
                            usernamezapretragu = $scope.login.name;
+                           AuthService.setUserAuthenticated(true);
                            //location.path = '/home';
                        }
                        else {
@@ -503,10 +504,11 @@ routerApp.controller('scotchController', function ($scope) {
         var responsePromise = $http.get("api/UserApi/GetPath?username=" + usernamezapretragu, {});
 
         responsePromise.success(function (data) {
-            console.log(data);
-            $scope.image = "http://localhost:49338/Uploads/" + data.picture;
+          console.log(data);
+            
 
             $scope.username2 = $window.sessionStorage.token;
+            //$scope.image = "http://localhost:49338/Uploads/" + data.picture;
             $scope.username3 = $window.sessionStorage.token;
         });
 

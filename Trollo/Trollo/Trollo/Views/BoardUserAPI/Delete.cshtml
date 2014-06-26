@@ -1,0 +1,39 @@
+﻿@model Trollo.boardmembers
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>boardmembers</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idboardmembers)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idboardmembers)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idkorisnik)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idkorisnik)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idploca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idploca)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

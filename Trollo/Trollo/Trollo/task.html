@@ -1,0 +1,26 @@
+﻿        <!-- PRETRAGA KORISNIKA PO USERNAME-U -->
+
+          PRETRAGA KORISNIKA PO USERNAME-U
+         <div ng-controller="Pretraga" >
+
+          <form>      
+            <input type="text" id="username" ng-model="pretragaKorisnika.username" /> Username korisnika </br>
+            <button ng-click="pretragaKorisnika.submitTheForm()"class="btn btn-primary">Pretrazi</button>
+          </form>          
+          
+                <p>{{user.username}} </p>
+                   
+        </div>
+
+         <!-- PRETRAGA KORISNIKA PO EMAIL-U -->
+            PRETRAGA KORISNIKA PO EMAIL-U
+         <div ng-controller="PretragaEmail" >
+
+          <form>      
+            <input type="text" id="Text1" ng-model="pretragaKorisnika2.email" /> Email korisnika </br>
+            <button ng-click="pretragaKorisnika2.submitTheForm()"class="btn btn-primary">Pretrazi</button>
+          </form>          
+          
+                <p>{{user.username}} </p>
+                   
+        </div>
