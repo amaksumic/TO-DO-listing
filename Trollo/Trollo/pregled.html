@@ -1,7 +1,7 @@
 ﻿
 <div ng-controller="NoviList">        
     
-   <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; border-bottom-color:#F5EAFF; height:1.3cm; vertical-align:central; margin-top:70px" role="navigation">
+   <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; z-index:0; border-bottom-color:#F5EAFF; height:1.3cm; vertical-align:central; margin-top:70px" role="navigation">
         <table style="min-width:1000px">
             <tr>
                 <td style ="width:70%">
@@ -53,7 +53,7 @@
 
 <table><tr>
     <td style="border-right-color:black">
-        <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; z-index:0; border-right-color:#black; height:100%; width:3.5cm; vertical-align:central; margin-top:120px" role="navigation">
+        <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; z-index:1; border-right-color:#black; height:100%; width:3.5cm; vertical-align:central; margin-top:120px" role="navigation">
             <table>
             <tr>
                 <td style ="width:20%;">
@@ -119,15 +119,49 @@
 										<li class="alert alert-info nomargin" style="background-color:white">
                                     <a class="list-group-item" style="color:#000;" data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9">
                                      
-                                        
-                                        <div ng-if= "d.label == 0" style="text-align:left;"> {{d.title | uppercase}}</div>
-                                        <div ng-if= "d.label == 1" > 
+                                        <div ng-if= "d.taskOwner == 2" > 
                                             <table><tr>
                                             <td style="width:250px; text-align:left">
                                             {{d.title | uppercase}}
                                             </td>
                                             <td style="text-align:right">
-                                            <img src="index_slicice/task.png"/>
+                                            <div style="width :0.5cm; height : 0.5cm;" class="label-default" > </div>
+                                            </td></tr></table>
+                                        </div>
+                                        <div ng-if= "d.taskOwner == 3" > 
+                                            <table><tr>
+                                            <td style="width:250px; text-align:left">
+                                            {{d.title | uppercase}}
+                                            </td>
+                                            <td style="text-align:right">
+                                            <div style="width :0.5cm; height : 0.5cm;" class="label-plavo" > </div>
+                                            </td></tr></table>
+                                        </div>
+                                        <div ng-if= "d.taskOwner == 4" > 
+                                            <table><tr>
+                                            <td style="width:250px; text-align:left">
+                                            {{d.title | uppercase}}
+                                            </td>
+                                            <td style="text-align:right">
+                                            <div style="width :0.5cm; height : 0.5cm;" class="label-zelena" > </div>
+                                            </td></tr></table>
+                                        </div>
+                                        <div ng-if= "d.taskOwner == 5" > 
+                                            <table><tr>
+                                            <td style="width:250px; text-align:left">
+                                            {{d.title | uppercase}}
+                                            </td>
+                                            <td style="text-align:right">
+                                            <div style="width :0.5cm; height : 0.5cm;" class="label-narandzasto" > </div>
+                                            </td></tr></table>
+                                        </div>
+                                        <div ng-if= "d.taskOwner == 6" > 
+                                            <table><tr>
+                                            <td style="width:250px; text-align:left">
+                                            {{d.title | uppercase}}
+                                            </td>
+                                            <td style="text-align:right">
+                                            <div style="width :0.5cm; height : 0.5cm;" class="label-crvena" > </div>
                                             </td></tr></table>
                                         </div>
                                     </a>
