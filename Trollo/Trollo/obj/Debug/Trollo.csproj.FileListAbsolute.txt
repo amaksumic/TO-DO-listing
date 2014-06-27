@@ -765,3 +765,7 @@ C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\bs\Troll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.dll
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.pdb
 C:\Users\samsung\Documents\GitHub\TO-DO-listing\Trollo\Trollo\obj\Debug\Trollo.csprojResolveAssemblyReference.cache
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\AntiXssLibrary.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\HtmlSanitizationLibrary.dll
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\AntiXssLibrary.xml
+C:\Users\Mensur\Documents\GitHub\TO-DO-listing\Trollo\Trollo\bin\HtmlSanitizationLibrary.xml

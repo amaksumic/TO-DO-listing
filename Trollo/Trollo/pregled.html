@@ -109,11 +109,18 @@
                           
                                      
                                        <div class="panel-body">             
-                                <table><tr ng-repeat="d in task | orderBy: sortOrder" ><td >   
-                                 
+                                
+                                        <ul style="list-style: none;"  id="single" dnd-list="task">
+
+                                    
+                                       
+									 <div ng-repeat="d in task  | orderBy: sortOrder">
                                         <div ng-if="d.ownerList==l.idList">
+										<li class="alert alert-info nomargin">
                                     <a class="list-group-item" style="color:#000;" data-toggle="modal" ng-click="pregledTask(d)" data-target="#myModal9">
-                                     <div ng-if= "d.label == 0" style="text-align:left;"> {{d.title | uppercase}}</div>
+                                     
+                                        
+                                        <div ng-if= "d.label == 0" style="text-align:left;"> {{d.title | uppercase}}</div>
                                         <div ng-if= "d.label == 1" > 
                                             <table><tr>
                                             <td style="width:250px; text-align:left">
@@ -124,10 +131,17 @@
                                             </td></tr></table>
                                         </div>
                                     </a>
+									</li>
                                             </div>
-                                    </td></tr></table>
+											
+									</div>
+                                    
                                
-                                </div></div>
+                                            </ul>
+                                </div> <!-- panel body -->
+
+
+                        </div>
                                 </div></div></div></td></tr></table></td></tr></table>
                                 </td></tr></table>
                             
