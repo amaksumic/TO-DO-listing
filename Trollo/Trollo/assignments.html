@@ -1,34 +1,95 @@
 ﻿
-        <div ng-controller="obaveze">
-    <div class="jumbotron">
-      <h3> {{assignments}} </h3>    
-        <input type="text" placeholder="search tasks" ng-model="searchText"/> 
-    <div ng-repeat="o in obaveze | orderBy: sortOrder"| filter:searchText"> 
-    <br />
+<div ng-controller="obaveze">
 
-                   <div ng-if= "o.label == 0" > 
-                        <div class="alert alert-success">
 
+
+    <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; border-bottom-color:#F5EAFF; height:1.3cm; vertical-align:central; margin-top:70px" role="navigation">
+        <table style="min-width:1000px">
+            <tr>
+                <td style ="width:70%">
+
+                    <table><tr>
+                        <td>                        
+                                   <div>
+                                       <span style ="color:black; font-size:x-large; font-weight:bold">{{assignments}}</span>
+                                   </div>
+                        </td>
+                        </tr>
+                    </table>
+         
+                </td>
+                <td style ="width:auto ;">
+                </td>
+                <td style ="width:30% ;">
+
+                </td>
+            </tr>    
+         </table>
+    </nav> 
+
+    <table style="margin-top:100px; margin-left:100px; height:400px">
+        <tr>
+            <td style="border-right:solid; border-right-color:black; vertical-align:top; text-align:left; width:6cm">
+                <input type="text" placeholder="Search tasks" ng-model="searchText" style="width:5cm; height:1cm"/> 
+            </td>
+            <td style="width:1.5cm">
+            </td>
+            <td>
+                <div class="outer"> <div class="inner">
+                    <div ng-repeat="o in obaveze | orderBy: sortOrder| filter:searchText"> 
+                    <br />
+                    <div ng-if= "o.label == 2" > 
+                        <div class="alert alert-primary" style="background-color:black; width:13cm">
+                        <table><tr><td style = "width :1cm;">
+                            <label style = "display:block ; width :0.5cm; height : 0.5cm" class="label label-default" > </label>
+                            </td>
+                            <td>
                             {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
-
+                        </td></tr></table>
+                        </div>                   
+                    </div>
+                    <div ng-if= "o.label == 3"> 
+                        <div class="alert alert-primary" style="background-color:black; width:13cm">
+                        <table><tr><td style = "width :1cm;">
+                            <label style = "display:block ; width :0.5cm; height : 0.5cm" class="label label-plavo" > </label>
+                            </td>
+                            <td>
+                            {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
+                        </td></tr></table>
                         </div>
                    </div>
-                   <div ng-if= "o.label == 1"> 
-                        <div class="alert alert-danger">...
-
+                    <div ng-if= "o.label == 4"> 
+                        <div class="alert alert-primary" style="background-color:black; width:13cm">
+                        <table><tr><td style = "width :1cm;">
+                            <label style = "display:block ; width :0.5cm; height : 0.5cm" class="label label-zeleno" > </label>
+                            </td>
+                            <td>
                             {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
-
+                        </td></tr></table>
                         </div>
-                   </div>  
-
-
-
-
-
-
-        
-    
-    </div>
-             
-    </div>
-</div>    
+                   </div>
+                    <div ng-if= "o.label == 5"> 
+                        <div class="alert alert-primary" style="background-color:black; width:13cm">
+                        <table><tr><td style = "width :1cm;">
+                            <label style = "display:block ; width :0.5cm; height : 0.5cm" class="label label-narandzasto" > </label>
+                            </td>
+                            <td>
+                            {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
+                        </td></tr></table>
+                        </div>
+                   </div>
+                    <div ng-if= "o.label == 5"> 
+                        <div class="alert alert-primary" style="background-color:black; width:13cm">
+                        <table><tr><td style = "width :1cm;">
+                            <label style = "display:block ; width :0.5cm; height : 0.5cm" class="label label-crveno" > </label>
+                            </td>
+                            <td>
+                            {{taska}} <b>{{o.task}}</b> {{inlist}} <b>{{o.list}}</b> {{withinboard}} <a ng-click ="preusmjeri(o.id)"><b>{{o.board}}</b></a>. 
+                        </td></tr></table>
+                        </div>
+                   </div>
+                </div></div></div>  
+            </td>
+        </tr>
+    </table>
+</div>

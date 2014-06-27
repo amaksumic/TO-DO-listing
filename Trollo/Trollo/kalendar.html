@@ -1,40 +1,51 @@
-﻿<!doctype html>
-<html lang="en" ng-app="schedulerApp">
-<head>
-	<meta charset="utf-8">
-	<title>Angular Calendar demo</title>
-
-	
-    <script src="Scripts/angular.min.js"></script>
-        
-
-        <link href="index.css" rel="stylesheet" type="text/css" />
-    <!-- CSS (load bootstrap) -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+﻿
+<div ng-controller="MainSchedulerCtrl">
 
 
 
-	<link rel="stylesheet" href="../calendar/dhtmlxscheduler.css">
+    
 
-	<script src="../calendar/dhtmlxscheduler.js"></script>
+    <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; border-bottom-color:#F5EAFF; height:1.3cm; vertical-align:central; margin-top:70px" role="navigation">
+        <table style="min-width:1000px">
+            <tr>
+                <td style ="width:70%">
 
-	<script src="app.js"></script>
-	<script src="app.scheduler.js"></script>
-</head>
-<body ng-controller="MainSchedulerCtrl">
-	<div data="events" dhx-scheduler style="height:600px; width:800px;">
-		<div class="dhx_cal_prev_button">&nbsp;</div>
-		<div class="dhx_cal_next_button">&nbsp;</div>
-		<div class="dhx_cal_today_button"></div>
-		<div class="dhx_cal_date"></div>
-		<div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
-		<div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
-		<div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>    
+                    <table><tr>
+                        <td>                        
+                                   <div>
+                                       <span style ="color:black; font-size:x-large; font-weight:bold">My calendar</span>
+                                   </div>
+                        </td>
+                        </tr>
+                    </table>
+         
+                </td>
+                <td style ="width:auto ;">
+                </td>
+                <td style ="width:30% ;">
 
-		<div dhx-template="event_bar_text">
-			<strong>#{{event.id}}</strong>: {{event.text | uppercase}}
-		</div>
-	<div>
-</body>
-</html>
+                </td>
+            </tr>    
+         </table>
+    </nav> 
+
+    <table style="margin-top:100px; margin-left:100px; height:400px; background-color:black">
+        <tr>
+            <td>
+                	<div data="events" dhx-scheduler style="height:600px; width:800px;">
+		                <div class="dhx_cal_prev_button">&nbsp;</div>
+		                <div class="dhx_cal_next_button">&nbsp;</div>
+		                <div class="dhx_cal_today_button"></div>
+		                <div class="dhx_cal_date"></div>
+		                <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+		                <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+		                <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>    
+
+		                <div dhx-template="event_bar_text">
+			                <strong>#{{event.id}}</strong>: {{event.text | uppercase}}
+		                </div>
+	                <div>
+            </td>
+        </tr>
+    </table>
+</div>
