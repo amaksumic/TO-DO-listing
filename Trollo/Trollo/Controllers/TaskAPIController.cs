@@ -231,6 +231,7 @@ namespace Trollo.Controllers
             if (task.title != "")
             {
                 task.title = Sanitizer.GetSafeHtmlFragment(task.title);
+                task.taskOwner = 4;
                 db.task.Add(task);
                 db.SaveChanges();
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, task);

@@ -348,7 +348,7 @@ routerApp.controller('scotchController', function ($scope) {
                    };
 
                    var responsePromise = $http.get("api/UserApi/Login?username=" + dataObject.user + "&pass=" + dataObject.pass, {});
-
+                   $window.sessionStorage.jezik = "en-us";
                    responsePromise.success(function (data) {
                        if (data != "null") {
                            $scope.user = data;
@@ -379,6 +379,7 @@ routerApp.controller('scotchController', function ($scope) {
                            //location.path = '/home';
                        }
                        else {
+                           alert("Wrong username or password!");
                            window.location = 'index.html#/prijava';
                        }
                    });
@@ -712,7 +713,6 @@ routerApp.controller('scotchController', function ($scope) {
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
             $scope.sortOrder = "title";
-
             if ($window.sessionStorage.jezik == "en-vg") {
                 $scope.Adduser = "Novi član";
                 $scope.Addlist = "Nova lista";
@@ -729,6 +729,9 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.RED = "CRVENA";
                 $scope.Add = "Dodaj";
                 $scope.Update = "Izmijeni";
+                $scope.Done = "Premjesti u Done!"
+                $scope.Start = "Početak";
+                $scope.End = "Kraj";
             }
             else if ($window.sessionStorage.jezik == "ja-jp") {
                 $scope.Adduser = "新成员";
@@ -746,6 +749,9 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.RED = "红";
                 $scope.Add = "加";
                 $scope.Update = "更新";
+                $scope.Done = "移动完成了！";
+                $scope.Start = "开头";
+                $scope.End = "完结";
             }
             else {
                 $scope.Adduser = "Add member";
@@ -763,8 +769,10 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.RED = "RED";
                 $scope.Add = "Add";
                 $scope.Update = "Update";
+                $scope.Done = "Move to Done!";
+                $scope.Start = "Start";
+                $scope.End = "End";
             }
-
 
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
