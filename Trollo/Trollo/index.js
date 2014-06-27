@@ -392,7 +392,7 @@ routerApp.controller('scotchController', function ($scope) {
                    window.location = 'index.html#/prijava';
                };
 
-           }).controller("AddUser", function ($scope, $http) {
+           }).controller("AddUser", function ($scope, $http, $window) {
 
                $scope.addUser = {};
 
@@ -408,7 +408,9 @@ routerApp.controller('scotchController', function ($scope) {
                    var responsePromise = $http.get('api/BoardMembersAPI/UserToBoard?username=' + dataObject.username + '&id=' + username2, {});
 
                    responsePromise.success(function (data) {
+                       $window.location.reload();
                        alert("New user has been added to your board!");
+                       
                       
                    });
 
@@ -807,12 +809,12 @@ routerApp.controller('scotchController', function ($scope) {
                 odabraniList = id;
             };
 
-            $scope.obrisiKorisnika = function (id) {
-                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + id, {});
+            $scope.obrisiKorisnika = function (idK) {
+                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + idK + '&idBo=' + odabraniBoard, {});
 
                 responsePromise.success(function (data) {
                     alert("User has been deleted from your board!");
-                   // $window.location.reload();
+                  $window.location.reload();
 
                 });
                 response.error(function (data, status, headers, config) {
@@ -840,6 +842,7 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.pregledTask = function (task) {
 
                 $scope.selectTask = task;
+                $scope.boja = task.taskOwner;
                 var responsePromise = $http.get('api/TaskmembersAPI/GetUsers?id=' + task.idTask, {});
 
                 responsePromise.success(function (data) {
@@ -875,6 +878,12 @@ routerApp.controller('scotchController', function ($scope) {
                     responsePromise.success(function (data) {
                         $scope.task = data;
                     });
+                });
+            }
+            $scope.submitTaskDone = function (idT) {
+                var responsePromise = $http.get('api/TaskApi/taskToDone?idt=' + idT, {});
+                responsePromise.success(function (data) {
+                    $window.location.reload();
                 });
             }
             $scope.submitTaskUpdate = function () {

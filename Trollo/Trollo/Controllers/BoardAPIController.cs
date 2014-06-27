@@ -108,6 +108,8 @@ namespace Trollo.Controllers
             {
                 board.title = Sanitizer.GetSafeHtmlFragment(board.title);
                 db.board.Add(board);
+                list lista = new list("Done", board.idBoard);
+                db.list.Add(lista);
                 db.SaveChanges();
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, board);
                 response.Headers.Location = new Uri(Url.Link("RutaBoard", new { id = board.idBoard }));

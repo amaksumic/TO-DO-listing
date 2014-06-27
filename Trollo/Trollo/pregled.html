@@ -56,14 +56,14 @@
         <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; border-right-color:#black; height:100%; width:3.5cm; vertical-align:central; margin-top:120px" role="navigation">
             <table>
             <tr>
-                <td style ="width:20%;">
+                <td style ="width:35%;">
                     <span style="font-weight:bold"> 
                     <br><br>
                     {{Boardusers}}
                     <br><br>
                     </span>
                     <div ng-repeat="u in user "> 
-                                          
+                               <img src="uploads/{{u.picture}}" height="42" width="42" />           
                             {{u.username }}    
                                                 
                             <br>
@@ -238,22 +238,22 @@
                                     <select ng-model="selectedColor" 
                                              data-ng-options="col.name for col in colors">                
                                       </select>
-                                  <div ng-if= "selectedColor.id == 2"> 
+                                  <div ng-if= "selectedColor.id == 2 || boja == 2"> 
                                       <label style = "display:block ; width :200px" class="label label-default" > </label>
                                  </div>
-                                 <div ng-if= "selectedColor.id == 3"> 
-                                      <label style = "display:block ; width :200px" class="label label-primary" > </label>
+                                 <div ng-if= "selectedColor.id == 3 || boja == 3"> 
+                                      <label style = "display:block ; width :200px"  > </label>
                                  </div>
-                                 <div ng-if= "selectedColor.id == 4"> 
+                                 <div ng-if= "selectedColor.id == 4 || boja == 4"> 
                                       <label style = "display:block ; width :200px" class="label label-success" > </label>
                                  </div>
-                                 <div ng-if= "selectedColor.id == 5"> 
+                                 <div ng-if= "selectedColor.id == 5 || boja == 5"> 
                                       <label style = "display:block ; width :200px" class="label label-warning" > </label>
                                  </div>
-                                 <div ng-if= "selectedColor.id == 6"> 
+                                 <div ng-if= "selectedColor.id == 6 || boja == 6"> 
                                       <label style = "display:block ; width :200px" class="label label-danger" > </label>
                                  </div>
-            
+           
                                 <div class="form-group">
                                     <div ng-repeat="u in TaskUser ">
                                         {{u.username }}
@@ -278,9 +278,11 @@
                                    
                                     <label for="noviTask">{{Adduser}}:</label>
                                     <input type="text" class="form-control" id="Text3" ng-model="NoviList.taskuser" >
-                                
+                               
                                    <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">{{Update}}</button>
-                               </form>
+                               <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskDone(selectTask.idTask)">Move to done!</button>
+                               
+                              </form>
               </td></tr></table> 
            
             

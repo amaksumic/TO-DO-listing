@@ -23,6 +23,11 @@ namespace Trollo
         {
             title = _title;
         }
+        public list(string _title,int _idB)
+        {
+            title = _title;
+            ownerBoard = _idB;
+        }
         public int idList { get; set; }
         public string title { get; set; }
         public int ownerBoard { get; set; }

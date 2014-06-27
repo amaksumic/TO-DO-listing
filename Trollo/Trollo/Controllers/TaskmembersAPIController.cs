@@ -41,6 +41,9 @@ namespace Trollo.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+       
+
+
         public List<user> GetUsers(int id) //Vraca usere na tasku
         {
 

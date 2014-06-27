@@ -83,9 +83,9 @@ namespace Trollo.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage brisanjeUsera(int idKor)
+        public HttpResponseMessage brisanjeUsera(int idKor, int idBo)
         {
-            boardmembers memb = db.boardmembers.Where(bm => bm.idkorisnik == idKor).FirstOrDefault();
+            boardmembers memb = db.boardmembers.Where(bm => bm.idkorisnik == idKor && bm.idploca==idBo).FirstOrDefault();
             db.boardmembers.Remove(memb);
             db.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
@@ -103,7 +103,7 @@ namespace Trollo.Controllers
           
             foreach (var u in kor)
             {
-                liste.Add(new user { idUser = u.idUser, username = u.username });
+                liste.Add(new user { idUser = u.idUser, username = u.username, picture=u.picture });
             }
             return liste;
         }

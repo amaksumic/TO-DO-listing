@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Globalization;
+using System.Data.SqlClient;
 
 namespace Trollo.Controllers
 {
@@ -27,7 +28,7 @@ namespace Trollo.Controllers
 
             foreach (var t in task)
             {
-                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList, label = t.label, comment=t.comment, startTime=t.startTime, endTime=t.endTime });
+                tasks.Add(new task { idTask = t.idTask, title = t.title, ownerList=t.ownerList, label = t.label, comment=t.comment, startTime=t.startTime, endTime=t.endTime, taskOwner=t.taskOwner });
             }
 
             return tasks;
@@ -79,6 +80,17 @@ namespace Trollo.Controllers
 
         //** K O R I S N I K  I  TASKOVI KOJE JE KREIRAO
 
+        [System.Web.Http.HttpGet]
+        public void taskToDone(int idT)
+        {
+            IEnumerable<int> idListe = db.Database.SqlQuery<int>("SELECT idList from list where title='Done' and ownerBoard=(select ownerBoard from list where idList=(select ownerList from task where idTask={0}))", idT);
+            ;
+            task task = db.task.Find(idT);
+            task.ownerList = idListe.FirstOrDefault();
+            db.Entry(task).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
 
 
         [System.Web.Http.HttpGet]

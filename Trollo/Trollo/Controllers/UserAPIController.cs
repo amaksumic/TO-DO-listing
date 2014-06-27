@@ -288,7 +288,7 @@ namespace Trollo.Controllers
             string _password = Sanitizer.GetSafeHtmlFragment(pass);
             string _mail = Sanitizer.GetSafeHtmlFragment(email);
             user kor = new user(0, _username, _password, _mail);
-            kor.picture = "~/uploads/anonim.jpg";
+            kor.picture = "anonim.jpg";
             db.user.Add(kor);
             db.SaveChanges();
             ModelState.Clear();
