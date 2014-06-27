@@ -188,4 +188,24 @@ float : left;
 padding : 5px;
 margin-right : 10px;
 }
-	
+
+
+.label-plavo
+{
+    background-color:#55bfe8;
+}
+
+.label-narandzasto
+{
+    background-color:#f39e19;
+}
+
+.label-zelena
+{
+    background-color:#8bee3d;
+}
+
+.label-crvena
+{
+    background-color:#eb2b2b;
+}
