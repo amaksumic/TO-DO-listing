@@ -83,9 +83,9 @@ namespace Trollo.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage brisanjeUsera(int idKor, int idBo)
+        public HttpResponseMessage brisanjeUsera(int idKor)
         {
-            boardmembers memb = db.boardmembers.Where(bm => bm.idkorisnik == idKor && bm.idploca==idBo).FirstOrDefault();
+            boardmembers memb = db.boardmembers.Where(bm => bm.idkorisnik == idKor).FirstOrDefault();
             db.boardmembers.Remove(memb);
             db.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);

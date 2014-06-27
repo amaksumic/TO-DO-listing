@@ -33,7 +33,7 @@
                                     <td style ="width:3cm; ">
                                             <select  ng-model="login.language">
                                                 <option value="english" selected="selected">English</option>
-                                                <option value="arabic">中國的</option>
+                                                <option value="japan">中国的</option>
                                                 <option value="bosanski">Bosanski</option>
                                             </select> 
                                     </td>
@@ -78,7 +78,7 @@
 
                         <!-- NAME -->
                         <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
-                            <input type="text" style="height:1.3cm; width:9.1cm" name="name" class="form-control" ng-model="user.name" required placeholder="Username">
+                            <input type="text" style="height:1cm; width:8cm" name="name" class="form-control" ng-model="user.name" required placeholder="Username">
                             <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
                        </label>
                              </div>

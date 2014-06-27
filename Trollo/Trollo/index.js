@@ -363,7 +363,10 @@ routerApp.controller('scotchController', function ($scope) {
                                $scope.login.jezik = "Scripts/i18n/angular-locale_en-vg.js";
                                $locale.id = "en-vg";
                            }
-
+                           else if ($scope.login.language == "japan") {
+                               $scope.login.jezik = "Scripts/i18n/angular-locale_ja-jp.js";
+                               $locale.id = "ja-jp";
+                           }
 
                            $window.sessionStorage.idu= data.idUser;
                            window.location = 'index.html#/pocetna/boards';
@@ -392,7 +395,7 @@ routerApp.controller('scotchController', function ($scope) {
                    window.location = 'index.html#/prijava';
                };
 
-           }).controller("AddUser", function ($scope, $http, $window) {
+           }).controller("AddUser", function ($scope, $http) {
 
                $scope.addUser = {};
 
@@ -408,9 +411,7 @@ routerApp.controller('scotchController', function ($scope) {
                    var responsePromise = $http.get('api/BoardMembersAPI/UserToBoard?username=' + dataObject.username + '&id=' + username2, {});
 
                    responsePromise.success(function (data) {
-                       $window.location.reload();
                        alert("New user has been added to your board!");
-                       
                       
                    });
 
@@ -465,7 +466,10 @@ routerApp.controller('scotchController', function ($scope) {
                    $scope.Title = "Board";
                    $scope.Overview = "Overview";
                }
-
+               if ($locale.id == "ja-jp") {
+                   $scope.Title = "项目";
+                   $scope.Overview = "概观";
+               }
 
                console.log($stateParams.id);
                username2 = $stateParams.id;
@@ -503,6 +507,15 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.Logout = "Logout";
         }
 	
+        if ($locale.id == "ja-jp") {
+            $scope.profile = "轮廓";
+            $scope.assignments = "我的任务";
+            $scope.home = "家";
+            $scope.calendar = "日历";
+            $scope.myboards = "我的项目";
+            $scope.Logout = "结账";
+        }
+
         var responsePromise = $http.get("api/UserApi/GetPath?username=" + $window.sessionStorage.token, {});
 
         responsePromise.success(function (data) {
@@ -526,7 +539,12 @@ routerApp.controller('scotchController', function ($scope) {
                $scope.imeboard = "Ime projekta";
                $scope.myboards = "Projekti";
            }
-
+           else if ($locale.id == "ja-jp") {
+               $scope.dodaj = "加";
+               $scope.newb = "新项目";
+               $scope.imeboard = "项目名称";
+               $scope.myboards = "项目";
+           }
            else {
                $scope.dodaj = "Add";
                $scope.newb = "Add board";
@@ -706,8 +724,26 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.Addcolor = "Boja";
                 $scope.Priority = "Prioritet";
                 $scope.RED = "CRVENA";
+                $scope.Add = "Dodaj";
+                $scope.Update = "Izmijeni";
             }
-
+            else if ($locale.id == "ja-jp") {
+                $scope.Adduser = "新成员";
+                $scope.Addlist = "新叶";
+                $scope.Boardusers = "该项目的成员";
+                $scope.Lists = "表";
+                $scope.Addtask = "新招聘";
+                $scope.Newlistname = "名单";
+                $scope.Newtaskname = "工作名称";
+                $scope.Addcolor = "颜色";
+                $scope.Deletemember = "删除文章";
+                $scope.AddDescription = "任务描述";
+                $scope.Addcolor = "颜色";
+                $scope.Priority = "优先";
+                $scope.RED = "红";
+                $scope.Add = "加";
+                $scope.Update = "更新";
+            }
             else {
                 $scope.Adduser = "Add member";
                 $scope.Addlist = "Add list";
@@ -722,6 +758,8 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.Addcolor = "Color";
                 $scope.Priority = "Priority";
                 $scope.RED = "RED";
+                $scope.Add = "Add";
+                $scope.Update = "Update";
             }
 
 
@@ -738,6 +776,17 @@ routerApp.controller('scotchController', function ($scope) {
                       { id: 4, name: "zelena" },
                       { id: 5, name: "naradžasta" },
                       { id: 6, name: "crvena" }
+                ];
+            }
+            else if ($locale.id == "ja-jp") {
+
+                $scope.colors =
+                [
+                      { id: 2, name: "灰色" },
+                      { id: 3, name: "蓝色" },
+                      { id: 4, name: "绿色" },
+                      { id: 5, name: "橙" },
+                      { id: 6, name: "红" }
                 ];
             }
             else {
@@ -809,12 +858,12 @@ routerApp.controller('scotchController', function ($scope) {
                 odabraniList = id;
             };
 
-            $scope.obrisiKorisnika = function (idK) {
-                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + idK + '&idBo=' + odabraniBoard, {});
+            $scope.obrisiKorisnika = function (id) {
+                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + id, {});
 
                 responsePromise.success(function (data) {
                     alert("User has been deleted from your board!");
-                  $window.location.reload();
+                   // $window.location.reload();
 
                 });
                 response.error(function (data, status, headers, config) {
@@ -880,12 +929,6 @@ routerApp.controller('scotchController', function ($scope) {
                     });
                 });
             }
-            $scope.submitTaskDone = function (idT) {
-                var responsePromise = $http.get('api/TaskApi/taskToDone?idt=' + idT, {});
-                responsePromise.success(function (data) {
-                    $window.location.reload();
-                });
-            }
             $scope.submitTaskUpdate = function () {
                 console.log("--> Submitting task");
 
@@ -939,6 +982,12 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.inlist = 'u listi';
                 $scope.taska = 'Zadatak';
                 $scope.withinboard = 'unutar projekta';
+            }
+            else if ($locale.id == "ja-jp") {
+                $scope.assignments = '任务';
+                $scope.inlist = '列表';
+                $scope.taska = '任务';
+                $scope.withinboard = '项目';
             }
             else {
                 $scope.assignments = 'My Assignments';

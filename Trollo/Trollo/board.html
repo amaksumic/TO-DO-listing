@@ -9,7 +9,8 @@
                 <td style ="width:70%">
 
                     <table><tr>
-                        <td>                        
+                        <td>   
+                           
                             <span style ="color:black; font-size:x-large; font-weight:bold">{{myboards}}</span>
                         </td>
                         </tr>
@@ -43,22 +44,25 @@
        
                           
   <table style="min-width:1000px; width"><tr><td>
-
-    
+     
+      <div ng-if =" boardsList.length ==0"><img src="index_slicice/newboard.png" style="margin-top:150px; margin-left:60px"/></div>
+      <div ng-if="boardsList.length >0">
      <table ><tr><td ng-repeat="b in boardsList | orderBy: sortOrder" style="width:4.5cm"> <!--ng-class-even ="'md-col-6'" ng-class-odd="'row'"--> 
          <br />
+         
          <div class="btn-group">
             <button class="btn btn-warning btn-lg" ng-click="pregled(b.idBoard)" style="width:4cm; height:2.5cm; background-color:black"> {{b.title | uppercase}}</button>
-    </div>     
+    </div>   </div>  
          </td></tr></table>
 
+ 
     </td><td style="text-align:right; vertical-align:text-top; width="50%">
 
 
     <!----------------->
     <!-- DODAJ BOARD -->
     <!----------------->
-<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-dismiss="modal" aria-hidden="true">
+<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog"  style ="width : 350px">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,10 +78,10 @@
                               <form role="form">
                                 <div class="form-group">
                                     <label for="noviBoard">{{imeboard}}</label>
-                                    <input type="text" class="form-control" id="noviBoard" ng-model="NoviBoard.name" placeholder="Unesi naziv boarda">
+                                    <input type="text" class="form-control" id="noviBoard" ng-model="NoviBoard.name" style="color:black" placeholder="Unesi naziv boarda">
 
                                 </div>
-                                   <button type="submit" class="btn btn-primary" ng-click="submitBoard()">{{dodaj}}</button>
+                                   <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="submitBoard()">{{dodaj}}</button>
                                </form> 
            
             </td></tr></table>
