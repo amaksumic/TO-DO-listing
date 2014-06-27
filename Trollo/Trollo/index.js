@@ -701,6 +701,7 @@ routerApp.controller('scotchController', function ($scope) {
 
                 console.log(task);
                 var response = $http.post('api/TaskApi/CreateTask', task);
+                $window.location.reload();
 
             };
             //postavi pocetni datum na kontrole koji se inicijalno prikazuje
