@@ -32,6 +32,17 @@ namespace Trollo.Controllers
 
             return tasks;
         }
+        [System.Web.Http.HttpGet]
+        public void taskToDone(int idT)
+        {
+            IEnumerable<int> idListe = db.Database.SqlQuery<int>("SELECT idList from list where title='Done' and ownerBoard=(select ownerBoard from list where idList=(select ownerList from task where idTask={0}))", idT);
+            ;
+            task task = db.task.Find(idT);
+            task.ownerList = idListe.FirstOrDefault();
+            db.Entry(task).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
 
         // GET api/TaskApi/5
         public task Gettask(int id)

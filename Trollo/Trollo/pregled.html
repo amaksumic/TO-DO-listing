@@ -279,6 +279,7 @@
                                     <label for="noviTask">{{Adduser}}:</label>
                                     <input type="text" class="form-control" style="color:black;" id="Text3" ng-model="NoviList.taskuser" >
                                 
+                                   <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskDone(selectTask.idTask)">Move to done!</button>
                                    <button type="submit"  data-dismiss ="modal"  class ="btn btn-primary" ng-click="submitTaskUpdate()">{{Update}}</button>
                                </form>
               </td></tr></table> 

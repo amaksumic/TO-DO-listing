@@ -107,6 +107,8 @@ namespace Trollo.Controllers
             if (board.title != "")
             {
                 board.title = Sanitizer.GetSafeHtmlFragment(board.title);
+                list lista = new list("Done", board.idBoard);
+                db.list.Add(lista);
                 db.board.Add(board);
                 db.SaveChanges();
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, board);

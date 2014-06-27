@@ -358,14 +358,17 @@ routerApp.controller('scotchController', function ($scope) {
                            if ($scope.login.language == "english") {
                                $scope.login.jezik = "Scripts/i18n/angular-locale_en-us.js";
                                $locale.id = "en-us";
+                               $window.sessionStorage.jezik = "en-us";
                            }
                            else if ($scope.login.language == "bosanski") {
                                $scope.login.jezik = "Scripts/i18n/angular-locale_en-vg.js";
                                $locale.id = "en-vg";
+                               $window.sessionStorage.jezik = "en-vg";
                            }
                            else if ($scope.login.language == "japan") {
                                $scope.login.jezik = "Scripts/i18n/angular-locale_ja-jp.js";
                                $locale.id = "ja-jp";
+                               $window.sessionStorage.jezik = "ja-jp";
                            }
 
                            $window.sessionStorage.idu= data.idUser;
@@ -395,7 +398,7 @@ routerApp.controller('scotchController', function ($scope) {
                    window.location = 'index.html#/prijava';
                };
 
-           }).controller("AddUser", function ($scope, $http) {
+           }).controller("AddUser", function ($scope, $http, $window) {
 
                $scope.addUser = {};
 
@@ -411,7 +414,7 @@ routerApp.controller('scotchController', function ($scope) {
                    var responsePromise = $http.get('api/BoardMembersAPI/UserToBoard?username=' + dataObject.username + '&id=' + username2, {});
 
                    responsePromise.success(function (data) {
-                       alert("New user has been added to your board!");
+                       $window.location.reload();
                       
                    });
 
@@ -455,18 +458,18 @@ routerApp.controller('scotchController', function ($scope) {
                };
               
 
-           }).controller("ViewBoard", function ($scope, $stateParams, $http, $locale) {
+           }).controller("ViewBoard", function ($scope, $stateParams, $http, $window) {
 
-               if ($locale.id == "en-vg") {
+               if ($window.sessionStorage.jezik  == "en-vg") {
                    $scope.Title = "Projekat";
                    $scope.Overview = "Pregled";
                }
 
-               if ($locale.id == "en-us") {
+               if ($window.sessionStorage.jezik == "en-us") {
                    $scope.Title = "Board";
                    $scope.Overview = "Overview";
                }
-               if ($locale.id == "ja-jp") {
+               if ($window.sessionStorage.jezik == "ja-jp") {
                    $scope.Title = "项目";
                    $scope.Overview = "概观";
                }
@@ -487,9 +490,9 @@ routerApp.controller('scotchController', function ($scope) {
                });
 
            })
-    .controller("Username", function ($scope, $http, $window, $locale) {
+    .controller("Username", function ($scope, $http, $window) {
 
-        if ($locale.id == "en-vg") {
+        if ($window.sessionStorage.jezik == "en-vg") {
             $scope.profile = "Profil";
             $scope.assignments = "Obaveze";
             $scope.home = "Početna";
@@ -498,7 +501,7 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.Logout = "Odjava";
         }
 
-        if ($locale.id == "en-us") {
+        if ($window.sessionStorage.jezik == "en-us") {
             $scope.profile = "Profile";
             $scope.assignments = "My Assignments";
             $scope.home = "Home";
@@ -507,7 +510,7 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.Logout = "Logout";
         }
 	
-        if ($locale.id == "ja-jp") {
+        if ($window.sessionStorage.jezik == "ja-jp") {
             $scope.profile = "轮廓";
             $scope.assignments = "我的任务";
             $scope.home = "家";
@@ -531,15 +534,15 @@ routerApp.controller('scotchController', function ($scope) {
 
 
 
-       .controller("NoviBoard", function ($scope, $http, $window, $locale) {
+       .controller("NoviBoard", function ($scope, $http, $window) {
 
-           if ($locale.id == "en-vg") {
+           if ($window.sessionStorage.jezik == "en-vg") {
                $scope.dodaj = "Dodaj";
                $scope.newb = "Novi projekat";
                $scope.imeboard = "Ime projekta";
                $scope.myboards = "Projekti";
            }
-           else if ($locale.id == "ja-jp") {
+           else if ($window.sessionStorage.jezik == "ja-jp") {
                $scope.dodaj = "加";
                $scope.newb = "新项目";
                $scope.imeboard = "项目名称";
@@ -704,13 +707,13 @@ routerApp.controller('scotchController', function ($scope) {
         })
    
 
-        .controller("NoviList", function ($scope, $stateParams, $http, $window, $locale) {
+        .controller("NoviList", function ($scope, $stateParams, $http, $window) {
 
             odabraniBoard = $stateParams.id;
             console.log($stateParams.id);
             $scope.sortOrder = "title";
 
-            if ($locale.id == "en-vg") {
+            if ($window.sessionStorage.jezik == "en-vg") {
                 $scope.Adduser = "Novi član";
                 $scope.Addlist = "Nova lista";
                 $scope.Boardusers = "Članovi projekta";
@@ -727,7 +730,7 @@ routerApp.controller('scotchController', function ($scope) {
                 $scope.Add = "Dodaj";
                 $scope.Update = "Izmijeni";
             }
-            else if ($locale.id == "ja-jp") {
+            else if ($window.sessionStorage.jezik == "ja-jp") {
                 $scope.Adduser = "新成员";
                 $scope.Addlist = "新叶";
                 $scope.Boardusers = "该项目的成员";
@@ -767,7 +770,7 @@ routerApp.controller('scotchController', function ($scope) {
             console.log($stateParams.id);
             $scope.sortOrder = "title";
 
-            if ($locale.id == "en-vg") {
+            if ($window.sessionStorage.jezik == "en-vg") {
 
                 $scope.colors =
                 [
@@ -778,7 +781,7 @@ routerApp.controller('scotchController', function ($scope) {
                       { id: 6, name: "crvena" }
                 ];
             }
-            else if ($locale.id == "ja-jp") {
+            else if ($window.sessionStorage.jezik == "ja-jp") {
 
                 $scope.colors =
                 [
@@ -859,11 +862,11 @@ routerApp.controller('scotchController', function ($scope) {
             };
 
             $scope.obrisiKorisnika = function (id) {
-                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + id, {});
+                var responsePromise = $http.get('api/BoardMembersAPI/brisanjeUsera?idKor=' + id+'&idbo='+odabraniBoard, {});
 
                 responsePromise.success(function (data) {
-                    alert("User has been deleted from your board!");
-                   // $window.location.reload();
+                   
+                    $window.location.reload();
 
                 });
                 response.error(function (data, status, headers, config) {
@@ -927,6 +930,12 @@ routerApp.controller('scotchController', function ($scope) {
                     responsePromise.success(function (data) {
                         $scope.task = data;
                     });
+                });
+            }
+            $scope.submitTaskDone = function (idT) {
+                var responsePromise = $http.get('api/TaskApi/taskToDone?idt=' + idT, {});
+                responsePromise.success(function (data) {
+                    $window.location.reload();
                 });
             }
             $scope.submitTaskUpdate = function () {
