@@ -107,6 +107,21 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
     });
 }]);
 
+
+
+routerApp.config(function ($provide) {
+    $provide.decorator('$state', function ($delegate, $stateParams) {
+        $delegate.forceReload = function () {
+            return $delegate.go($delegate.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+        };
+        return $delegate;
+    });
+});
+
 routerApp.controller('scotchController', function ($scope) {
 
     $scope.message = 'test';
@@ -493,7 +508,7 @@ routerApp.controller('scotchController', function ($scope) {
                });
 
            })
-    .controller("Username", function ($scope, $http, $window) {
+    .controller("Username", function ($scope, $http, $window, $state) {
 
         if ($window.sessionStorage.jezik == "en-vg") {
             $scope.profile = "Profil";
@@ -554,6 +569,8 @@ routerApp.controller('scotchController', function ($scope) {
                 responsePromise.success(function (data) {
                     $scope.user = data;
                     $scope.email3 = dataObject.email;
+                    console.log("fffff");
+                    $state.forceReload();
                 });
                 responsePromise.error(function (data, status, headers, config) {
                     alert("Submitting form failed!");
@@ -565,7 +582,6 @@ routerApp.controller('scotchController', function ($scope) {
             });
             $scope.email3 = dataObject.email;
         }
-
     })
 
 
@@ -1087,7 +1103,7 @@ routerApp.directive('fileModel', ['$parse', function ($parse) {
     };
 }]);
 
-routerApp.service('fileUpload', ['$http', '$window', function ($http, $window) {
+routerApp.service('fileUpload', ['$http', '$window', '$state', function ($http, $window, $state) {
     this.uploadFileToUrl = function (file, uploadUrl) {
         var fd = new FormData();
         fd.append('file', file);
@@ -1097,13 +1113,14 @@ routerApp.service('fileUpload', ['$http', '$window', function ($http, $window) {
             headers: { 'Content-Type': undefined }
         })
         .success(function () {
+            $window.location.reload();
         })
         .error(function () {
         });
     }
 }]);
 
-routerApp.controller('myCtrl', ['$scope', 'fileUpload', function ($scope, fileUpload) {
+routerApp.controller('myCtrl', ['$scope', 'fileUpload', '$state', function ($scope, fileUpload, $state) {
 
     $scope.uploadFile = function () {
         var file = $scope.myFile;
