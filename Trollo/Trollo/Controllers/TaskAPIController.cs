@@ -99,9 +99,12 @@ namespace Trollo.Controllers
             List<obaveze> obaveze = new List<obaveze>();
             IEnumerable<obaveze> assignment = db.Database.SqlQuery<obaveze>("SELECT t.title as task, l.title as list, b.title as board, b.idBoard as id, t.taskOwner as label FROM board b, list l, task t, taskmembers tm WHERE t.ownerList = l.idList AND" + 
                             " l.ownerBoard = b.idBoard AND t.idTask = tm.idtask AND tm.iduser = {0}", id);
-            foreach (var a in assignment)
+            if (assignment != null)
             {
-                obaveze.Add(new obaveze { task = a.task, list = a.list, board=a.board, id = a.id, label = a.label});
+                foreach (var a in assignment)
+                {
+                    obaveze.Add(new obaveze { task = a.task, list = a.list, board = a.board, id = a.id, label = a.label });
+                }
             }
             return obaveze;
         }
