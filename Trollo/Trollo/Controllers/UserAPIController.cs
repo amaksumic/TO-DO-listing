@@ -313,7 +313,7 @@ namespace Trollo.Controllers
         {
             user kor = new user();
             kor = db.user.Where(u => u.username.Equals(username)).FirstOrDefault();
-            user kor2 = new user(kor.picture);
+            user kor2 = new user(kor.picture, kor.email);
             return kor2;
 
         }

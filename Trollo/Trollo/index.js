@@ -260,30 +260,6 @@ routerApp.controller('scotchController', function ($scope) {
                    });
 
                }
-           }).controller("UpdateEmail", function ($scope, $http) {
-
-               $scope.updateEmail = {};
-
-               $scope.updateEmail.submitTheForm = function (item, event) {
-                   console.log("--> Submitting form");
-
-
-                   var dataObject = {
-                       email: $scope.updateEmail.email
-                   };
-
-                   var responsePromise = $http.get("api/UserApi/UpdateEmail?id=1" + /*dataObject.id + */  "&noviemail=" + dataObject.email, {});
-
-                   responsePromise.success(function (data) {
-                       $scope.user = data;
-                   });
-
-
-                   responsePromise.error(function (data, status, headers, config) {
-                       alert("Submitting form failed!");
-                   });
-               }
-
            }).controller("BrisanjeKorisnika", function ($scope, $http, $window) {
 
                $scope.brisanjeKorisnika = {};
@@ -555,6 +531,7 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.username2 = $window.sessionStorage.token;
             $scope.image = "http://localhost:49338/Uploads/" + data.picture;
             $scope.username3 = $window.sessionStorage.token;
+            $scope.email3 = data.email;
         });
 
         $scope.updateEmail = {};

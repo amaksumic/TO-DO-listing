@@ -20,9 +20,10 @@ namespace Trollo
             //new user(0, username, pass, email);
         }
 
-        public user(string _pic)
+        public user(string _pic, string _email)
         {
             picture = _pic;
+            email = _email;
         }
 
         public user(int id, string _username, string _pass, string _email)
