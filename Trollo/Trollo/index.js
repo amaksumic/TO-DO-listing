@@ -557,6 +557,38 @@ routerApp.controller('scotchController', function ($scope) {
             $scope.username3 = $window.sessionStorage.token;
         });
 
+        $scope.updateEmail = {};
+
+        $scope.updateEmail.submitTheForm = function (item, event) {
+            console.log("--> Submitting form");
+
+
+            var dataObject = {
+                email: $scope.updateEmail.email
+            };
+
+            var responsePromise = $http.get('api/UserApi/GetId?username=' + $window.sessionStorage.token);
+
+            responsePromise.success(function (data) {
+                id_user = data;
+
+                var responsePromise = $http.get("api/UserApi/UpdateEmail?id=" + id_user + "&noviemail=" + dataObject.email, {});
+
+                responsePromise.success(function (data) {
+                    $scope.user = data;
+                    $scope.email3 = dataObject.email;
+                });
+                responsePromise.error(function (data, status, headers, config) {
+                    alert("Submitting form failed!");
+                });
+            });
+
+            responsePromise.error(function (data, status, headers, config) {
+                alert("Submitting form failed!");
+            });
+            $scope.email3 = dataObject.email;
+        }
+
     })
 
 

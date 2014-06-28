@@ -1,76 +1,72 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Profile</title>
-</head>
-<body>
+﻿    <nav class ="navbar navbar-inverse navbar-fixed-top" style="background-color:#F5EAFF; z-index:0; border-bottom-color:#F5EAFF; height:1.3cm; vertical-align:central; margin-top:70px" role="navigation">
+        <table style="min-width:1000px">
+            <tr>
+                <td style ="width:70%">
+
+                    <table><tr>
+                        <td>                        
+                                   <div>
+                                       <span style ="color:black; font-size:x-large; font-weight:bold">My profile</span>
+                                   </div>
+                        </td>
+                        </tr>
+                    </table>
+         
+                </td>
+                <td style ="width:auto ;">
+                </td>
+                <td style ="width:30% ;">
+                </td>
+            </tr>    
+         </table>
+    </nav> 
 
 
-<table><tr><td>
+    <div ng-controller="Username" style="background-color:black; margin-top:120px; width:800px; height:280px">
 
-<div class="btn-group-vertical">
-<button class="btn btn-default " data-toggle="modal" data-target="#myModal">
-  Change username
-</button>
-<button class="btn btn-default " data-toggle="modal" data-target="#myModal1">
-  Change email
-</button>
-<button class="btn btn-default " data-toggle="modal" data-target="#myModal2">
-  Change password
-</button>
-<button class="btn btn-default " data-toggle="modal" data-target="#myModal3">
-  Change avatar
-</button>
-<button class="btn btn-default " data-toggle="modal" data-target="#myModal4">
-  Delete account
-</button>
-</div>
+        <table><tr>
+            <td >
+                 <div style="margin-left:20px; margin-top:20px">                
+                     <div class="media" style="border:dashed; border-color:#F5EAFF">
+                        <img class="media-object" ng-src={{image}} alt="" style=" height:240px; width:240px"/>
+                      </div>   
+                 </div>
+            </td>
+            <td style="margin-left:130px; width:560px;">
+                <br><br>
+                <table>
+                    <tr>
+                        <td style="text-align:right;"> <h5 >Username: &nbsp; </h5></td>
+                        <td style="text-align:left;"> <h4 style="color:#F5EAFF;"> {{username3}} </h4> </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;"> <h5 >Email: &nbsp; </h5></td>
+                        <td style="text-align:left;"> 
+                            <h4 style="color:#F5EAFF;"> {{email3}}</h4>   
+                        </td>
+                    </tr>
+                </table><br><br><br><br><br>
+                <div class="btn-group">                            
+                            <button class="btn btn-primary2 " data-toggle="modal" data-target="#myModal2">
+                              Change password
+                            </button>
+                            <button class="btn btn-primary2 " data-toggle="modal" data-target="#myModal3">
+                              Change avatar
+                            </button>
+                            <button class="btn btn-primary2 " data-toggle="modal" data-target="#myModal1">
+                              Change email
+                            </button>
+                            <button class="btn btn-primary2 " style="color:silver" data-toggle="modal" data-target="#myModal4">
+                              Delete account
+                            </button>
+                            </div>
+            </td></tr>
+        </table>
 
 
-    </td><td style="width:15px"></td><td style="vertical-align:text-top">
+    </div>
 
-        
-        
 
-<!---             -->
-<!--- A v a t a r -->
-<!---             -->
-        
- <div ng-controller="Username" >                
-     <div class="media" style="border:dashed">
-        <img class="media-object" ng-src={{image}} alt="" height="240px" width="240px"/>
-          <div class="media-body">
-            <h4 class="media-heading">Your avatar</h4>
-          </div>
-        </div>   
-        <br/>
-        <span style="font-weight : bold; font-size : larger">{{username3}}</span>
- </div>       
-
-    </td></tr></table>
-
-<!-- IZMJENA USERNAME-A -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-dismiss="modal" aria-hidden="true">
-  <div class="modal-dialog"  style ="width : 350px">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="modal-body">
-            <div ng-controller="UpdateUsername" >
-            <form><table><tr><td style =" text-align : right">
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> Username</span>
-              <input type="text" class="form-control" ng-model="updateUsername.username">
-            </div>
-            <br>
-            <button  data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updateUsername.submitTheForm()">Save</button>
-            </td></tr></table></form></div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <!-- IZMJENA EMAIL-A -->
 
@@ -81,16 +77,16 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body">
-            <div ng-controller="UpdateEmail" >
+            <div ng-controller="Username" >
             <form><table><tr><td style =" text-align : right">
             <div class="input-group">
               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> E-mail</span>
-              <input type="text" class="form-control" ng-model="updateEmail.email">
+              <input type="text" class="form-control" style="color:black"ng-model="email">
             </div>
             <BR>
-            <button data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updateEmail.submitTheForm()">Save</button>
+            <button data-dismiss ="modal" type="submit" class="btn btn-primary" ng-click="submitTheEmail()">Save</button>
             </td></tr></table></form>
-                </div>
+            </div>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -110,19 +106,19 @@
             <form><table><tr><td style =" text-align : right">
             <div class="input-group">
               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Old</span>
-              <input type="password" class="form-control" ng-model="updatePassword.stari">
+              <input type="password" style="color:black" class="form-control" ng-model="updatePassword.stari">
             </div>
             <BR>
             <div class="input-group">
               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> New</span>
-              <input type="password" class="form-control" ng-model="updatePassword.novi">
+              <input type="password" style="color:black" class="form-control" ng-model="updatePassword.novi">
             </div><BR>
             <div class="input-group">
               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Repeate</span>
-              <input type="password" class="form-control" ng-model="updatePassword.repeate">
+              <input type="password" style="color:black" class="form-control" ng-model="updatePassword.repeate">
             </div><BR>
-            <button  data-dismiss ="modal" type="submit" class="btn btn-default" ng-click="updatePassword.submitTheForm()">Save</button>
-            <button data-dismiss ="modal" type="submit" class="btn btn-default" onclick="reject()">Reject</button>
+            <button  data-dismiss ="modal" type="submit" class="btn btn-primary" ng-click="updatePassword.submitTheForm()">Save</button>
+            <button data-dismiss ="modal" type="submit" class="btn btn-primary" onclick="reject()">Reject</button>
             </td></tr></table></form>
                 </div>
       </div>
@@ -145,7 +141,8 @@
   
 <div ng-controller = "myCtrl">
     <input type="file" file-model="myFile"/>
-    <button ng-click="uploadFile()">upload me</button>
+    <br/>
+    <button class="btn btn-primary" ng-click="uploadFile()">Upload</button>
 </div>
          
       </div>
@@ -164,7 +161,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="modal-body">
-            <div ng-controller="BrisanjeKorisnika" >
+            <div ng-controller="UpdateUsername" >
             <form><table><tr><td style =" text-align : right">
                 Are you sure you want to delete your account. All your date will be permanently erased.
         <button data-dismiss ="modal" type="submit" class="btn btn-danger"  ng-click="brisanjeKorisnika.submitTheForm()"> Delete my account  </button>
@@ -176,9 +173,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
-    
-   
 
-
-</body>
-</html>
