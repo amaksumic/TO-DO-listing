@@ -284,15 +284,24 @@ namespace Trollo.Controllers
         // GET api/UserApi/5
         public user Registration(string username, string pass, string email)
         {
+            
             string _username = Sanitizer.GetSafeHtmlFragment(username);
             string _password = Sanitizer.GetSafeHtmlFragment(pass);
             string _mail = Sanitizer.GetSafeHtmlFragment(email);
-            user kor = new user(0, _username, _password, _mail);
-            kor.picture = "anonim.jpg";
-            db.user.Add(kor);
-            db.SaveChanges();
-            ModelState.Clear();
-            return kor;
+            user kor = new user(0, _username, _password, _mail);            
+
+
+            var regex = new System.Text.RegularExpressions.Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"+ "@"+ @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
+
+            if (_username.Length > 4 && _password.Length < 8 && _password.Length > 4 && regex.IsMatch(_mail))
+            {
+                kor.picture = "anonim.jpg";
+                db.user.Add(kor);
+                db.SaveChanges();
+                ModelState.Clear();
+                return kor;
+            }
+            return null;
         }
 
         [System.Web.Http.HttpGet]
